@@ -151,7 +151,7 @@ When working with templates in Langtail, it's important to manage newlines caref
 - **Newlines Around `{{else}}`:** Newlines immediately before and after `{{else}}` are removed. This ensures that the content before and after the `{{else}}` is treated as a continuous block without unnecessary breaks.
 - **Newlines Before and After Closing Tags:** Newlines immediately before and after closing tags (`{{/if}}`, `{{/each}}`, `{{/unless}}`, `{{/with}}`) are also removed. This action keeps the template compact and avoids introducing breaks that the LLM might misinterpret.
 
-### Example:
+#### Example
 
 For example this template when hour is less than 12:
 
