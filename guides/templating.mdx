@@ -93,48 +93,80 @@ Helpers like `eq`, `ne`, `lt`, `gt`, `lte`, `gte`, `and`, `or` can be used to ev
 
 - **Purpose:** Check if two values are equal.
 - **Example:** Customize prompt based on user subscription status.
-  ```django Example
-  {{#if (eq subscriptionStatus 'active')}}
-    "Thank you for being a valued subscriber! Here's what's new..."
-  {{else}}
-    "Consider subscribing to get full access."
-  {{/if}}
-  ```
+
+```django Example
+{{#if (eq subscriptionStatus 'active')}}
+Thank you for being a valued subscriber! Here's what's new...
+{{else}}
+Consider subscribing to get full access.
+{{/if}}
+```
 
 #### Greater Than (gt)
 
 - **Purpose:** Check if one value is greater than another.
 - **Example:** Offer content based on user's score.
-  ```django Example
-  {{#if (gt userScore 50)}}
-    "Great job! You scored above 50!"
-  {{else}}
-    "Try again to score more than 50."
-  {{/if}}
-  ```
+
+```django Example
+{{#if (gt userScore 50)}}
+Great job! You scored above 50!
+{{else}}
+Try again to score more than 50.
+{{/if}}
+```
 
 #### Logical AND (and)
 
 - **Purpose:** Check if multiple conditions are true.
 - **Example:** Provide options based on user's age and consent.
-  ```django Example
-  {{#if (and (gte userAge 18) (eq consentGiven true))}}
-    "You have access to all features."
-  {{else}}
-    "Some features may be restricted."
-  {{/if}}
-  ```
+
+```django Example
+{{#if (and (gte userAge 18) (eq consentGiven true))}}
+You have access to all features.
+{{else}}
+Some features may be restricted.
+{{/if}}
+```
 
 #### Logical OR (or)
 
 - **Purpose:** Check if at least one of multiple conditions is true.
 - **Example:** Adjust prompt based on user's role.
-  ```django Example
-  {{#if (or (eq userRole 'admin') (eq userRole 'moderator'))}}
-    "Access to admin controls granted."
-  {{else}}
-    "Standard user access."
-  {{/if}}
-  ```
+
+```django Example
+{{#if (or (eq userRole 'admin') (eq userRole 'moderator'))}}
+Access to admin controls granted.
+{{else}}
+Standard user access.
+{{/if}}
+```
 
 By using these helpers, you can create prompts that directly respond to the input data. This approach allows for more precise and relevant LLM interactions.
+
+### Handling Newlines in Templates
+
+When working with templates in Langtail, it's important to manage newlines carefully to ensure they don't negatively impact the LLM's response quality. To address this, Langtail automatically adjusts newlines in specific cases within your templates. This adjustment applies to structures like `if`, `else`, `each`, `unless`, and `with`. Here's how it works:
+
+- **First Newline After Opening Tags:** The first newline immediately following an opening tag (`{{#if}}`, `{{#each}}`, `{{#unless}}`, `{{#with}}`) is automatically removed. This prevents unintended breaks that could confuse the LLM.
+- **Newlines Around `{{else}}`:** Newlines immediately before and after `{{else}}` are removed. This ensures that the content before and after the `{{else}}` is treated as a continuous block without unnecessary breaks.
+- **Newlines Before and After Closing Tags:** Newlines immediately before and after closing tags (`{{/if}}`, `{{/each}}`, `{{/unless}}`, `{{/with}}`) are also removed. This action keeps the template compact and avoids introducing breaks that the LLM might misinterpret.
+
+### Example:
+
+For example this template when hour is less than 12:
+
+```django Example
+{{#if (lt hour 12)}}
+Good morning! How can I assist you today?
+{{else}}
+Good afternoon! How can I assist you today?
+{{/if}}
+```
+
+Will be sended without the first newline after the `{{#if}}` tag as follows:
+
+```django Example
+Good morning! How can I assist you today?
+```
+
+This automatic newline management ensures that your templates produce cleaner, more coherent prompts for the LLM.
