@@ -1,0 +1,156 @@
+---
+title: 'Use existing OpenAI app'
+---
+
+If you've already start building your application using the OpenAI SDK but want to start experimenting with Langtail, you can configure your existing code to start sending requests to the Langtail Proxy.
+
+In this guide, we'll generate a Langtail API key, modify your existing code to send LLM requests via the Langtail Proxy, and then use Langtail's observability tools to see the requests coming from your app.
+
+Let's get started:
+
+<Steps>
+  <Step title="Prerequisites">
+    Before moving on, make sure you have:
+    - A Langtail account ([create one here](https://langtail.com/sign-up))
+    - An OpenAI key already added to your Langtail workspace
+  </Step>
+  <Step title="Generate a project API key">
+    ![Screenshot of creating project API key](/images/proxy/create-api-key.gif)
+
+    1. In Langtail, open an existing project or create a new one.
+    1. In the left sidebar, click *API Keys*.
+    1. Click *New API Key*, optionally set a name and a budget limit, then click *Create*.
+    1. Copy the key.
+  </Step>
+  <Step title="Modify your code to use the Langtail Proxy">
+    1. Add your Langtail project API key to an environment variable. In the following snippets, we use `LANGTAIL_API_KEY`.
+    1. In your codebase, find where you initialize the OpenAI SDK and make these modifications:
+
+    <Tabs>
+      <Tab title="JavaScript">
+        <AccordionGroup>
+          <Accordion title="OpenAI SDK v4" defaultOpen>
+            ```javascript
+            import OpenAI from "openai"
+
+            // Add baseURL to send requests to Langtail instead of directly to OpenAI
+            const openai = new OpenAI({
+              apiKey: process.env.LANGTAIL_API_KEY,
+              baseURL: "https://proxy.langtail.com/v1",
+              defaultHeaders: {
+                "X-Langtail-Metadata-key": 'value',  // optional; 'key' can be any string
+              },
+            });
+
+            // Then submit a request as usual and it will be proxied through Langtail.
+            // Optionally, add headers for easier trace filtering.
+            const chatCompletion = await openai.chat.completions.create({
+              messages: [{ role: 'user', content: 'Say this is a test' }],
+              model: 'gpt-3.5-turbo',
+              headers: {
+                "X-Langtail-Prompt": 'prompt-slug',  // optional
+                "X-Langtail-Metadata-key": 'value',  // optional; 'key' can be any string
+              }
+            });
+            ```
+          </Accordion>
+
+          <Accordion title="OpenAI SDK v3 or lower">
+            ```javascript
+            import { Configuration, OpenAIApi } from "openai";
+
+            // Add basePath to send requests to Langtail instead of directly to OpenAI
+            const configuration = new Configuration({
+                apiKey: process.env.LANGTAIL_API_KEY,
+                basePath: "https://proxy.langtail.com/v1",
+                baseOptions: {
+                  headers: {
+                      "X-Langtail-Metadata-key": 'value',  // optional; 'key' can be any string
+                  },
+                },
+            });
+            const openai = new OpenAIApi(configuration);
+
+            // Then submit a request as usual and it will be proxied through Langtail.
+            // Optionally, add headers for easier trace filtering.
+            const chatCompletion = await openai.createChatCompletion({
+              model: "gpt-3.5-turbo",
+              messages: [{role: "user", content: "Hello world"}],
+              headers: {
+                "X-Langtail-Prompt": 'prompt-slug',  // optional
+                "X-Langtail-Metadata-key": 'value',  // optional; 'key' can be any string
+              }
+            });
+            ```
+          </Accordion>
+        </AccordionGroup>
+      </Tab>
+      <Tab title="Python">
+        <AccordionGroup>
+          <Accordion title="OpenAI SDK v1" defaultOpen>
+            ```python
+            from openai import OpenAI
+
+            # Add base_url to send requests to Langtail instead of directly to OpenAI
+            client = OpenAI(
+              api_key=f"{LANGTAIL_API_KEY}",
+              base_url="https://proxy.langtail.com/v1",
+              default_headers= {
+                "X-Langtail-Metadata-key": "value",  # optional; 'key' can be any string
+              }
+            )
+
+            # Then submit a request as usual and it will be proxied through Langtail.
+            # Optionally, add headers for easier trace filtering.
+            chat_completion = client.chat.completions.create(
+              model="gpt-4",
+              messages=[
+                {"role": "user", "content": "Hello world!"}
+              ],
+              extra_headers={
+                "X-Langtail-Prompt": "prompt-slug", # optional
+                "X-Langtail-Metadata-key": "value",  # optional; 'key' can be any string
+              },
+            )
+            print(chat_completion)
+            ```
+          </Accordion>
+
+          <Accordion title="OpenAI SDK v0.x">
+            ```python
+            import openai
+
+            # Add api_base to send requests to Langtail instead of directly to OpenAI
+            openai.api_key = f"{LANGTAIL_API_KEY}"
+            openai.api_base = "https://proxy.langtail.com/v1"
+
+            # Then submit a request as usual and it will be proxied through Langtail.
+            # Optionally, add headers for easier trace filtering.
+            openai.Completion.create(
+              model="gpt-4",
+              messages=[
+                {"role": "user", "content": "Hello world!"}
+              ],
+              extra_headers={
+                "X-Langtail-Prompt": "prompt-slug", # optional
+                "X-Langtail-Metadata-key": "value",  # optional; 'key' can be any string
+              },
+            )
+            ```
+          </Accordion>
+        </AccordionGroup>
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Test it out">
+    Run your app and make a request to verify that everything works properly.
+  </Step>
+  <Step title="Observe metrics and logs">
+  ![Screenshot of viewing metrics and logs](/images/proxy/view-logs.gif)
+
+    1. Back in Langtail, navigate to the project and then click *Logs* in the left sidebar.
+    1. You should see log entries coming from your app (they have an environment value of "proxy").
+    1. Click on a log to see detailed information about the request and response from OpenAI.
+    1. If you want to experiment with this prompt, click *Open in Playground*. Here you can change parameters and modify different parts of the prompt and then see the result.
+  </Step>
+</Steps>
