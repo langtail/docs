@@ -41,7 +41,7 @@
   ],
   "navigation": [
     {
-      "group": "Langtail Proxy",
+      "group": "Proxy",
       "pages": [
         "proxy/openai"
       ]
