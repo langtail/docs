@@ -58,5 +58,11 @@
     "youtube": "https://www.youtube.com/@langtail",
     "linkedin": "https://www.linkedin.com/company/langtail"
   },
-  "isWhiteLabeled": true
+  "isWhiteLabeled": true,
+  "redirects": [
+    {
+      "source": "/docs/guides/templating",
+      "destination": "/docs/playground/templating"
+    }
+  ]
 }
