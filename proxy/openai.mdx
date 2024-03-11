@@ -31,14 +31,14 @@ Let's get started:
         <AccordionGroup>
           <Accordion title="OpenAI SDK v4" defaultOpen>
             ```javascript
-            import OpenAI from "openai"
+            import OpenAI from "openai";
 
             // Add baseURL to send requests to Langtail instead of directly to OpenAI
             const openai = new OpenAI({
               apiKey: process.env.LANGTAIL_API_KEY,
               baseURL: "https://proxy.langtail.com/v1",
               defaultHeaders: {
-                "X-Langtail-Metadata-key": 'value',  // optional; 'key' can be any string
+                "X-Langtail-Metadata-key": "value", // optional; 'key' can be any string
               },
             });
 
@@ -46,7 +46,7 @@ Let's get started:
             // Optionally, add headers for easier trace filtering.
             const chatCompletion = await openai.chat.completions.create(
               {
-                messages: [{ role: "user", content: "Say this is a test" }],
+                messages: [{ role: "user", content: "Hello world" }],
                 model: "gpt-3.5-turbo",
               },
               {
@@ -54,8 +54,9 @@ Let's get started:
                   "X-Langtail-Prompt": "prompt-slug", // optional
                   "X-Langtail-Metadata-key": "value", // optional; 'key' can be any string
                 },
-              },
-            )
+              }
+            );
+            console.log(chatCompletion.choices[0].message)
             ```
           </Accordion>
 
@@ -65,28 +66,31 @@ Let's get started:
 
             // Add basePath to send requests to Langtail instead of directly to OpenAI
             const configuration = new Configuration({
-                apiKey: process.env.LANGTAIL_API_KEY,
-                basePath: "https://proxy.langtail.com/v1",
-                baseOptions: {
-                  headers: {
-                      "X-Langtail-Metadata-key": 'value',  // optional; 'key' can be any string
-                  },
+              apiKey: process.env.LANGTAIL_API_KEY,
+              basePath: "https://proxy.langtail.com/v1",
+              baseOptions: {
+                headers: {
+                  "X-Langtail-Metadata-key": "value", // optional; 'key' can be any string
                 },
+              },
             });
             const openai = new OpenAIApi(configuration);
 
             // Then submit a request as usual and it will be proxied through Langtail.
             // Optionally, add headers for easier trace filtering.
-            const chatCompletion = await openai.createChatCompletion({
-              model: "gpt-3.5-turbo",
-              messages: [{role: "user", content: "Hello world"}]
-            },
-            {
-              headers: {
-                "X-Langtail-Prompt": 'prompt-slug',  // optional
-                "X-Langtail-Metadata-key": 'value',  // optional; 'key' can be any string
+            const chatCompletion = await openai.createChatCompletion(
+              {
+                model: "gpt-3.5-turbo",
+                messages: [{ role: "user", content: "Hello world" }],
+              },
+              {
+                headers: {
+                  "X-Langtail-Prompt": "prompt-slug", // optional
+                  "X-Langtail-Metadata-key": "value", // optional; 'key' can be any string
+                },
               }
-            });
+            );
+            console.log(chatCompletion.data.choices[0].message);
             ```
           </Accordion>
         </AccordionGroup>
@@ -95,28 +99,29 @@ Let's get started:
         <AccordionGroup>
           <Accordion title="OpenAI SDK v1" defaultOpen>
             ```python
+            import os
+
             from openai import OpenAI
+
 
             # Add base_url to send requests to Langtail instead of directly to OpenAI
             client = OpenAI(
-              api_key=f"{LANGTAIL_API_KEY}",
-              base_url="https://proxy.langtail.com/v1",
-              default_headers= {
-                "X-Langtail-Metadata-key": "value",  # optional; 'key' can be any string
-              }
+                api_key=os.environ["LANGTAIL_API_KEY"],
+                base_url="https://proxy.langtail.com/v1",
+                default_headers={
+                    "X-Langtail-Metadata-key": "value",  # optional; 'key' can be any string
+                },
             )
 
             # Then submit a request as usual and it will be proxied through Langtail.
             # Optionally, add headers for easier trace filtering.
             chat_completion = client.chat.completions.create(
-              model="gpt-4",
-              messages=[
-                {"role": "user", "content": "Hello world!"}
-              ],
-              extra_headers={
-                "X-Langtail-Prompt": "prompt-slug", # optional
-                "X-Langtail-Metadata-key": "value",  # optional; 'key' can be any string
-              },
+                model="gpt-4",
+                messages=[{"role": "user", "content": "Hello world!"}],
+                extra_headers={
+                    "X-Langtail-Prompt": "prompt-slug",  # optional
+                    "X-Langtail-Metadata-key": "value",  # optional; 'key' can be any string
+                },
             )
             print(chat_completion)
             ```
@@ -124,24 +129,25 @@ Let's get started:
 
           <Accordion title="OpenAI SDK v0.x">
             ```python
+            import os
+
             import openai
 
             # Add api_base to send requests to Langtail instead of directly to OpenAI
-            openai.api_key = f"{LANGTAIL_API_KEY}"
+            openai.api_key = os.environ["LANGTAIL_API_KEY"]
             openai.api_base = "https://proxy.langtail.com/v1"
 
             # Then submit a request as usual and it will be proxied through Langtail.
             # Optionally, add headers for easier trace filtering.
-            openai.Completion.create(
-              model="gpt-4",
-              messages=[
-                {"role": "user", "content": "Hello world!"}
-              ],
-              extra_headers={
-                "X-Langtail-Prompt": "prompt-slug", # optional
-                "X-Langtail-Metadata-key": "value",  # optional; 'key' can be any string
-              },
+            completion = openai.ChatCompletion.create(
+                model="gpt-4",
+                messages=[{"role": "user", "content": "Hello world!"}],
+                headers={
+                    "X-Langtail-Prompt": "prompt-slug",  # optional
+                    "X-Langtail-Metadata-key": "value",  # optional; 'key' can be any string
+                },
             )
+            print(completion)
             ```
           </Accordion>
         </AccordionGroup>
