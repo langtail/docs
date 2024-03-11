@@ -61,8 +61,8 @@
   "isWhiteLabeled": true,
   "redirects": [
     {
-      "source": "/docs/guides/templating",
-      "destination": "/docs/playground/templating"
+      "source": "/guides/templating",
+      "destination": "/playground/templating"
     }
   ]
 }
