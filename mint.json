@@ -32,6 +32,13 @@
     "name": "Open Langtail",
     "url": "https://app.langtail.com"
   },
+  "anchors": [
+    {
+      "name": "Community",
+      "icon": "discord",
+      "url": "https://dub.sh/PySAbCg"
+    }
+  ],
   "navigation": [
     {
       "group": "Langtail Proxy",
