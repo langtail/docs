@@ -79,7 +79,9 @@ Let's get started:
             // Optionally, add headers for easier trace filtering.
             const chatCompletion = await openai.createChatCompletion({
               model: "gpt-3.5-turbo",
-              messages: [{role: "user", content: "Hello world"}],
+              messages: [{role: "user", content: "Hello world"}]
+            },
+            {
               headers: {
                 "X-Langtail-Prompt": 'prompt-slug',  // optional
                 "X-Langtail-Metadata-key": 'value',  // optional; 'key' can be any string
