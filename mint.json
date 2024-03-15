@@ -41,9 +41,9 @@
   ],
   "navigation": [
     {
-      "group": "Proxy",
+      "group": "Getting Started",
       "pages": [
-        "proxy/openai"
+        "getting-started/introduction"
       ]
     },
     {
@@ -51,7 +51,22 @@
       "pages": [
         "playground/templating"
       ]
+    },
+    {
+      "group": "Proxy",
+      "pages": [
+        "proxy/openai",
+        "proxy/rest",
+        "proxy/langchain"
+      ]
+    },
+    {
+      "group": "Support & Community",
+      "pages": [
+        "support/get-help"
+      ]
     }
+
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/langtail",

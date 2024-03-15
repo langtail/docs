@@ -1,10 +1,10 @@
 ---
-title: 'Use an existing OpenAI app'
+title: 'Integrate via OpenAI library'
 ---
 
-If you've already started building your application using the OpenAI SDK but want to start experimenting with Langtail, you can configure your existing code to start sending requests to the Langtail Proxy.
+If you've already started building your application using the OpenAI SDK but want to start experimenting with Langtail, you can configure your existing code to start sending requests to the Langtail's proxy.
 
-In this guide, we'll generate a Langtail API key, modify your existing code to send LLM requests via the Langtail Proxy, and then use Langtail's observability tools to see the requests coming from your app.
+In this guide, we'll generate a Langtail API key, modify your existing code to send LLM requests via the Langtail's proxy, and then use Langtail's observability tools to see the requests coming from your app.
 
 Let's get started:
 
@@ -15,14 +15,18 @@ Let's get started:
     - An OpenAI key already added to your Langtail workspace
   </Step>
   <Step title="Generate a project API key">
-    ![Screenshot of creating project API key](/images/proxy/create-api-key.gif)
+    <video
+      controls
+      className="w-full aspect-video"
+      src="/images/proxy/create-api-key.mp4"
+    ></video>
 
     1. In Langtail, open an existing project or create a new one.
     1. In the left sidebar, click *API Keys*.
     1. Click *New API Key*, optionally set a name and a budget limit, then click *Create*.
     1. Copy the key.
   </Step>
-  <Step title="Modify your code to use the Langtail Proxy">
+  <Step title="Modify your code to use the proxy">
     1. Add your Langtail project API key to an environment variable. In the following snippets, we use `LANGTAIL_API_KEY`.
     1. In your codebase, find where you initialize the OpenAI SDK and make these modifications:
 
@@ -158,7 +162,11 @@ Let's get started:
     Run your app and make a request to verify that everything works properly.
   </Step>
   <Step title="Observe metrics and logs">
-  ![Screenshot of viewing metrics and logs](/images/proxy/view-logs.gif)
+  <video
+      controls
+      className="w-full aspect-video"
+      src="/images/proxy/view-logs.mp4"
+    ></video>
 
     1. Back in Langtail, navigate to the project and then click *Logs* in the left sidebar.
     1. You should see log entries coming from your app (they have an environment value of "proxy").

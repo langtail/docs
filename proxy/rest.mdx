@@ -1,0 +1,70 @@
+---
+title: 'Integrate via REST API'
+---
+
+If you've already started building your application by using OpenAI's models directly via the REST API but want to start experimenting with Langtail, you can configure your existing code to start sending requests to Langtail's proxy.
+
+In this guide, we'll generate a Langtail API key, modify your existing code to send LLM requests via Langtail's proxy, and then use Langtail's observability tools to see the requests coming from your app.
+
+Let's get started:
+
+<Steps>
+  <Step title="Prerequisites">
+    Before moving on, make sure you have:
+    - A Langtail account ([create one here](https://langtail.com/sign-up))
+    - An OpenAI key already added to your Langtail workspace
+  </Step>
+  <Step title="Generate a project API key">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="/images/proxy/create-api-key.mp4"
+    ></video>
+
+    1. In Langtail, open an existing project or create a new one.
+    1. In the left sidebar, click *API Keys*.
+    1. Click *New API Key*, optionally set a name and a budget limit, then click *Create*.
+    1. Copy the key.
+  </Step>
+  <Step title="Modify your code to use the proxy">
+    1. Add your Langtail project API key to an environment variable. In the following snippet, we use `LANGTAIL_API_KEY`.
+    1. In your codebase, find where you call the OpenAI API. Then, make the following adjustments:
+        - In the url, replace `https://api.openai.com` with `https://proxy.langtail.com`.
+        - In the Authorization header, use your Langtail project API key instead of your OpenAI key.
+    1. Here's an example calling the proxy using cURL:
+      ```sh
+      curl --request POST \
+      --url https://proxy.langtail.com/v1/chat/completions \
+      --header "Authorization: Bearer ${LANGTAIL_API_KEY}" \
+      --header 'Content-Type: application/json' \
+      --data '{
+          "model": "gpt-3.5-turbo",
+          "messages": [
+              {
+                  "role": "system",
+                  "content": "Generate 5 random words."
+              }
+          ]
+        }'
+      ```
+
+
+  </Step>
+  <Step title="Test it out">
+    Run your app and make a request to verify that everything works properly.
+  </Step>
+  <Step title="Observe metrics and logs">
+  <video
+      controls
+      className="w-full aspect-video"
+      src="/images/proxy/view-logs.mp4"
+    ></video>
+
+    1. Back in Langtail, navigate to the project and then click *Logs* in the left sidebar.
+    1. You should see log entries coming from your app (they have an environment value of "proxy").
+    1. Click on a log to see detailed information about the request and response from OpenAI.
+    1. If you want to experiment with this prompt, click *Open in Playground*. Here you can change parameters and modify different parts of the prompt and then see the result.
+  </Step>
+</Steps>
+import { shape } from "prop-types"
+

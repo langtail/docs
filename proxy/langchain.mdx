@@ -1,0 +1,79 @@
+---
+title: 'Integrate via Langchain'
+---
+
+If you've already started building your application by using OpenAI's models via Langchain but want to start experimenting with Langtail, you can configure your existing code to start sending requests to Langtail's proxy.
+
+In this guide, we'll generate a Langtail API key, modify your existing code to send LLM requests via Langtail's proxy, and then use Langtail's observability tools to see the requests coming from your app.
+
+Let's get started:
+
+<Steps>
+  <Step title="Prerequisites">
+    Before moving on, make sure you have:
+    - A Langtail account ([create one here](https://langtail.com/sign-up))
+    - An OpenAI key already added to your Langtail workspace
+  </Step>
+  <Step title="Generate a project API key">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="/images/proxy/create-api-key.mp4"
+    ></video>
+
+    1. In Langtail, open an existing project or create a new one.
+    1. In the left sidebar, click *API Keys*.
+    1. Click *New API Key*, optionally set a name and a budget limit, then click *Create*.
+    1. Copy the key.
+  </Step>
+  <Step title="Modify your code to use the proxy">
+    1. Add your Langtail project API key to an environment variable. In the following snippet, we use `LANGTAIL_API_KEY`.
+    1. In your codebase, find where you initialize Langchain and make these modifications:
+
+    ```python
+    import os
+
+    from langchain_openai import ChatOpenAI
+    from langchain.schema import SystemMessage
+
+
+    # Add base_url to send requests to Langtail instead of directly to OpenAI
+    llm = ChatOpenAI(
+        openai_api_key=os.environ["LANGTAIL_API_KEY"],
+        openai_api_base="https://proxy.langtail.com/v1",
+    )
+
+    # Then submit a request as usual and it will be proxied through Langtail.
+    # Optionally, add headers for easier trace filtering.
+    messages = [SystemMessage(content="Generate 5 random words.")]
+    print(
+        llm.invoke(
+            messages,
+            extra_headers={
+                "X-Langtail-Prompt": "prompt-slug",  # optional
+                "X-Langtail-Metadata-key": "value",  # optional; 'key' can be any string
+            },
+        )
+    )
+    ```
+
+
+  </Step>
+  <Step title="Test it out">
+    Run your app and make a request to verify that everything works properly.
+  </Step>
+  <Step title="Observe metrics and logs">
+  <video
+      controls
+      className="w-full aspect-video"
+      src="/images/proxy/view-logs.mp4"
+    ></video>
+
+    1. Back in Langtail, navigate to the project and then click *Logs* in the left sidebar.
+    1. You should see log entries coming from your app (they have an environment value of "proxy").
+    1. Click on a log to see detailed information about the request and response from OpenAI.
+    1. If you want to experiment with this prompt, click *Open in Playground*. Here you can change parameters and modify different parts of the prompt and then see the result.
+  </Step>
+</Steps>
+import { shape } from "prop-types"
+
