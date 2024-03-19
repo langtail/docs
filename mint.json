@@ -53,6 +53,13 @@
       ]
     },
     {
+      "group": "Deployments",
+      "pages": [
+        "deployments/overview",
+        "api-reference/endpoint/post-deployment"
+      ]
+    },
+    {
       "group": "Proxy",
       "pages": [
         "proxy/openai",
