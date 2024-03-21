@@ -56,6 +56,30 @@ Use variables to customize prompts based on user input or context, making your i
 Hello, {{userName}}! How can I assist you today?
 ```
 
+## Date helper
+
+```django Example
+{{$date}}
+```
+
+would print the current date in the format `MMMM dd, yyyy`.
+
+```django Example
+{{$date "yyyy"}}
+```
+use yyyy to print the current year
+
+```django Example
+{{$date "MMMM dd, yyyy"}}
+```
+
+or
+
+```django Example
+{{$date "2024-09-01" "MM"}}
+```
+to print the month of a specific date
+
 ## Using Conditionals in Templates
 
 Conditionals in your templates allow for dynamic changes in the prompts based on specific input data you send to the LLM. This enables you to tailor the interaction based on predefined conditions.
@@ -81,7 +105,7 @@ For more complex logic within your Langtail prompts, you can use Handlebars help
 
 ### Using Helpers
 
-Helpers like `eq`, `ne`, `lt`, `gt`, `lte`, `gte`, `and`, `or` can be used to evaluate conditions more intricately.
+Helpers like `eq`, `ne`, `lt`, `gt`, `lte`, `gte`, `and`, `or` can be used to evaluate conditions. This enables you to create dynamic prompts that respond to specific input data.
 
 - **Syntax for Helpers:**
   - `{{#if (helperName arg1 arg2)}}...{{/if}}`
