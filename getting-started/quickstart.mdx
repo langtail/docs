@@ -2,4 +2,97 @@
 title: 'Quickstart'
 ---
 
-In this guide, we'll build a prompt using Langtail, write some tests, connect it to our code, and view metrics and logs.
+In this guide, we'll build a sample app powered by GPT-4 that suggests meals based on what you have in your refrigerator. Langtail will be the source of truth for the prompt, tests, logging, and metrics. We'll also have a simple frontend built in Next.js.
+
+Let's get started!
+
+<Steps>
+
+  <Step title="Prep your account">
+    First, let's make sure that our account has everything we need to get started.
+
+    1. [Open Langtail.](https://app.langtail.com) If you don't already have an account, create one for free.
+    1. Once you're in, make sure to add a provider key to your workspace.
+    1. Create a new project called `quickstart`.
+  </Step>
+
+  <Step title="Create a Prompt">
+    Next, let's create a prompt that will serve as the brains of our app.
+
+    1. In the `quickstart` project, create a new prompt called `Meal Ideas`.
+    1. In the Parameters panel, choose `GPT-4-turbo-preview` as the model and leave the rest of the parameters as the default.
+    1. In the Templates panel, paste the following text into the System template:
+
+      ```
+      You are an AI assistant that helps users generate meal ideas based on the ingredients they have on hand.
+
+      Please suggest 2 creative and delicious meal ideas that can be made using these ingredients. For each meal idea, provide a brief description of the dish and list any additional ingredients that may be required.
+
+      Each dish should be simple and self-explanatory to make based on the description. The end-user shouldn't need a recipe to recreate it. You are providing inspiration, not exact instructions.
+
+      Format your response as follows:
+
+      `
+      ## Name of Meal
+      Short 1 sentence description of the meal.
+
+      **Additional Ingredients:** [Comma separted list of any additional ingredients needed, if applicable. Don't include kitchen staples but do include anything non-obvious.
+      ```
+
+      Focus on suggesting meals that are easy to prepare, nutritious, and make the most of the available ingredients. Be creative and consider various cooking methods and flavor combinations.
+      `
+    1. Below the System template, click "+ Template" and select "User".
+    1. Paste the following text into the new User template:
+      ```
+      The user has the following ingredients in their kitchen:
+
+      {{#each selectedIngredients}}
+      - {{this}}
+      {{/each}}
+      ```
+
+      <Note>Note that this template references a variable named `selectedIngredients` and iterates over it to form a bulleted list. For more on the templating syntax, see [the prompt templating guide](/playground/templating).</Note>
+  </Step>
+
+  <Step title="Try the prompt">
+    1. In the Variables panel, you should see the `selectedIngredients` variable. Paste this in as the value: `["Turkey", "Spinach", "Berries"]`
+    1. At the bottom of the app, click "Send".
+    1. You should see a response with two recipes formatted in Markdown. Feel free to tweak any of the model paramters or prompt templates to improve the output.
+  </Step>
+
+  <Step title="Create a basic test">
+    It seems like the prompt is doing what we expect, but let's create a test to make sure.
+
+    1. Click "Tests" in the tabstrip at the top of the app.
+    1. Click "+ Add Test".
+    1. A new test is now created for us with our example value for `selectedIngredients`.
+    1. Click "New Assertion" and then "contains".
+    1. In the "Title" field, write `Contains additional ingredients` .
+    1. In the "Value" field, write `**Additional Ingredients:**`.
+    1. Click "Save".
+    1. Click "Run" and ensure that the test passes.
+  </Step>
+
+  <Step title="Create a more complex assertion">
+    Now, let's create an assertion that checks if exactly 2 recipes were returned.
+
+    1. In the test you just created, click "New Assertion" and then "javascript".
+    1. Name the assertion "Has two recipes".
+    1. Paste in the following code:
+
+        ```javascript
+          test(async ({ message, variables }) => {
+            const numberOfRecipes = message.content.split("##").length - 1;
+            return message.content && numberOfRecipes === 2;
+          });
+        ```
+
+    1. Click run to ensure that both assertions now pass.
+  </Step>
+
+  <Step title="Deploy the prompt">
+
+  </Step>
+
+
+</Steps>

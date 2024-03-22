@@ -43,7 +43,8 @@
     {
       "group": "Getting Started",
       "pages": [
-        "getting-started/introduction"
+        "getting-started/introduction",
+        "getting-started/quickstart"
       ]
     },
     {
