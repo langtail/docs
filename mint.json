@@ -66,7 +66,6 @@
         "support/get-help"
       ]
     }
-
   ],
   "footerSocials": {
     "twitter": "https://twitter.com/langtail",
@@ -79,5 +78,10 @@
       "source": "/guides/templating",
       "destination": "/playground/templating"
     }
-  ]
+  ],
+  "analytics": {
+    "mixpanel": {
+      "projectToken": "d93a0106154a1a514d81ce1f02019340"
+    }
+  }
 }
