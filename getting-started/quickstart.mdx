@@ -1,98 +1,177 @@
 ---
 title: 'Quickstart'
 ---
-
-In this guide, we'll build a sample app powered by GPT-4 that suggests meals based on what you have in your refrigerator. Langtail will be the source of truth for the prompt, tests, logging, and metrics. We'll also have a simple frontend built in Next.js.
-
-Let's get started!
+This guide will walk you through building a sample application powered by GPT-4. This app will suggest meals based on the ingredients you have in your refrigerator. We will use Langtail as the source of truth for the prompt, tests, logging, and metrics. Additionally, we will create a simple frontend using Next.js. Let's begin!
 
 <Steps>
 
-  <Step title="Prep your account">
-    First, let's make sure that our account has everything we need to get started.
+  <Step title="Prepare your account">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="https://assets.langtail.com/quickstart%2Fstep1.mp4"
+    ></video>
 
-    1. [Open Langtail.](https://app.langtail.com) If you don't already have an account, create one for free.
-    1. Once you're in, make sure to add a provider key to your workspace.
-    1. Create a new project called `quickstart`.
+    Let's start by preparing your account with the necessary details for prompt creation.
+
+    1. Navigate to [Langtail](https://app.langtail.com). If you don't have an account, create one for free.
+    1. After logging in, add a provider key to your workspace.
+    1. Create a new project and name it `quickstart`.
   </Step>
 
-  <Step title="Create a Prompt">
-    Next, let's create a prompt that will serve as the brains of our app.
+  <Step title="Create a prompt">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="https://assets.langtail.com/quickstart%2Fstep2.mp4"
+    ></video>
 
-    1. In the `quickstart` project, create a new prompt called `Meal Ideas`.
-    1. In the Parameters panel, choose `GPT-4-turbo-preview` as the model and leave the rest of the parameters as the default.
-    1. In the Templates panel, paste the following text into the System template:
+    Next, we will create a prompt that will act as the core of our application.
 
-      ```
-      You are an AI assistant that helps users generate meal ideas based on the ingredients they have on hand.
+    1. In the `quickstart` project, create a new prompt and name it `Meal Ideas`.
+    1. In the Parameters panel, select `GPT-4-turbo-preview` as the model and leave the other parameters at their default settings.
+    1. In the Templates panel and in the System template, paste the following text:
+        ```
+        You are an AI assistant that helps users generate meal ideas based on the ingredients they have on hand.
 
-      Please suggest 2 creative and delicious meal ideas that can be made using these ingredients. For each meal idea, provide a brief description of the dish and list any additional ingredients that may be required.
+        Please suggest 2 creative and delicious meal ideas that can be made using these ingredients. You don't need to use all of the ingredients. For each meal idea, provide a brief description of the dish and list any additional ingredients that may be required. Each dish should be simple and self-explanatory to make based on the description. The end-user shouldn't need a recipe to recreate it. You are providing inspiration, not exact instructions. Format your response as follows:
+        `
+        ## Name of Meal
+        Short 1 sentence description of the meal.
 
-      Each dish should be simple and self-explanatory to make based on the description. The end-user shouldn't need a recipe to recreate it. You are providing inspiration, not exact instructions.
+        **Additional Ingredients:** [Comma separted list of any additional ingredients needed, if applicable. Don't include kitchen staples but do include anything non-obvious.
+        `
+        Focus on suggesting meals that are easy to prepare, nutritious, and make the most of the available ingredients. Be creative and consider various cooking methods and flavor combinations.
+        ```
 
-      Format your response as follows:
-
-      `
-      ## Name of Meal
-      Short 1 sentence description of the meal.
-
-      **Additional Ingredients:** [Comma separted list of any additional ingredients needed, if applicable. Don't include kitchen staples but do include anything non-obvious.
-      ```
-
-      Focus on suggesting meals that are easy to prepare, nutritious, and make the most of the available ingredients. Be creative and consider various cooking methods and flavor combinations.
-      `
-    1. Below the System template, click "+ Template" and select "User".
-    1. Paste the following text into the new User template:
-      ```
-      The user has the following ingredients in their kitchen:
-
-      {{#each selectedIngredients}}
-      - {{this}}
-      {{/each}}
-      ```
-
-      <Note>Note that this template references a variable named `selectedIngredients` and iterates over it to form a bulleted list. For more on the templating syntax, see [the prompt templating guide](/playground/templating).</Note>
+      1. Add a new User template and paste the following:
+          ```
+          The user has the following ingredients in their kitchen:
+          {{#each selectedIngredients}}
+          - {{this}}
+          {{/each}}
+          ```
+    <Note>This template references a variable named `selectedIngredients` and iterates over it to form a bulleted list. For more on the templating syntax, see [the prompt templating guide](/playground/templating).</Note>
   </Step>
 
   <Step title="Try the prompt">
-    1. In the Variables panel, you should see the `selectedIngredients` variable. Paste this in as the value: `["Turkey", "Spinach", "Berries"]`
-    1. At the bottom of the app, click "Send".
-    1. You should see a response with two recipes formatted in Markdown. Feel free to tweak any of the model paramters or prompt templates to improve the output.
+    <video
+      controls
+      className="w-full aspect-video"
+      src="https://assets.langtail.com/quickstart%2Fstep3.mp4"
+    ></video>
+
+    Now, let's try out the new prompt.
+
+    1. Navigate to the Variables panel where you will find the `selectedIngredients` variable. Paste this value: `["Turkey", "Spinach", "Berries"]`.
+    1. At the bottom of the application, select "Send".
+    1. You should now see a response with two recipes formatted in Markdown. Feel free to adjust any model parameters or prompt templates to improve the output.
   </Step>
 
   <Step title="Create a basic test">
-    It seems like the prompt is doing what we expect, but let's create a test to make sure.
+    <video
+      controls
+      className="w-full aspect-video"
+      src="https://assets.langtail.com/quickstart%2Fstep4.mp4"
+    ></video>
 
-    1. Click "Tests" in the tabstrip at the top of the app.
+    Let's create a test to verify that the prompt is working as expected.
+
+    1. Click "Save" to save the prompt.
+    1. From the navigation bar, select "Tests".
     1. Click "+ Add Test".
-    1. A new test is now created for us with our example value for `selectedIngredients`.
-    1. Click "New Assertion" and then "contains".
-    1. In the "Title" field, write `Contains additional ingredients` .
+    1. A new test will be created with our example value for `selectedIngredients`.
+    1. Select "New Assertion", then "contains".
+    1. In the "Title" field, write `Contains additional ingredients`.
     1. In the "Value" field, write `**Additional Ingredients:**`.
-    1. Click "Save".
+    1. Select "Save".
     1. Click "Run" and ensure that the test passes.
   </Step>
 
   <Step title="Create a more complex assertion">
-    Now, let's create an assertion that checks if exactly 2 recipes were returned.
+    <video
+      controls
+      className="w-full aspect-video"
+      src="https://assets.langtail.com/quickstart%2Fstep5.mp4"
+    ></video>
 
-    1. In the test you just created, click "New Assertion" and then "javascript".
+    Next, we will create an assertion that checks if exactly 2 recipes were returned.
+
+    1. In the test you just created, select "New Assertion" and then "javascript".
     1. Name the assertion "Has two recipes".
     1. Paste in the following code:
-
         ```javascript
-          test(async ({ message, variables }) => {
-            const numberOfRecipes = message.content.split("##").length - 1;
-            return message.content && numberOfRecipes === 2;
-          });
+        test(async ({ message, variables }) => {
+          const numberOfRecipes = message.content.split("##").length - 1;
+          return message.content && numberOfRecipes === 2;
+        });
         ```
-
-    1. Click run to ensure that both assertions now pass.
+    1. Select "Run" to ensure that both assertions now pass.
   </Step>
 
   <Step title="Deploy the prompt">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="https://assets.langtail.com/quickstart%2Fstep6.mp4"
+    ></video>
 
+    With the prompt tested, it's time to deploy it for testing in our app.
+
+    1. From the navigation bar, select "Playground".
+    1. Click "Save" and write a message.
+    1. Select "Deploy", then "Staging environment".
+    1. From the navigation bar, select "Deployments".
+    1. Click the "..." next to the deployment, and then "Copy URL".
   </Step>
 
+  <Step title="Generate a project API key">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="https://assets.langtail.com/quickstart%2Fstep7.mp4"
+    ></video>
 
+    Next, let's generate a project API key.
+
+    1. In the navigation bar, select the project name to go to the current project.
+    1. From the left sidebar, select *Secrets*.
+    1. Click *New API Key*, optionally set a name and a budget limit, then click *Create*.
+    1. Copy the key.
+  </Step>
+
+  <Step title="Integrate with the sample app">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="https://assets.langtail.com/quickstart%2Fstep8.mp4"
+    ></video>
+
+    Now, let's integrate the project API key with the sample app.
+
+    1. Clone the quickstart repo using this command: `git clone https://github.com/langtail/quickstart.git`.
+    1. Open a terminal in the repo and install the packages using this command: `npm install`.
+    1. Duplicate the `.env.local.example` file and rename it to `.env.local`.
+    1. Replace the value of `LANGTAIL_API_KEY` with the project API key and `LANGTAIL_API_URL` with the deployment URL.
+    1. Start the app using this command: `npm run dev`.
+    1. Open the app in your browser. By default, the app is served on [http://localhost:3000](http://localhost:3000).
+    1. Choose some ingredients and click "Find Inspiration".
+    1. If everything is set up correctly, you should see some ideas appear at the bottom of the page. This may take a few seconds.
+  </Step>
+
+  <Step title="View logs and metrics">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="https://assets.langtail.com/quickstart%2Fstep9.mp4"
+    ></video>
+
+    Finally, let's view logs and metrics.
+
+    1. Navigate back to Langtail, go to the project view and select "Logs".
+    1. Click the latest log entry and notice all the available information. You can see the system prompt, user prompt, and direct response from the LLM. By clicking "Show more", you can also see stats like cost.
+    1. From the left sidebar, select "Metrics" to view aggregated stats.
+  </Step>
 </Steps>
+
+Congratulations! You have successfully explored the core functionality of Langtail. For more helpful documentation, check the sidebar. If you have any questions, feel free to ask in our [Discord community](https://dub.sh/PySAbCg).
