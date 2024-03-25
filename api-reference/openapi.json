@@ -3,17 +3,45 @@
   "info": { "version": "1.0.0", "title": "Langtail prompt endpoint" },
   "components": { "schemas": {}, "parameters": {} },
   "paths": {
-    "/organization/project/prompt/environment": {
+    "/{organization}/{project}/{prompt}/{environment}": {
       "post": {
-        "description": "Completion endpoint for staging deployment of prompt test",
-        "summary": "Get completion for stored prompt",
+        "description": "Get completion for stored prompt",
         "servers": [{ "url": "https://api.langtail.com" }],
         "parameters": [
           {
             "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
             "required": true,
+            "description": "Your Langtail API Key",
             "name": "X-API-Key",
             "in": "header"
+          },
+          {
+            "schema": { "type": "string", "example": "organization" },
+            "required": true,
+            "description": "Your organization URL slug",
+            "name": "organization",
+            "in": "path"
+          },
+          {
+            "schema": { "type": "string", "example": "project" },
+            "required": true,
+            "description": "Your project URL slug",
+            "name": "project",
+            "in": "path"
+          },
+          {
+            "schema": { "type": "string", "example": "prompt" },
+            "required": true,
+            "description": "Your prompt URL slug",
+            "name": "prompt",
+            "in": "path"
+          },
+          {
+            "schema": { "type": "string", "example": "production" },
+            "required": true,
+            "description": "Your environment URL slug",
+            "name": "environment",
+            "in": "path"
           }
         ],
         "requestBody": {
@@ -22,18 +50,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "variables": {
+                    "type": "object",
+                    "description": "A mapping of variable names to their values. Will be injected in your saved prompt template.",
+                    "additionalProperties": {
+                      "anyOf": [{ "type": "string" }]
+                    },
+                    "example": { "variableName": "Your Value" }
+                  },
                   "stream": { "type": "boolean", "example": false },
                   "user": {
                     "type": "string",
                     "description": "A unique identifier representing your end-user",
                     "example": "user_123"
-                  },
-                  "variables": {
-                    "type": "object",
-                    "properties": {
-                      "variableName": { "type": "string", "default": "Default value" }
-                    },
-                    "example": { "variableName": "Your Value" }
                   },
                   "seed": {
                     "type": "number",
