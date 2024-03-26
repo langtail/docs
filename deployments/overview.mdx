@@ -1,24 +1,45 @@
 ---
-title: 'How to deploy prompt'
+title: 'Create a Prompt API Deployment'
 ---
 
-Deployments create an API endpoint for your prompt template, allowing you to use it with just your template variables. Powered by the Cloudflare Global network, deployments ensure low latency and high availability. All requests to deployed prompts are automatically logged in Langtail.
+Deploying your prompt creates a dedicated API endpoint that uses your Prompt Template. You can call this API with just the variables, making integration to your app much easier!
 
+Thanks to the Cloudflare Global network, these API benefit from low latency and reliable, high availability.
 
 <Steps>
   <Step title="Prerequisites">
     Before moving on, make sure you have:
     - A Langtail account ([create one here](https://langtail.com/sign-up))
-    - A Prompt that you can use
+    - A Prompt that you can use. Feel free to reuse this example used in documentation:
+    <iframe src=" https://app.langtail.com/playground?shareid=cbGLHKSIff" width="650" height="400"> </iframe>
+    <br />
   </Step>
-  <Step>
+  <Step title="Deploy Prompt">
+  <video
+      controls
+      className="w-full aspect-video"
+      src="/images/deployments/deploy-prompt.mp4"
+    ></video>
 
-    TODO: video of this Step
-
-    1. In Langtail, open an existing project or create a new prompt.
+    1. In Langtail, open an existing prompt.
     1. In the upper menu, click *Deploy*.
-    1. Choose environment (preview is a good default)
-    1. Open the deployments tab
-    1. Press show Code to see how to use the deployments
+    1. Choose the Preview environment.
+    1. Click the success message in the lower-right corner to open the deployments tab.
+    1. Press the deploymetn URL to see how to use the deployments.
+  </Step>
+  <Step title="Call the Deployment API">
+  <video
+      controls
+      className="w-full aspect-video"
+      src="/images/deployments/request-api.mp4"
+    ></video>
+    1. Press Generate API Key.
+    1. Press "Make a Request" to do an example API request. This will run the code snippet in your browser.
+    1. You can also copy the code snippet and run it yourself.
+    1. Check the logs to observe requests to the deployed API.
+    1. Click on a log to see detailed information about the request and response from OpenAI.
   </Step>
 </Steps>
+
+
+<Tip>You can read the full [API Reference](api-reference/endpoint/post-deployment) which describes all the request body fields in detail.</Tip>
