@@ -5,7 +5,7 @@
   "paths": {
     "/{organization}/{project}/{prompt}/{environment}": {
       "post": {
-        "description": "Get completion for stored prompt",
+        "description": "Get completion for stored prompt. The response format is the same as [OpenAI Chat completion response](https://platform.openai.com/docs/api-reference/chat/object).",
         "servers": [{ "url": "https://api.langtail.com" }],
         "parameters": [
           {
@@ -58,41 +58,22 @@
                     },
                     "example": { "variableName": "Your Value" }
                   },
-                  "stream": { "type": "boolean", "example": false },
-                  "user": {
-                    "type": "string",
-                    "description": "A unique identifier representing your end-user",
-                    "example": "user_123"
-                  },
-                  "seed": {
-                    "type": "number",
-                    "description": "A seed is used  to generate reproducible results",
-                    "example": 123
-                  },
-                  "doNotRecord": {
-                    "type": "boolean",
-                    "description": "If true, potentially sensitive data like the prompt and response will not be recorded in the logs",
-                    "example": false
-                  },
                   "messages": {
                     "type": "array",
                     "items": {
                       "type": "object",
                       "properties": {
                         "role": {
-                          "anyOf": [
-                            { "type": "string", "enum": ["assistant"] },
-                            { "type": "string", "enum": ["user"] },
-                            { "type": "string", "enum": ["system"] },
-                            { "type": "string", "enum": ["function"] },
-                            { "type": "string", "enum": ["tool"] }
-                          ]
+                          "type": "string",
+                          "enum": ["assistant", "user", "system", "function", "tool"]
                         },
                         "name": { "type": "string" },
                         "content": {
                           "anyOf": [
+                            { "type": "string", "description": "Text content", "nullable": false },
                             {
                               "type": "array",
+                              "description": "Mix of text and images.",
                               "items": {
                                 "anyOf": [
                                   {
@@ -131,8 +112,7 @@
                                 ]
                               }
                             },
-                            { "type": "string" },
-                            { "nullable": true }
+                            { "nullable": true, "description": "Can be omited if there is a `function_call` or `tool_calls`" }
                           ]
                         },
                         "function_call": {
@@ -192,8 +172,19 @@
                       },
                       "required": ["role", "content"]
                     },
-                    "description": "Additional messages to seed the conversation with",
+                    "description": "Additional messages. These will be appended to the Prompt Template.",
                     "example": [{ "role": "user", "content": "Hello" }]
+                  },
+                  "stream": { "type": "boolean", "example": false },
+                  "user": {
+                    "type": "string",
+                    "description": "A unique identifier representing your end-user",
+                    "example": "user_123"
+                  },
+                  "doNotRecord": {
+                    "type": "boolean",
+                    "description": "If true, potentially sensitive data like the prompt and response will not be recorded in the logs",
+                    "example": false
                   },
                   "metadata": {
                     "type": "object",
@@ -202,6 +193,11 @@
                     },
                     "description": "Additional custom data that will be stored for this request",
                     "example": { "my_identifier": "my-custom-ID" }
+                  },
+                  "seed": {
+                    "type": "number",
+                    "description": "A seed is used  to generate reproducible results",
+                    "example": 123
                   }
                 },
                 "required": ["variables"]
@@ -211,7 +207,7 @@
         },
         "responses": {
           "200": {
-            "description": "Non-streaming response from OpenAI - see https://platform.openai.com/docs/api-reference/chat/create",
+            "description": "Chat completion response from OpenAI - see https://platform.openai.com/docs/api-reference/chat/object for more details.",
             "content": {
               "application/json": {
                 "schema": {
@@ -240,7 +236,11 @@
                         "properties": {
                           "index": {
                             "type": "number",
-                            "description": "The index of the choice in the list of choices."
+                            "description": "The index of the choice in the list of choices.",
+                            "x-internal-comment": "Using enum as example: 0 was ignored",
+                            "enum": [
+                              0
+                            ]
                           },
                           "message": {
                             "type": "object",
@@ -248,35 +248,18 @@
                               "role": {
                                 "type": "string",
                                 "enum": [
-                                  "system",
-                                  "user",
-                                  "assistant",
-                                  "function"
+                                  "assistant"
                                 ],
                                 "description": "The role of the author of this message."
                               },
-                              "content": { "type": "string", "nullable": true },
-                              "function_call": {
-                                "type": "object",
-                                "properties": {
-                                  "name": {
-                                    "type": "string",
-                                    "description": "The name of the function to call."
-                                  },
-                                  "arguments": {
-                                    "type": "string",
-                                    "description": "The arguments to call the function with, as generated by the model in JSON format. Note that the model does not always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function."
-                                  }
-                                },
-                                "required": ["name", "arguments"]
-                              }
+                              "content": { "type": "string", "nullable": true, "example": "I'm sorry, but I'm not able to fulfill this request." }
                             },
-                            "required": ["role", "content", "function_call"]
+                            "required": ["role", "content"]
                           },
                           "finish_reason": {
                             "type": "string",
-                            "enum": ["stop", "length", "function_call"],
-                            "description": "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, or `function_call` if the model called a function."
+                            "enum": ["stop", "length", "tool_calls", "content_filter", "function_call"],
+                            "description": "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function."
                           }
                         },
                         "required": ["index", "message", "finish_reason"]
