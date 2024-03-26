@@ -56,7 +56,7 @@
       "group": "Deployments",
       "pages": [
         "deployments/overview",
-        "api-reference/endpoint/post-deployment"
+        "api-reference/endpoint/call-deployment"
       ]
     },
     {
