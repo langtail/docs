@@ -58,27 +58,26 @@ Hello, {{userName}}! How can I assist you today?
 
 ## Date helper
 
+You can use the `$date` helper to print the current date in the format `MMMM dd, yyyy`:
 ```django Example
 {{$date}}
 ```
 
-would print the current date in the format `MMMM dd, yyyy`.
+You can use one argument to specify the date and time format.
+
+If you need time as well, LLM can work with a format that includes timezone like ISO 8601:
 
 ```django Example
-{{$date "yyyy"}}
+{{$date "yyyy-MM-dd'T'HH:mm:ss.SSSxxx"}}
 ```
-use yyyy to print the current year
+
+You can also pass your own date as a first argument and format as a second argument. Even variables are supported as $date input.
+
+For example, if `dateVar` variable is set to `2024-09-01`, this example will print just "09":
 
 ```django Example
-{{$date "MMMM dd, yyyy"}}
+{{$date dateVar "MM"}}
 ```
-
-or
-
-```django Example
-{{$date "2024-09-01" "MM"}}
-```
-to print the month of a specific date
 
 ## Using Conditionals in Templates
 
