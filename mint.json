@@ -55,8 +55,8 @@
     {
       "group": "Deployments",
       "pages": [
-        "deployments/overview",
-        "api-reference/endpoint/call-deployment"
+        "deployments/deploy-prompt",
+        "api-reference/endpoint/invoke-deployed-prompt"
       ]
     },
     {
