@@ -6,16 +6,9 @@ This guide will walk you through building a sample application powered by GPT-4.
 <Steps>
 
   <Step title="Prepare your account">
-    <video
-      controls
-      className="w-full aspect-video"
-      src="https://assets.langtail.com/quickstart%2Fstep1.mp4"
-    ></video>
-
     Let's start by preparing your account with the necessary details for prompt creation.
 
     1. Navigate to [Langtail](https://app.langtail.com). If you don't have an account, create one for free.
-    1. After logging in, add a provider key to your workspace.
     1. Create a new project and name it `quickstart`.
   </Step>
 
@@ -23,34 +16,15 @@ This guide will walk you through building a sample application powered by GPT-4.
     <video
       controls
       className="w-full aspect-video"
-      src="https://assets.langtail.com/quickstart%2Fstep2.mp4"
+      src="https://assets.langtail.com/quickstart%2Fstep2.mp4?v=3"
     ></video>
 
     Next, we will create a prompt that will act as the core of our application.
 
-    1. In the `quickstart` project, create a new prompt and name it `Meal Ideas`.
-    1. In the Parameters panel, select `GPT-4-turbo-preview` as the model and leave the other parameters at their default settings.
-    1. In the Templates panel and in the System template, paste the following text:
-        ```
-        You are an AI assistant that helps users generate meal ideas based on the ingredients they have on hand.
+    1. [Click here](https://app.langtail.com/playground?shareid=WIkC5AugdE) to open the quickstart prompt.
+    1. In the top right, click "Save as..."
+    1. Select your new project, rename the prompt, and click "Save".
 
-        Please suggest 2 creative and delicious meal ideas that can be made using these ingredients. You don't need to use all of the ingredients. For each meal idea, provide a brief description of the dish and list any additional ingredients that may be required. Each dish should be simple and self-explanatory to make based on the description. The end-user shouldn't need a recipe to recreate it. You are providing inspiration, not exact instructions. Format your response as follows:
-        `
-        ## Name of Meal
-        Short 1 sentence description of the meal.
-
-        **Additional Ingredients:** [Comma separted list of any additional ingredients needed, if applicable. Don't include kitchen staples but do include anything non-obvious.
-        `
-        Focus on suggesting meals that are easy to prepare, nutritious, and make the most of the available ingredients. Be creative and consider various cooking methods and flavor combinations.
-        ```
-
-      1. Add a new User template and paste the following:
-          ```
-          The user has the following ingredients in their kitchen:
-          {{#each selectedIngredients}}
-          - {{this}}
-          {{/each}}
-          ```
     <Note>This template references a variable named `selectedIngredients` and iterates over it to form a bulleted list. For more on the templating syntax, see [the prompt templating guide](/playground/templating).</Note>
   </Step>
 
@@ -107,6 +81,8 @@ This guide will walk you through building a sample application powered by GPT-4.
         });
         ```
     1. Select "Run" to ensure that both assertions now pass.
+
+    <Note>If you need to debug a JavaScript assertion, you can add `console.log` statements and click "Run" to execute the code.</Note>
   </Step>
 
   <Step title="Deploy the prompt">
@@ -149,7 +125,10 @@ This guide will walk you through building a sample application powered by GPT-4.
 
     Now, let's integrate the project API key with the sample app.
 
-    1. Clone the quickstart repo using this command: `git clone https://github.com/langtail/quickstart.git`.
+    1. Clone the quickstart repo using this command:
+        ```
+        git clone https://github.com/langtail/quickstart.git
+        ```
     1. Open a terminal in the repo and install the packages using this command: `npm install`.
     1. Duplicate the `.env.local.example` file and rename it to `.env.local`.
     1. Replace the value of `LANGTAIL_API_KEY` with the project API key and `LANGTAIL_API_URL` with the deployment URL.
