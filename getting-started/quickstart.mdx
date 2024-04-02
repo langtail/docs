@@ -16,7 +16,7 @@ This guide will walk you through building a sample application powered by GPT-4.
     <video
       controls
       className="w-full aspect-video"
-      src="https://assets.langtail.com/quickstart%2Fstep2.mp4?v=3"
+      src="https://assets.langtail.com/quickstart%2Fstep2.mp4?v=4"
     ></video>
 
     Next, we will create a prompt that will act as the core of our application.
@@ -38,7 +38,7 @@ This guide will walk you through building a sample application powered by GPT-4.
     Now, let's try out the new prompt.
 
     1. Navigate to the Variables panel where you will find the `selectedIngredients` variable. Paste this value: `["Turkey", "Spinach", "Berries"]`.
-    1. At the bottom of the application, select "Send".
+    1. At the bottom of the playground, select "Send".
     1. You should now see a response with two recipes formatted in Markdown. Feel free to adjust any model parameters or prompt templates to improve the output.
   </Step>
 
@@ -129,10 +129,16 @@ This guide will walk you through building a sample application powered by GPT-4.
         ```
         git clone https://github.com/langtail/quickstart.git
         ```
-    1. Open a terminal in the repo and install the packages using this command: `npm install`.
+    1. Open a terminal in the repo and install the packages using this command:
+        ```
+        npm install
+        ```
     1. Duplicate the `.env.local.example` file and rename it to `.env.local`.
     1. Replace the value of `LANGTAIL_API_KEY` with the project API key and `LANGTAIL_API_URL` with the deployment URL.
-    1. Start the app using this command: `npm run dev`.
+    1. Start the app using this command:
+        ```
+        npm run dev
+        ```
     1. Open the app in your browser. By default, the app is served on [http://localhost:3000](http://localhost:3000).
     1. Choose some ingredients and click "Find Inspiration".
     1. If everything is set up correctly, you should see some ideas appear at the bottom of the page. This may take a few seconds.
