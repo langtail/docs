@@ -1,0 +1,221 @@
+2024-03-08T18:41:53.047+0100 notice   [Polyrecorder] Polyrecorder started. appStart=28837.382983833337 modelIdentifier=MacBookPro18,3 operatingSystem=Version 14.4 (Build 23E214) systemLaunch=2024-03-08 09:41:15 +0000 version=1.6.0
+2024-03-08T18:41:53.047+0100 debug    [Polyrecorder] Accessing active displays
+2024-03-08T18:41:53.095+0100 notice   [Polyrecorder] Active displays: [polyrecorder.DisplayDiscovery.Display(displayID: 1, bounds: polyrecorder.Bounds(x: 0.0, y: 0.0, width: 1800.0, height: 1169.0), refreshRate: 120.0, isMain: true, isBuiltin: true)]
+2024-03-08T18:41:53.095+0100 debug    [Polyrecorder] Validating configuration.
+2024-03-08T18:41:53.095+0100 notice   [Polyrecorder] Configuration validated: {
+  "channels" : [
+    {
+      "captureKeyStrokes" : true,
+      "type" : "input"
+    },
+    {
+      "excludeFinderDesktopIcons" : false,
+      "type" : "display",
+      "displayId" : 1,
+      "excludedWindowIds" : [
+        11384,
+        11383,
+        10307
+      ],
+      "cropRect" : {
+        "height" : 1075,
+        "yAxis" : "topBasedIncreasingDownwards",
+        "y" : 81,
+        "x" : 231,
+        "width" : 1554
+      }
+    }
+  ],
+  "logLevel" : "debug",
+  "outputDirectory" : "\/var\/folders\/bg\/y1jby3sd0kg6rdtnglcr38pc0000gn\/T\/Area 2024-03-08 18:41:52"
+}
+2024-03-08T18:41:53.095+0100 debug    [Polyrecorder] Creating output directory. url=file:///var/folders/bg/y1jby3sd0kg6rdtnglcr38pc0000gn/T/Area%202024-03-08%2018:41:52
+2024-03-08T18:41:53.096+0100 notice   [Polyrecorder] Created output directory. url=file:///var/folders/bg/y1jby3sd0kg6rdtnglcr38pc0000gn/T/Area%202024-03-08%2018:41:52
+2024-03-08T18:41:53.096+0100 debug    [Polyrecorder] Redirecting logs to file. url=file:///var/folders/bg/y1jby3sd0kg6rdtnglcr38pc0000gn/T/Area%202024-03-08%2018:41:52/polyrecorder.log
+2024-03-08T18:41:53.096+0100 notice   [Polyrecorder] Redirected logs to file. url=file:///var/folders/bg/y1jby3sd0kg6rdtnglcr38pc0000gn/T/Area%202024-03-08%2018:41:52/polyrecorder.log
+2024-03-08T18:41:53.096+0100 debug    [Polyrecorder] Attaching uncaught exception handler.
+2024-03-08T18:41:53.096+0100 notice   [Polyrecorder] Attached uncaught exception handler.
+2024-03-08T18:41:53.096+0100 debug    [Polyrecorder] Enabling DAL devices...
+2024-03-08T18:41:53.115+0100 notice   [Polyrecorder] Enabled DAL devices.
+2024-03-08T18:41:53.115+0100 debug    [Polyrecorder] Creating conductor with recorders. channels=2
+2024-03-08T18:41:53.119+0100 debug    [CursorRecorder] Checking if cursor folder/files don't exist yet.
+2024-03-08T18:41:53.119+0100 notice   [CursorRecorder] Checked cursor folder/files don't exist yet.
+2024-03-08T18:41:53.119+0100 debug    [CursorRecorder] Creating display link. displayId=1
+2024-03-08T18:41:53.133+0100 notice   [CursorRecorder] Created display link. displayId=1
+2024-03-08T18:41:53.133+0100 debug    [InputRecorder] Checking input monitoring authorization status. id=channel-0-input
+2024-03-08T18:41:53.145+0100 notice   [InputRecorder] Input monitoring is authorized. id=channel-0-input
+2024-03-08T18:41:53.167+0100 debug    [DisplayRecorder: channel-1-display] Checking if displayID 1 is in Active Displays list id=channel-1-display
+2024-03-08T18:41:53.179+0100 debug    [DisplayRecorder: channel-1-display] Creating DisplayRecorderOutput id=channel-1-display
+2024-03-08T18:41:53.181+0100 notice   [DisplayRecorder: channel-1-display] Created DisplayRecorderOutput id=channel-1-display output=DisplayRecorderOutput(cropRect: Optional((231.0, 81.0, 1554.0, 1075.0)), recordBounds: (231.0, 81.0, 1554.0, 1075.0), displayScaleFactor: 2, displayRefreshRate: 120.0, minFrameDuration: CMTime(seconds:0.008333333333333333 timescale:120 value:1 flags:valid), recordingScale: 0.5, assetWriterSettings: polyrecorder.AssetWriterSettings(mediaType: __C.AVMediaType(_rawValue: vide), outputSettings: ["AVVideoScalingModeKey": AVVideoScalingModeResizeAspect, "AVVideoEncoderSpecificationKey": {
+    EnableHardwareAcceleratedVideoEncoder = 1;
+}, "AVVideoWidthKey": 3108, "AVVideoHeightKey": 2150, "AVVideoCompressionPropertiesKey": {
+    AllowFrameReordering = 1;
+    AverageBitRate = 21832098;
+    AverageNonDroppableFrameRate = 30;
+    ExpectedFrameRate = 120;
+    H264EntropyMode = CABAC;
+    MaxKeyFrameInterval = 30;
+    ProfileLevel = "H264_High_AutoLevel";
+}, "AVVideoCodecKey": avc1]))
+2024-03-08T18:41:53.182+0100 info     [Polyrecorder] Created conductor with recorders. channels=2 recorders=3
+2024-03-08T18:41:53.182+0100 debug    [Polyrecorder] Attaching recorder abortion handler.
+2024-03-08T18:41:53.182+0100 notice   [Polyrecorder] Attached recorder abortion handler.
+2024-03-08T18:41:53.182+0100 debug    [Polyrecorder] Installing signal handlers on process 38951.
+2024-03-08T18:41:53.182+0100 notice   [Polyrecorder] Installed signal handlers on process 38951.
+2024-03-08T18:41:53.182+0100 notice   [Polyrecorder] Setup finished.
+2024-03-08T18:41:53.182+0100 debug    [Conductor] Starting recording.
+2024-03-08T18:41:53.182+0100 debug    [Conductor] Starting latency critical activity.
+2024-03-08T18:41:53.182+0100 notice   [Conductor] Started latency critical activity.
+2024-03-08T18:41:53.182+0100 debug    [Conductor] Setting up all recorders. recorders=3
+2024-03-08T18:41:53.183+0100 debug    [CursorRecorder] Creating cursor image directory. id=channel-0-cursor url=file:///var/folders/bg/y1jby3sd0kg6rdtnglcr38pc0000gn/T/Area%202024-03-08%2018:41:52/cursors/
+2024-03-08T18:41:53.183+0100 debug    [InputRecorder] Starting event monitor. id=channel-0-input
+2024-03-08T18:41:53.183+0100 info     [InputRecorder] Event monitor started. id=channel-0-input
+2024-03-08T18:41:53.183+0100 notice   [InputRecorder] Setup complete id=channel-0-input
+2024-03-08T18:41:53.183+0100 debug    [DisplayRecorder: channel-1-display] Accessing ShareableContent id=channel-1-display
+2024-03-08T18:41:53.183+0100 notice   [CursorRecorder] Created cursor image directory. id=channel-0-cursor url=file:///var/folders/bg/y1jby3sd0kg6rdtnglcr38pc0000gn/T/Area%202024-03-08%2018:41:52/cursors/
+2024-03-08T18:41:53.231+0100 notice   [DisplayRecorder: channel-1-display] Received ShareableContent attempt=1 id=channel-1-display
+2024-03-08T18:41:53.231+0100 debug    [DisplayRecorder: channel-1-display] Creating SCContentFilter from configuration id=channel-1-display
+2024-03-08T18:41:53.231+0100 debug    [DisplayRecorder: channel-1-display] Creating SCStream id=channel-1-display streamConfig=SCStreamConfiguration sourceRect:(231.0, 81.0, 1554.0, 1075.0) width:3108 height:2150 queueDepth:8
+2024-03-08T18:41:53.237+0100 debug    [CursorRecorder] Preloading system cursors. cursors=18 id=channel-0-cursor
+2024-03-08T18:41:53.237+0100 notice   [CursorRecorder] Preloaded system cursors. cursors=18 id=channel-0-cursor
+2024-03-08T18:41:53.237+0100 debug    [CursorRecorder] Configuring display link output handler. errorRateLimit=10.0 id=channel-0-cursor
+2024-03-08T18:41:53.237+0100 info     [CursorRecorder] Display link output handler configured. errorRateLimit=10.0 id=channel-0-cursor
+2024-03-08T18:41:53.237+0100 debug    [CursorRecorder] Setting current display on display link. displayId=1 id=channel-0-cursor
+2024-03-08T18:41:53.237+0100 info     [CursorRecorder] Current display on display link set. displayId=1 id=channel-0-cursor
+2024-03-08T18:41:53.237+0100 debug    [CursorRecorder] Starting display link. displayId=1 id=channel-0-cursor
+2024-03-08T18:41:53.237+0100 notice   [CursorRecorder] Started display link. displayId=1 id=channel-0-cursor
+2024-03-08T18:41:53.237+0100 notice   [CursorRecorder] Setup complete id=channel-0-cursor
+2024-03-08T18:41:53.247+0100 notice   [CursorRecorder] Refresh rate of current display changed. currentDisplay=1 id=channel-0-cursor refreshRate=120 FPS
+2024-03-08T18:41:53.282+0100 notice   [DisplayRecorder: channel-1-display] Created SCStream id=channel-1-display
+2024-03-08T18:41:53.282+0100 debug    [DisplayRecorder: channel-1-display] Add StreamOutput to capture screen content id=channel-1-display
+2024-03-08T18:41:53.282+0100 debug    [DisplayRecorder: channel-1-display] Enable verbose SCK logging id=channel-1-display
+2024-03-08T18:41:53.282+0100 debug    [DisplayRecorder: channel-1-display] Start stream capture id=channel-1-display
+2024-03-08T18:41:53.333+0100 notice   [DisplayRecorder: channel-1-display] Started stream capture id=channel-1-display
+2024-03-08T18:41:53.333+0100 debug    [DisplayRecorder: channel-1-display] Waiting for ring buffer to have a frame id=channel-1-display
+2024-03-08T18:41:53.354+0100 debug    [StreamCoordinator: channel-1-display] Stream did output sample buffer id=channel-1-display isValid=true
+2024-03-08T18:41:53.354+0100 debug    [DisplayRecorder: channel-1-display] Checking delta of presentation time stamp to host time clock. framePTS=28837.682786375 hostTime=28837.695243958 id=channel-1-display
+2024-03-08T18:41:53.354+0100 notice   [DisplayRecorder: channel-1-display] Trivial delta between presentation time stamp to host time clock, will trust frame PTS. framePTS=28837.682786375 hostTime=28837.695243958 hostTimeDelta=0.012457583 id=channel-1-display
+2024-03-08T18:41:53.354+0100 notice   [DisplayRecorder: channel-1-display] Ring buffer has a frame id=channel-1-display
+2024-03-08T18:41:53.354+0100 debug    [DisplayRecorder: channel-1-display] Disable verbose SCK logging id=channel-1-display
+2024-03-08T18:41:53.354+0100 notice   [DisplayRecorder: channel-1-display] Setup complete id=channel-1-display
+2024-03-08T18:41:53.354+0100 notice   [Conductor] Did setup all recorders. recorders=3
+2024-03-08T18:41:53.354+0100 debug    [Conductor] Calling prepare on all recorders for session. recorders=3
+2024-03-08T18:41:53.354+0100 debug    [DisplayRecorder: channel-1-display] Creating SessionWriter id=channel-1-display
+2024-03-08T18:41:53.354+0100 notice   [InputRecorder] Preparing session. id=channel-0-input sessions=0
+2024-03-08T18:41:53.354+0100 debug    [SessionWriter: channel-1-display-0] Creating AVAssetWriter id=channel-1-display
+2024-03-08T18:41:53.355+0100 notice   [SessionWriter: channel-1-display-0] Created AVAssetWriter id=channel-1-display
+2024-03-08T18:41:53.355+0100 debug    [SessionWriter: channel-1-display-0] Add AVAssetWriter.error observation id=channel-1-display
+2024-03-08T18:41:53.355+0100 notice   [InputRecorder] Prepared session. id=channel-0-input sessions=1
+2024-03-08T18:41:53.355+0100 notice   [SessionWriter: channel-1-display-0] Added AVAssetWriter.error observation id=channel-1-display
+2024-03-08T18:41:53.355+0100 debug    [SessionWriter: channel-1-display-0] Creating AVAssetWriterInput id=channel-1-display mediaType=AVMediaType(_rawValue: vide) outputSettings=["AVVideoScalingModeKey": AVVideoScalingModeResizeAspect, "AVVideoEncoderSpecificationKey": {
+    EnableHardwareAcceleratedVideoEncoder = 1;
+}, "AVVideoWidthKey": 3108, "AVVideoHeightKey": 2150, "AVVideoCompressionPropertiesKey": {
+    AllowFrameReordering = 1;
+    AverageBitRate = 21832098;
+    AverageNonDroppableFrameRate = 30;
+    ExpectedFrameRate = 120;
+    H264EntropyMode = CABAC;
+    MaxKeyFrameInterval = 30;
+    ProfileLevel = "H264_High_AutoLevel";
+}, "AVVideoCodecKey": avc1]
+2024-03-08T18:41:53.427+0100 debug    [SessionWriter: channel-1-display-0] Adding AVAssetWriterInput to AVAssetWriter. id=channel-1-display
+2024-03-08T18:41:53.427+0100 notice   [SessionWriter: channel-1-display-0] Added AVAssetWriterInput to AVAssetWriter id=channel-1-display
+2024-03-08T18:41:53.449+0100 debug    [DisplayRecorder: channel-1-display] Processing initial samples from buffer. bufferCount=3 id=channel-1-display
+2024-03-08T18:41:53.449+0100 debug    [DisplayRecorder: channel-1-display] Processed initial samples from buffer. bufferCount=3 id=channel-1-display
+2024-03-08T18:41:53.449+0100 notice   [DisplayRecorder: channel-1-display] Created SessionWriter id=channel-1-display
+2024-03-08T18:41:53.449+0100 notice   [Conductor] Called prepare recorders for session. recorders=3
+2024-03-08T18:41:53.449+0100 debug    [Conductor] Broadcasting over stdout that all recorders are prepared. recorders=3
+2024-03-08T18:41:53.450+0100 notice   [Conductor] Broadcasted over stdout that all recorders are prepared. recorders=3
+2024-03-08T18:41:53.852+0100 notice   [SignalHandler] Received SIGCONT.
+2024-03-08T18:41:53.852+0100 debug    [Conductor] Resuming recording.
+2024-03-08T18:41:53.852+0100 notice   [Conductor] Recording resumed. recordFrom=28838.193017958336
+2024-03-08T18:41:53.857+0100 debug    [SessionWriter: channel-1-display-0] Start session on AVAssetWriter id=channel-1-display sessionStart=CMTime(seconds:28838.193017958 timescale:1000000000 value:28838193017958 flags:valid, hasBeenRounded)
+2024-03-08T18:41:53.857+0100 notice   [SessionWriter: channel-1-display-0] Started session on AVAssetWriter id=channel-1-display sessionStart=CMTime(seconds:28838.193017958 timescale:1000000000 value:28838193017958 flags:valid, hasBeenRounded)
+2024-03-08T18:41:53.857+0100 notice   [SessionWriter: channel-1-display-0] Appending first sample buffer duration=CMTime(seconds:nan timescale:0 value:0 flags:<empty>) id=channel-1-display newPresentationTime=CMTime(seconds:28838.193017958 timescale:1000000000 value:28838193017958 flags:valid, hasBeenRounded) originalDecodeTime=CMTime(seconds:nan timescale:0 value:0 flags:<empty>) originalPresentationTime=CMTime(seconds:28838.174453541 timescale:1000000000 value:28838174453541 flags:valid)
+2024-03-08T18:41:53.863+0100 notice   [SessionWriter: channel-1-display-0] Appending second sample buffer duration=CMTime(seconds:nan timescale:0 value:0 flags:<empty>) id=channel-1-display newPresentationTime=CMTime(seconds:28838.195286916 timescale:1000000000 value:28838195286916 flags:valid) originalDecodeTime=CMTime(seconds:nan timescale:0 value:0 flags:<empty>) originalPresentationTime=CMTime(seconds:28838.195286916 timescale:1000000000 value:28838195286916 flags:valid)
+2024-03-08T18:41:53.891+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28838.216640625 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28838.230821208
+2024-03-08T18:41:54.743+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28839.069774916 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28839.084255375
+2024-03-08T18:41:55.793+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28840.110769166 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28840.118711916
+2024-03-08T18:41:55.793+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28840.118711916 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28840.126411041
+2024-03-08T18:41:55.812+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28840.142469666 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28840.152525416
+2024-03-08T18:41:55.875+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28840.192934916 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28840.201088916
+2024-03-08T18:41:58.209+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28841.84606 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28842.547795
+2024-03-08T18:41:58.879+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28843.201487166 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28843.212527583
+2024-03-08T18:41:58.900+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28843.217715208 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28843.225870666
+2024-03-08T18:41:59.179+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28843.5001665 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28843.509193458
+2024-03-08T18:42:00.307+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28844.634142416 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28844.647515625
+2024-03-08T18:42:00.325+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28844.647652 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28844.658593666
+2024-03-08T18:42:01.226+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28845.542298666 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28845.56650325
+2024-03-08T18:42:01.621+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28845.56650325 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28845.961656875
+2024-03-08T18:42:03.342+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28847.664615625 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28847.672750208
+2024-03-08T18:42:04.949+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28847.796972708 generatedEvents=2 id=channel-0-input session=0 untilIncluding=28849.287366125
+2024-03-08T18:42:04.989+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28849.319419541 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28849.330429625
+2024-03-08T18:42:05.029+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28849.3517145 generatedEvents=2 id=channel-0-input session=0 untilIncluding=28849.363382666
+2024-03-08T18:42:05.092+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28849.400057333 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28849.412535
+2024-03-08T18:42:05.092+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28849.416102125 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28849.429676291
+2024-03-08T18:42:05.334+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28849.650051458 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28849.658233875
+2024-03-08T18:42:05.650+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28849.981148083 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28849.989150875
+2024-03-08T18:42:09.618+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28853.948176 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28853.956776833
+2024-03-08T18:42:10.364+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28854.691341625 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28854.699401875
+2024-03-08T18:42:12.679+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28857.007350083 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28857.015456791
+2024-03-08T18:42:12.933+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28857.265734791 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28857.273688625
+2024-03-08T18:42:12.954+0100 debug    [InputRecorderSession] Generated mouse move events for cursor changes between mouse moves. after=28857.273688625 generatedEvents=1 id=channel-0-input session=0 untilIncluding=28857.287713333
+2024-03-08T18:42:13.427+0100 notice   [SignalHandler] Received SIGINT.
+2024-03-08T18:42:13.427+0100 warning  [Conductor] Pausing the recording to be able to stop.
+2024-03-08T18:42:13.427+0100 debug    [Conductor] Pausing recording.
+2024-03-08T18:42:13.427+0100 notice   [Conductor] Recording paused. recordUntil=28857.768453875
+2024-03-08T18:42:13.427+0100 debug    [Conductor] Stopping recording.
+2024-03-08T18:42:13.427+0100 debug    [Conductor] Cleaning up recorders. recorders=3
+2024-03-08T18:42:13.427+0100 debug    [CursorRecorder] Stopping display link. id=channel-0-cursor
+2024-03-08T18:42:13.427+0100 debug    [InputRecorder] Stopping event monitor. id=channel-0-input
+2024-03-08T18:42:13.427+0100 notice   [CursorRecorder] Stopped display link. id=channel-0-cursor
+2024-03-08T18:42:13.427+0100 notice   [InputRecorder] Stopped globalMonitorForEvents. id=channel-0-input
+2024-03-08T18:42:13.427+0100 info     [InputRecorder] Event monitor stopped. id=channel-0-input
+2024-03-08T18:42:13.427+0100 debug    [InputRecorder] Stopping cursor change monitor. id=channel-0-input
+2024-03-08T18:42:13.427+0100 debug    [DisplayRecorder: channel-1-display] Completing all session writers id=channel-1-display sessionWriters.count=1
+2024-03-08T18:42:13.427+0100 info     [InputRecorder] Cursor change monitor stopped. id=channel-0-input
+2024-03-08T18:42:13.427+0100 debug    [SessionWriter: channel-1-display-0] Completing recording. id=channel-1-display
+2024-03-08T18:42:13.427+0100 debug    [InputRecorder] Finishing sessions. id=channel-0-input
+2024-03-08T18:42:13.427+0100 debug    [SessionWriter: channel-1-display-0] Waiting for final frames. id=channel-1-display
+2024-03-08T18:42:13.427+0100 debug    [InputRecorderSession] Generating mouse move events for stationary cursor changes at end of session. id=channel-0-input session=0
+2024-03-08T18:42:13.427+0100 notice   [InputRecorderSession] Generated mouse move events for stationary cursor changes at end of session. after=28857.623673041 generatedEvents=0 id=channel-0-input session=0 untilIncluding=28857.768453875
+2024-03-08T18:42:13.427+0100 notice   [SessionWriter: channel-1-display-0] Newer item produced recently, waiting for another second. id=channel-1-display lastItemTime=CMTime(seconds:28857.7536405 timescale:1000000000 value:28857753640500 flags:valid) previousLastItemTime=CMTime(seconds:-inf timescale:0 value:0 flags:valid, negativeInfinity)
+2024-03-08T18:42:13.427+0100 debug    [CursorRecorder] Writing cursor information to disk. count=20 id=channel-0-cursor url=file:///var/folders/bg/y1jby3sd0kg6rdtnglcr38pc0000gn/T/Area%202024-03-08%2018:41:52/cursors.json
+2024-03-08T18:42:13.428+0100 notice   [InputRecorder] Finished writers. id=channel-0-input
+2024-03-08T18:42:13.428+0100 notice   [CursorRecorder] Cursor information written to disk. count=20 id=channel-0-cursor url=file:///var/folders/bg/y1jby3sd0kg6rdtnglcr38pc0000gn/T/Area%202024-03-08%2018:41:52/cursors.json
+2024-03-08T18:42:13.428+0100 debug    [CursorRecorder] Writing cursor images to disk. count=20 id=channel-0-cursor url=file:///var/folders/bg/y1jby3sd0kg6rdtnglcr38pc0000gn/T/Area%202024-03-08%2018:41:52/cursors/
+2024-03-08T18:42:13.429+0100 notice   [SessionWriter: channel-1-display-0] Reporting previous times duration=CMTime(seconds:nan timescale:0 value:0 flags:<empty>) id=channel-1-display newPresentationTime=CMTime(seconds:28857.7536405 timescale:1000000000 value:28857753640500 flags:valid) originalDecodeTime=CMTime(seconds:nan timescale:0 value:0 flags:<empty>) originalPresentationTime=CMTime(seconds:28857.7536405 timescale:1000000000 value:28857753640500 flags:valid)
+2024-03-08T18:42:13.429+0100 notice   [SessionWriter: channel-1-display-0] Appending last sample buffer duration=CMTime(seconds:nan timescale:0 value:0 flags:<empty>) id=channel-1-display newPresentationTime=CMTime(seconds:28857.768453875 timescale:1000000000 value:28857768453875 flags:valid) originalDecodeTime=CMTime(seconds:nan timescale:0 value:0 flags:<empty>) originalPresentationTime=CMTime(seconds:28857.7536405 timescale:1000000000 value:28857753640500 flags:valid)
+2024-03-08T18:42:13.440+0100 notice   [CursorRecorder] Cursor images are written to disk. count=20 id=channel-0-cursor url=file:///var/folders/bg/y1jby3sd0kg6rdtnglcr38pc0000gn/T/Area%202024-03-08%2018:41:52/cursors/
+2024-03-08T18:42:14.475+0100 notice   [SessionWriter: channel-1-display-0] Waiting for final frames completed. id=channel-1-display systemUptime=28858.816549208335
+2024-03-08T18:42:14.476+0100 debug    [SessionWriter: channel-1-display-0] Finishing SessionBuffer. id=channel-1-display
+2024-03-08T18:42:14.476+0100 notice   [SessionWriter: channel-1-display-0] Finished SessionBuffer. id=channel-1-display
+2024-03-08T18:42:14.476+0100 debug    [SessionWriter: channel-1-display-0] Flushing all frames from backpressure buffer. id=channel-1-display itemsInBuffer=0
+2024-03-08T18:42:14.476+0100 notice   [SessionWriter: channel-1-display-0] Flushed all frames from backpressure buffer. id=channel-1-display itemsInBuffer=0
+2024-03-08T18:42:14.476+0100 debug    [SessionWriter: channel-1-display-0] End session on AVAssetWriter id=channel-1-display sessionEnd=CMTime(seconds:28857.768453875 timescale:1000000000 value:28857768453875 flags:valid)
+2024-03-08T18:42:14.479+0100 notice   [SessionWriter: channel-1-display-0] End session on AVAssetWriter id=channel-1-display sessionEnd=CMTime(seconds:28857.768453875 timescale:1000000000 value:28857768453875 flags:valid)
+2024-03-08T18:42:14.479+0100 debug    [SessionWriter: channel-1-display-0] Finishing writing to asset writer. id=channel-1-display
+2024-03-08T18:42:14.487+0100 notice   [SessionWriter: channel-1-display-0] Finished writing to assset writer. id=channel-1-display
+2024-03-08T18:42:14.487+0100 debug    [SessionWriter: channel-1-display-0] Finishing writing to metadata file. id=channel-1-display
+2024-03-08T18:42:14.487+0100 notice   [SessionWriter: channel-1-display-0] Finished writing to metadata file. id=channel-1-display
+2024-03-08T18:42:14.487+0100 notice   [SessionWriter: channel-1-display-0] Completed recording, returning metadata. framesProcessed (excluding initial Ring buffer)=552 id=channel-1-display
+2024-03-08T18:42:14.487+0100 notice   [DisplayRecorder: channel-1-display] Completed all session writers id=channel-1-display sessionWriters.count=1
+2024-03-08T18:42:14.487+0100 debug    [DisplayRecorder: channel-1-display] Stopping stream capture. id=channel-1-display
+2024-03-08T18:42:14.498+0100 notice   [DisplayRecorder: channel-1-display] Stopped stream capture. id=channel-1-display
+2024-03-08T18:42:14.498+0100 debug    [DisplayRecorder: channel-1-display] Clearing frame timeout. id=channel-1-display
+2024-03-08T18:42:14.498+0100 notice   [DisplayRecorder: channel-1-display] Cleared frame timeout. id=channel-1-display
+2024-03-08T18:42:14.499+0100 debug    [DisplayRecorder: channel-1-display] Returning Metadata from cleanup id=channel-1-display totalFramesProcessed=556
+2024-03-08T18:42:14.499+0100 debug    [DisplayRecorder: channel-1-display] Checking if file is undamaged id=channel-1-display url=file:///var/folders/bg/y1jby3sd0kg6rdtnglcr38pc0000gn/T/Area%202024-03-08%2018:41:52/channel-1-display-0.mp4
+2024-03-08T18:42:14.501+0100 debug    [DisplayRecorder: channel-1-display] Loaded duration from file duration=CMTime(seconds:19.575 timescale:600 value:11745 flags:valid) id=channel-1-display url=file:///var/folders/bg/y1jby3sd0kg6rdtnglcr38pc0000gn/T/Area%202024-03-08%2018:41:52/channel-1-display-0.mp4
+2024-03-08T18:42:14.501+0100 notice   [Conductor] Finalized recorders. errors=0 metadataCount=3 recorders=3
+2024-03-08T18:42:14.501+0100 debug    [Conductor] Writing metadata file. metadataCount=3
+2024-03-08T18:42:14.502+0100 notice   [Conductor] Metadata file written. metadataCount=3
+2024-03-08T18:42:14.502+0100 debug    [Conductor] Ending latency critical activity.
+2024-03-08T18:42:14.503+0100 notice   [Conductor] Ended latency critical activity.
+2024-03-08T18:42:14.503+0100 notice   [Conductor] Recording stopped. errorCount=0 metadataCount=3 recorders=3
+2024-03-08T18:42:14.503+0100 notice   [Conductor] Stopped recording. sessions=[
+from:     28838.193  2024-03-08T18:41:53.852+0100
+until:    28857.768  2024-03-08T18:42:13.427+0100
+duration: 19.575
+]
+2024-03-08T18:42:14.503+0100 notice   [Polyrecorder] Nominal recording ended.
