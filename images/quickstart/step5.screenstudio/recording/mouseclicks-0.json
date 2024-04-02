@@ -1,0 +1,16 @@
+[
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":2104.2252916668076,"type":"mouseDown","unixTimeMs":1711381541330.3857,"x":2347.1640625,"y":414.03125},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":2224.4527076691156,"type":"mouseUp","unixTimeMs":1711381541450.6133,"x":2347.1640625,"y":414.03125},
+{"activeModifiers":[],"button":"left","cursorId":"arrow","processTimeMs":3214.662832666363,"type":"mouseDown","unixTimeMs":1711381542440.8232,"x":2360.0859375,"y":564.0703125},
+{"activeModifiers":[],"button":"left","cursorId":"arrow","processTimeMs":3334.2183326676604,"type":"mouseUp","unixTimeMs":1711381542560.379,"x":2360.0859375,"y":564.0703125},
+{"activeModifiers":[],"button":"left","cursorId":"iBeam","processTimeMs":4601.722666666319,"type":"mouseDown","unixTimeMs":1711381543827.8833,"x":1191.08984375,"y":373.92578125},
+{"activeModifiers":[],"button":"left","cursorId":"iBeam","processTimeMs":4654.298207664397,"type":"mouseUp","unixTimeMs":1711381543880.4587,"x":1190.84375,"y":373.92578125},
+{"activeModifiers":[],"button":"left","cursorId":"iBeam","processTimeMs":8929.86441667017,"type":"mouseDown","unixTimeMs":1711381548156.025,"x":1381.515625,"y":689.5859375},
+{"activeModifiers":[],"button":"left","cursorId":"iBeam","processTimeMs":9739.92699966766,"type":"mouseUp","unixTimeMs":1711381548966.0876,"x":1283.984375,"y":648.34375},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":12027.33587466355,"type":"mouseDown","unixTimeMs":1711381551253.4963,"x":2338.76171875,"y":1098.0234375},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":12132.616207665706,"type":"mouseUp","unixTimeMs":1711381551358.7766,"x":2338.76171875,"y":1098.0234375},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":16216.063874664542,"type":"mouseDown","unixTimeMs":1711381555442.2246,"x":2265.08203125,"y":437.515625},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":16324.62991666398,"type":"mouseUp","unixTimeMs":1711381555550.7903,"x":2264.8359375,"y":437.515625},
+{"activeModifiers":[],"button":"left","cursorId":"arrow","processTimeMs":28752.503457668354,"type":"mouseDown","unixTimeMs":1711381567978.6638,"x":1298.73046875,"y":1574.69140625},
+{"activeModifiers":[],"button":"left","cursorId":"arrow","processTimeMs":28819.58241666871,"type":"mouseUp","unixTimeMs":1711381568045.743,"x":1298.73046875,"y":1574.69140625}
+]
