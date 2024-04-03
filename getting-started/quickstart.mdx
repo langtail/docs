@@ -1,5 +1,162 @@
 ---
 title: 'Quickstart'
 ---
+This guide will walk you through building a sample application powered by GPT-4. This app will suggest meals based on the ingredients you have in your refrigerator. We will use Langtail as the source of truth for the prompt, tests, logging, and metrics. Additionally, we will create a simple frontend using Next.js. Let's begin!
 
-In this guide, we'll build a prompt using Langtail, write some tests, connect it to our code, and view metrics and logs.
+<Steps>
+
+  <Step title="Prepare your account">
+    Let's start by preparing your account with the necessary details for prompt creation.
+
+    1. Navigate to [Langtail](https://app.langtail.com). If you don't have an account, create one for free.
+    1. Create a new project and name it `quickstart`.
+  </Step>
+
+  <Step title="Create a prompt">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="/images/quickstart/step2.mp4"
+    ></video>
+
+    Next, we will create a prompt that will act as the core of our application.
+
+    1. [Click here](https://app.langtail.com/playground?shareid=OU4Bu-sPxb) to open the quickstart prompt.
+    1. In the top right, click "Save as..."
+    1. Select your new project, rename the prompt, and click "Save".
+
+    <Note>This template references a variable named `selectedIngredients` and iterates over it to form a bulleted list. For more on the templating syntax, see [the prompt templating guide](/playground/templating).</Note>
+  </Step>
+
+  <Step title="Try the prompt">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="/images/quickstart/step3.mp4"
+    ></video>
+
+    Now, let's try out the new prompt.
+
+    1. Navigate to the Variables panel where you will find the `selectedIngredients` variable. Paste this value: `["Turkey", "Spinach", "Berries"]`.
+    1. At the bottom of the playground, select "Send".
+    1. You should now see a response with two recipes formatted in Markdown. Feel free to adjust any model parameters or prompt templates to improve the output.
+  </Step>
+
+  <Step title="Create a basic test">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="/images/quickstart/step4.mp4"
+    ></video>
+
+    Let's create a test to verify that the prompt is working as expected.
+
+    1. Click "Save" to save the prompt.
+    1. From the navigation bar, select "Tests".
+    1. Click "+ Add Test".
+    1. A new test will be created with our example value for `selectedIngredients`.
+    1. Select "New Assertion", then "contains".
+    1. In the "Title" field, write `Contains additional ingredients`.
+    1. In the "Value" field, write `**Additional Ingredients:**`.
+    1. Select "Save".
+    1. Click "Run" and ensure that the test passes.
+  </Step>
+
+  <Step title="Create a more complex assertion">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="/images/quickstart/step5.mp4"
+    ></video>
+
+    Next, we will create an assertion that checks if exactly 2 recipes were returned.
+
+    1. In the test you just created, select "New Assertion" and then "javascript".
+    1. Name the assertion "Has two recipes".
+    1. Paste in the following code:
+        ```javascript
+        test(async ({ message, variables }) => {
+          const numberOfRecipes = message.content.split("##").length - 1;
+          return message.content && numberOfRecipes === 2;
+        });
+        ```
+    1. Select "Run" to ensure that both assertions now pass.
+
+    <Note>If you need to debug a JavaScript assertion, you can add `console.log` statements and click "Run" to execute the code.</Note>
+  </Step>
+
+  <Step title="Deploy the prompt">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="/images/quickstart/step6.mp4"
+    ></video>
+
+    With the prompt tested, it's time to deploy it for testing in our app.
+
+    1. From the navigation bar, select "Playground".
+    1. Click "Save" and write a message.
+    1. Select "Deploy", then "Staging environment".
+    1. From the navigation bar, select "Deployments".
+    1. Click the "..." next to the deployment, and then "Copy URL".
+  </Step>
+
+  <Step title="Generate a project API key">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="/images/quickstart/step7.mp4"
+    ></video>
+
+    Next, let's generate a project API key.
+
+    1. In the navigation bar, select the project name to go to the current project.
+    1. From the left sidebar, select *Secrets*.
+    1. Click *New API Key*, optionally set a name and a budget limit, then click *Create*.
+    1. Copy the key.
+  </Step>
+
+  <Step title="Integrate with the sample app">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="/images/quickstart/step8.mp4"
+    ></video>
+
+    Now, let's integrate the project API key with the sample app.
+
+    1. Clone the quickstart repo using this command:
+        ```
+        git clone https://github.com/langtail/quickstart.git
+        ```
+    1. Open a terminal in the repo and install the packages using this command:
+        ```
+        npm install
+        ```
+    1. Duplicate the `.env.local.example` file and rename it to `.env.local`.
+    1. Replace the value of `LANGTAIL_API_KEY` with the project API key and `LANGTAIL_API_URL` with the deployment URL.
+    1. Start the app using this command:
+        ```
+        npm run dev
+        ```
+    1. Open the app in your browser. By default, the app is served on [http://localhost:3000](http://localhost:3000).
+    1. Choose some ingredients and click "Find Inspiration".
+    1. If everything is set up correctly, you should see some ideas appear at the bottom of the page. This may take a few seconds.
+  </Step>
+
+  <Step title="View logs and metrics">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="/images/quickstart/step9.mp4"
+    ></video>
+
+    Finally, let's view logs and metrics.
+
+    1. Navigate back to Langtail, go to the project view and select "Logs".
+    1. Click the latest log entry and notice all the available information. You can see the system prompt, user prompt, and direct response from the LLM. By clicking "Show more", you can also see stats like cost.
+    1. From the left sidebar, select "Metrics" to view aggregated stats.
+  </Step>
+</Steps>
+
+Congratulations! You have successfully explored the core functionality of Langtail. For more helpful documentation, check the sidebar. If you have any questions, feel free to ask in our [Discord community](https://dub.sh/PySAbCg).

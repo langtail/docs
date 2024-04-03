@@ -1,0 +1,80 @@
+{
+  "logFilename" : "polyrecorder.log",
+  "polyrecorderVersion" : "1.6.0",
+  "recorders" : [
+    {
+      "configuration" : {
+
+      },
+      "cursorImagesFolder" : "cursors",
+      "cursorsInfoFile" : "cursors.json",
+      "id" : "channel-0-cursor",
+      "type" : "cursor"
+    },
+    {
+      "configuration" : {
+        "captureKeyStrokes" : true
+      },
+      "id" : "channel-0-input",
+      "sessions" : [
+        {
+          "durationMs" : 17471.898625000904,
+          "keyStrokesFilename" : "keystrokes-0.json",
+          "mouseClicksFilename" : "mouseclicks-0.json",
+          "mouseMovesFilename" : "mousemoves-0.json",
+          "processTimeEndMs" : 18225.94195833517,
+          "processTimeStartMs" : 754.0433333342662,
+          "unixEndMs" : 1711380257461.0947,
+          "unixStartMs" : 1711380239989.196
+        }
+      ],
+      "type" : "input"
+    },
+    {
+      "configuration" : {
+        "cropRect" : {
+          "height" : 1080,
+          "width" : 1920,
+          "x" : 642,
+          "y" : 151,
+          "yAxis" : "topBasedIncreasingDownwards"
+        },
+        "displayId" : 2,
+        "excludedWindowIds" : [
+          8633,
+          6723
+        ],
+        "excludeFinderDesktopIcons" : false
+      },
+      "id" : "channel-1-display",
+      "sessions" : [
+        {
+          "bounds" : {
+            "height" : 1080,
+            "width" : 1920,
+            "x" : 642,
+            "y" : 151
+          },
+          "displayRefreshRate" : 60,
+          "durationMs" : 17471.666666666668,
+          "outputFilename" : "channel-1-display-0.mp4",
+          "processTimeEndMs" : 18225.709999331546,
+          "processTimeStartMs" : 754.0433326648781,
+          "recordingScale" : 0.5,
+          "unixEndMs" : 1711380257460.8628,
+          "unixStartMs" : 1711380239989.196
+        }
+      ],
+      "type" : "display"
+    }
+  ],
+  "sessions" : [
+    {
+      "durationMs" : 17471.898625000904,
+      "processTimeEndMs" : 18225.94195833517,
+      "processTimeStartMs" : 754.0433333342662,
+      "unixEndMs" : 1711380257461.0947,
+      "unixStartMs" : 1711380239989.196
+    }
+  ]
+}
