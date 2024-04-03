@@ -1,0 +1,17 @@
+[
+{"activeModifiers":[],"button":"left","cursorId":"arrow","processTimeMs":1442.2168746641546,"type":"mouseDown","unixTimeMs":1709919714483.9707,"x":329.27734375,"y":227.3203125},
+{"activeModifiers":[],"button":"left","cursorId":"arrow","processTimeMs":1538.5052076635475,"type":"mouseUp","unixTimeMs":1709919714580.259,"x":329.27734375,"y":227.3203125},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":1908.8113326615712,"type":"mouseDown","unixTimeMs":1709919714950.5654,"x":320.0859375,"y":226.484375},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":2017.1151666618243,"type":"mouseUp","unixTimeMs":1709919715058.8691,"x":320.0859375,"y":226.484375},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":4567.310582664504,"type":"mouseDown","unixTimeMs":1709919717609.0647,"x":1130.84375,"y":398.10546875},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":4671.500082662533,"type":"mouseUp","unixTimeMs":1709919717713.254,"x":1130.84375,"y":398.10546875},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":8204.740332661459,"type":"mouseDown","unixTimeMs":1709919721246.4944,"x":1288.578125,"y":404.9453125},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":8350.705666663998,"type":"mouseUp","unixTimeMs":1709919721392.4597,"x":1288.578125,"y":404.9453125},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":10479.646499661612,"type":"mouseDown","unixTimeMs":1709919723521.4004,"x":1689.26953125,"y":101.60546875},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":10621.321082664508,"type":"mouseUp","unixTimeMs":1709919723663.075,"x":1689.26953125,"y":101.60546875},
+{"activeModifiers":[],"button":"left","cursorId":"iBeam","processTimeMs":12921.519041661668,"type":"mouseDown","unixTimeMs":1709919725963.273,"x":1073.625,"y":693.25390625},
+{"activeModifiers":[],"button":"left","cursorId":"iBeam","processTimeMs":13129.624624663847,"type":"mouseUp","unixTimeMs":1709919726171.3787,"x":1073.625,"y":693.25390625},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":17704.823374664556,"type":"mouseDown","unixTimeMs":1709919730746.5771,"x":991.80859375,"y":1124.08203125},
+{"activeModifiers":[],"button":"left","cursorId":"pointingHand","processTimeMs":17829.609249663918,"type":"mouseUp","unixTimeMs":1709919730871.3633,"x":991.80859375,"y":1124.08203125},
+{"activeModifiers":[],"button":"left","cursorId":"arrow","processTimeMs":20267.17924966215,"type":"mouseDown","unixTimeMs":1709919733308.9333,"x":715.21484375,"y":1053.64453125}
+]
