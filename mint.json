@@ -68,6 +68,12 @@
       ]
     },
     {
+      "group": "Observability",
+      "pages": [
+        "observability/view-logs-metrics"
+      ]
+    },
+    {
       "group": "Proxy",
       "pages": [
         "proxy/openai",
