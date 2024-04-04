@@ -1,0 +1,48 @@
+---
+title: 'How to write a test'
+---
+
+In Langtail, a test consists of a collection of cases and assertions. When run, each individual case is evaluated against all of the assertions.
+
+A **case** is a user message that is added to the prompt before it is executed in a test run.
+
+An **assertion** evaluates the prompt's output. Langtail supports the following assertion types:
+    - **equals**: Checks if the specified value exactly matches the output.
+    - **contains**: Checks if the specified value is somewhere in the output.
+    - **icontains**: Similar to *contains* except it is case insensitive.
+    - **javascript**: The most powerful and flexible assertion. Allows you to define a custom JavaScript function to check the output.
+
+## Example
+
+Let's explain it further with an example.
+
+[Here is a prompt](https://app.langtail.com/playground?shareid=U_-cFxHZwq) that that analyzes the sentiment of some text and returns a JSON object containing that sentiment. Here's what a basic set of tests could look like:
+
+![Screenshot of Langtail's test section](/images/tests/write-test/screenshot2.png)
+
+1. **Test 1 - Positive Sentiment**
+    - **Case**: "I am happy."
+    - **Assertion**: An *equals* assertion with the value `{"sentiment": "positive"}`
+
+1. **Test 2 - Positive Sentiment**
+    - **Case**: "I am sad."
+    - **Assertion**: An *equals* assertion with the value `{"sentiment": "negative"}`
+
+1. **Test 3 - Is Valid JSON**
+    - **Case**: "I saw a blue car."
+    - **Assertion**: A *javascript* assertion with the following code:
+
+        ```javascript
+        test(async ({ message, variables }) => {
+          try {
+                JSON.parse(message.content);
+                return true; // Parsing succeeded, so it's valid JSON
+            } catch (e) {
+                return false; // Parsing failed, so it's not valid JSON
+            }
+        });
+        ```
+
+There's a lot more that could be tested, but having even a basic test suite for each of your prompts can be a great way to safeguard against typos (like misspelling "positive") or parameter changes (like turning off JSON mode).
+
+If you have any questions regarding tests or best practices for your project, [get in touch with us](../../support/get-help).

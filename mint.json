@@ -55,6 +55,12 @@
       ]
     },
     {
+      "group": "Tests",
+      "pages": [
+        "tests/write-test"
+      ]
+    },
+    {
       "group": "Deployments",
       "pages": [
         "deployments/deploy-prompt",
