@@ -49,8 +49,8 @@
     {
       "group": "Playground",
       "pages": [
-        "playground/templating",
-        "playground/use-playground"
+        "playground/use-playground",
+        "playground/templating"
       ]
     },
     {
