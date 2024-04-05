@@ -50,6 +50,7 @@
     {
       "group": "Playground",
       "pages": [
+        "playground/use-playground",
         "playground/templating"
       ]
     },
