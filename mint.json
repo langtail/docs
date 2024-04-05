@@ -50,8 +50,14 @@
     {
       "group": "Playground",
       "pages": [
-        "playground/use-playground",
+        "playground/overview",
         "playground/templating"
+      ]
+    },
+    {
+      "group": "Tests",
+      "pages": [
+        "tests/overview"
       ]
     },
     {
