@@ -23,7 +23,7 @@ This guide will walk you through building a sample application powered by GPT-4.
 
     1. [Click here](https://app.langtail.com/playground?shareid=OU4Bu-sPxb) to open the quickstart prompt.
     1. In the top right, click "Save as..."
-    1. Select your new project, rename the prompt, and click "Save".
+    1. Select your new project, rename the prompt to *Quickstart*, and click "Save".
 
     <Note>This template references a variable named `selectedIngredients` and iterates over it to form a bulleted list. For more on the templating syntax, see [the prompt templating guide](/playground/templating).</Note>
   </Step>
@@ -134,6 +134,11 @@ This guide will walk you through building a sample application powered by GPT-4.
         npm install
         ```
     1. Duplicate the `.env.local.example` file and rename it to `.env.local`.
+    1. Replace the following values in that file:
+        - `LANGTAIL_API_KEY`: The project API key generated in the last step.
+        - `LANGTAIL_PROMPT_SLUG`: The slug of the prompt. It should be `quickstart`.
+        - `LANGTAIL_ENV`: The environment to invoke. It should be `staging`.
+
     1. Replace the value of `LANGTAIL_API_KEY` with the project API key and `LANGTAIL_API_URL` with the deployment URL.
     1. Start the app using this command:
         ```
