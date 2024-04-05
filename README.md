@@ -19,3 +19,12 @@ mintlify dev
 We're using screen studio for screen casts.
 
 You can use the langtail.screenstudiopreset for our config. For export, use 1080p 30FPS MP4 in Web quality. Also keep the screen studio project files next to all MP4 in git.
+
+### Image Compression
+
+After taking a screenshot, we compress it using the following script using ImageMagick and optiPNG:
+
+```bash
+convert screenshot.jpeg -resize 1400x screenshot.png
+optipng output.png
+```
