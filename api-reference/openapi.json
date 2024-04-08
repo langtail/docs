@@ -3,7 +3,7 @@
   "info": { "version": "1.0.0", "title": "Langtail prompt endpoint" },
   "components": { "schemas": {}, "parameters": {} },
   "paths": {
-    "/{organization}/{project}/{prompt}/{environment}": {
+    "/{workspace}/{project}/{prompt}/{environment}": {
       "post": {
         "description": "Get completion for stored prompt. The response format is the same as [OpenAI Chat completion response](https://platform.openai.com/docs/api-reference/chat/object).",
         "servers": [{ "url": "https://api.langtail.com" }],
@@ -16,10 +16,10 @@
             "in": "header"
           },
           {
-            "schema": { "type": "string", "example": "organization" },
+            "schema": { "type": "string", "example": "workspace" },
             "required": true,
-            "description": "Your organization URL slug",
-            "name": "organization",
+            "description": "Your workspace URL slug",
+            "name": "workspace",
             "in": "path"
           },
           {
