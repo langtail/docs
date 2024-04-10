@@ -1,0 +1,66 @@
+---
+title: 'Integrate via Langtail SDK'
+---
+
+<Note>Using the Proxy via the SDK is a quick way to try out Langtail. For a fully-featured experience, we recommend [trying out the full Langtail workflow](/getting-started/quickstart")</Note>
+
+You can invoke a prompt deployment using Langtail's Node.js SDK. Here's how to get started.
+
+<Steps>
+  <Step title="Generate a project API key">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="/images/proxy/create-api-key.mp4"
+    ></video>
+
+    1. In Langtail, open an existing project or create a new one.
+    1. In the left sidebar, click *Secrets*.
+    1. Click *New API Key*, optionally set a name and a budget limit, then click *Create*.
+    1. Copy the key.
+  </Step>
+  <Step title="Install the SDK">
+    Install the Langtail SDK in your project (using NPM or your package manager of choice):
+    ```bash
+    npm add @langtail/node
+    ```
+  </Step>
+  <Step title="Modify your code to use the SDK">
+    1. Add your Langtail project API key to an environment variable. In the following snippets, we use `LANGTAIL_API_KEY`.
+    1. In your codebase, paste this snippet:
+    ```javascript
+    import { Langtail } from "@langtail/node"
+
+    const lt = new Langtail({
+      apiKey: process.env.LANGTAIL_API_KEY,
+    })
+
+    const rawCompletion = await lt.chat.completions.create({
+      // Required
+      messages: [{ role: "system", content: "You are a helpful assistant." }],
+      model: "gpt-3.5-turbo",
+      // Optional:
+      // All OpenAI fields (temperature, top_p, tools,...)
+      doNotRecord: false, // false will ensure logs do not contain any info about payloads
+      metadata: {
+        "custom-field": 1,
+      },
+    })
+    ```
+  </Step>
+  <Step title="Test it out">
+    Run your app and make a request to verify that everything works properly.
+  </Step>
+  <Step title="Observe metrics and logs">
+  <video
+      controls
+      className="w-full aspect-video"
+      src="/images/proxy/view-logs.mp4"
+    ></video>
+
+    1. Back in Langtail, navigate to the project and then click *Logs* in the left sidebar.
+    1. You should see log entries coming from your app (they have an environment value of "proxy").
+    1. Click on a log to see detailed information about the request and response from OpenAI.
+    1. If you want to experiment with this prompt, click *Open in Playground*. Here you can change parameters and modify different parts of the prompt and then see the result.
+  </Step>
+</Steps>
