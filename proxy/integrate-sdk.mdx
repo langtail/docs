@@ -21,14 +21,14 @@ If you want to give Langtail a try but you're not 100% sure that you want to use
   <Step title="Install the SDK">
     Install the Langtail SDK in your project (using NPM or your package manager of choice):
     ```bash
-    npm add @langtail/node
+    npm add langtail
     ```
   </Step>
   <Step title="Modify your code to use the SDK">
     1. Add your Langtail project API key to an environment variable. In the following snippets, we use `LANGTAIL_API_KEY`.
     1. In your codebase, paste this snippet:
     ```javascript
-    import { Langtail } from "@langtail/node"
+    import { Langtail } from "langtail"
 
     const lt = new Langtail({
       apiKey: process.env.LANGTAIL_API_KEY,
