@@ -199,8 +199,7 @@
                     "description": "A seed is used  to generate reproducible results",
                     "example": 123
                   }
-                },
-                "required": ["variables"]
+                }
               }
             }
           }
