@@ -1,0 +1,160 @@
+{/* This is a copy of what have have in github readme */}
+Typescript SDK for Langtail is a wrapper around OpenAI's API client. It provides a more opinionated way to interact with OpenAI's API and adds some extra features like logging and prompt deployment. 
+
+[Github repository](https://github.com/langtail/langtail-node)
+## Install
+
+```bash
+npm i langtail
+```
+
+## Usage
+
+### openAI chat completion
+
+basic completion without any prompt. This just wraps openAI api and adds a few extra parameters you can use to affect how the request gets logged in langtail.
+
+```ts
+import { Langtail } from "langtail"
+
+const lt = new Langtail({
+  apiKey: "<LANGTAIL_API_KEY>",
+})
+
+const rawCompletion = await lt.chat.completions.create({
+  // Required
+  messages: [{ role: "system", content: "You are a helpful assistant." }],
+  model: "gpt-3.5-turbo",
+  // Optional:
+  // All OpenAI fields (temperature, top_p, tools,...)
+  prompt: "<prompt-slug>",
+  doNotRecord: false, // false will ensure logs do not contain any info about payloads. You can still see the request in the logs, but you cannot see the variables etc.
+  metadata: {
+    "custom-field": 1,
+  },
+})
+```
+
+### Deployed prompts
+
+Completion from a deployed prompt can be called with `lt.prompts.invoke`:
+
+```ts
+const deployedPromptCompletion = await lt.prompts.invoke({
+  prompt: "<PROMPT_SLUG>", // required
+  environment: "staging",
+  variables: {
+    about: "cowboy Bebop",
+  },
+}) // results in an openAI ChatCompletion
+```
+
+Of course this assumes that you have already deployed your prompt to `staging` environment. If not, you will get an error thrown an error: `Error: Failed to fetch prompt: 404 {"error":"Prompt deployment not found"}`
+
+## LangtailPrompts
+
+In case you only need deployed prompts, you can import just `LangtailPrompts` like this:
+
+```ts
+import { LangtailPrompts } from "langtail"
+
+const lt = new LangtailPrompts({
+  apiKey: "<LANGTAIL_API_KEY>",
+})
+// usage
+const deployedPromptCompletion = await lt.invoke({
+  prompt: "<PROMPT_SLUG>",
+  environment: "staging",
+  variables: {
+    about: "cowboy Bebop",
+  },
+})
+```
+
+this way whole `LangtailNode` can get tree shaken away.
+
+You can initialize LangtailPrompts with workspace and project slugs like so:
+
+```ts
+import { Langtail } from "langtail"
+
+const lt = new Langtail({
+  apiKey: "<LANGTAIL_API_KEY>",
+  workspace: "<WORKSPACE_SLUG>",
+  project: "<PROJECT_SLUG>",
+})
+```
+
+
+# API reference
+
+## LangtailNode
+
+### Constructor
+
+The constructor accepts an options object with the following properties:
+
+- `apiKey`: The API key for Langtail. This is required.
+- `baseURL`(optional): The base URL for the Langtail API.
+- `doNotRecord`(optional): A boolean indicating whether to record the API calls.
+- `organization`(optional): The organization ID.
+- `project`(optional): The project ID.
+- `fetch`(optional): The fetch function to use for making HTTP requests. [It is passed to openAI client under the hood](https://github.com/openai/openai-node?tab=readme-ov-file#customizing-the-fetch-client).
+
+### Properties
+
+- `completions`: An instance of the `LangtailPrompts` class.
+- `chat`: An object containing a `completions` object with a `create` method.
+
+### Methods
+
+#### chat.completions.create
+
+This method accepts two parameters:
+
+- `body`: An object that can be of type `ChatCompletionCreateParamsNonStreaming & ILangtailExtraProps`, `ChatCompletionCreateParamsStreaming & ILangtailExtraProps`, `ChatCompletionCreateParamsBase & ILangtailExtraProps`, or `ChatCompletionCreateParams & ILangtailExtraProps`.
+- `options`(optional): OpenAI `Core.RequestOptions` object
+
+It returns a promise that resolves to a `ChatCompletion` or a `Stream<ChatCompletionChunk>` depending whether you are using streaming or not.
+
+### Exceptions
+
+- Throws an error if the `apiKey` is not provided in the options object or as an environment variable.
+
+## LangtailPrompts
+
+### Constructor
+
+The constructor accepts an options object with the following properties:
+
+- `apiKey`: The API key for Langtail. This is required.
+- `baseURL`(optional): The base URL for the Langtail API.
+- `organization`(optional): The organization ID.
+- `project`(optional): The project ID.
+- `fetch`(optional): The fetch function to use for making HTTP requests. [It is passed to openAI client under the hood](https://github.com/openai/openai-node?tab=readme-ov-file#customizing-the-fetch-client).
+
+### Properties
+
+- `apiKey`: The API key for Langtail.
+- `baseUrl`(optional): The base URL for the Langtail API.
+- `options`(optional): An object containing the options for the Langtail API.
+
+### Methods
+
+#### createPromptPath
+
+This method accepts two parameters:
+
+- `prompt`: A string representing the prompt.
+- `environment`(optional): An `Environment` string identifier. Accepts values: `"preview" | "staging" | "production"`. Defaults to `production`
+
+It returns a string representing the URL path for the prompt.
+
+#### invoke
+
+This method accepts an `IRequestParams` or `IRequestParamsStream` object and returns a promise that resolves to an `OpenAIResponseWithHttp` or a `StreamResponseType` depending on whether you use streaming or not.
+
+### Exceptions
+
+- Throws an error if the fetch operation fails.
+- Throws an error if there is no body in the response when streaming is enabled.
