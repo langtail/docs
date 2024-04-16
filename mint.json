@@ -42,23 +42,15 @@
   "navigation": [
     {
       "group": "Getting Started",
-      "pages": [
-        "getting-started/introduction",
-        "getting-started/quickstart"
-      ]
+      "pages": ["getting-started/introduction", "getting-started/quickstart"]
     },
     {
       "group": "Playground",
-      "pages": [
-        "playground/overview",
-        "playground/templating"
-      ]
+      "pages": ["playground/overview", "playground/templating"]
     },
     {
       "group": "Tests",
-      "pages": [
-        "tests/overview"
-      ]
+      "pages": ["tests/overview"]
     },
     {
       "group": "Deployments",
@@ -70,9 +62,7 @@
     },
     {
       "group": "Observability",
-      "pages": [
-        "observability/overview"
-      ]
+      "pages": ["observability/overview"]
     },
     {
       "group": "OpenAI Proxy",
@@ -84,10 +74,12 @@
       ]
     },
     {
+      "group": "SKDs",
+      "pages": ["sdks/typescript"]
+    },
+    {
       "group": "Support & Community",
-      "pages": [
-        "support/get-help"
-      ]
+      "pages": ["support/get-help"]
     }
   ],
   "footerSocials": {
