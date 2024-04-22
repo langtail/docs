@@ -113,7 +113,7 @@ This guide will walk you through building a sample application powered by GPT-4.
     1. In the navigation bar, select the project name to go to the current project.
     1. From the left sidebar, select *Secrets*.
     1. Click *New API Key*, optionally set a name and a budget limit, then click *Create*.
-    1. Copy the key.
+    1. Copy the key and save it for the next step.
   </Step>
 
   <Step title="Integrate with the sample app">
@@ -125,16 +125,23 @@ This guide will walk you through building a sample application powered by GPT-4.
 
     Now, let's integrate the project API key with the sample app.
 
-    1. Clone the quickstart repo using this command:
+    1. Make sure that you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Node.js](https://nodejs.org/en/download) installed on your computer.
+    1. Clone the quickstart repository using this command:
         ```
         git clone https://github.com/langtail/quickstart.git
         ```
-    1. Open a terminal in the repo and install the packages using this command:
+    1. Open a terminal in the repository:
+        ```
+        cd quickstart
+        ```
+    1. install the packages using this command:
         ```
         npm install
         ```
+    1. Open this repository in your code editor (for example, [VS Code](https://code.visualstudio.com/download)).
     1. Duplicate the `.env.local.example` file and rename it to `.env.local`.
     1. Replace the value of `LANGTAIL_API_KEY` with the project API key generated in the last step.
+    1. If you didn't name your prompt `quickstart`, modify the `generate_meals.ts` file with the one you used. [Here's the exact line.](https://github.com/langtail/quickstart/blob/main/pages/api/generate-meals.ts#L18-L19)
     1. Start the app using this command:
         ```
         npm run dev
