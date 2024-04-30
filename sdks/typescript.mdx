@@ -1,8 +1,14 @@
-{/* This is a copy of what have have in github readme */}
-Typescript SDK for Langtail is a wrapper around OpenAI's API client. It provides a more opinionated way to interact with OpenAI's API and adds some extra features like logging and prompt deployment. 
+---
+title: 'TypeScript SDK'
+---
 
-[Github repository](https://github.com/langtail/langtail-node)
-## Install
+Langtail's TypeScript SDK wraps OpenAI's API client so that it can be used seamlessly with Langtail. You can store the entire prompt in Langtail and reference it by prompt slug and environment. By routing requests through Langtail, you can get logs, metrics, and many more beneifts.
+
+For more, check out the [GitHub repository](https://github.com/langtail/langtail-node).
+
+## Installation
+
+Use NPM or your package manager of choice to install the `langtail` package:
 
 ```bash
 npm i langtail
@@ -10,34 +16,11 @@ npm i langtail
 
 ## Usage
 
-### openAI chat completion
+Here are the different ways you can use the SDK.
 
-basic completion without any prompt. This just wraps openAI api and adds a few extra parameters you can use to affect how the request gets logged in langtail.
+### 1. Invoke a prompt that's deployed on Langtail (recommended)
 
-```ts
-import { Langtail } from "langtail"
-
-const lt = new Langtail({
-  apiKey: "<LANGTAIL_API_KEY>",
-})
-
-const rawCompletion = await lt.chat.completions.create({
-  // Required
-  messages: [{ role: "system", content: "You are a helpful assistant." }],
-  model: "gpt-3.5-turbo",
-  // Optional:
-  // All OpenAI fields (temperature, top_p, tools,...)
-  prompt: "<prompt-slug>",
-  doNotRecord: false, // false will ensure logs do not contain any info about payloads. You can still see the request in the logs, but you cannot see the variables etc.
-  metadata: {
-    "custom-field": 1,
-  },
-})
-```
-
-### Deployed prompts
-
-Completion from a deployed prompt can be called with `lt.prompts.invoke`:
+To invoke a deployed prompt, you can use `lt.prompts.invoke` like this:
 
 ```ts
 const deployedPromptCompletion = await lt.prompts.invoke({
@@ -49,47 +32,19 @@ const deployedPromptCompletion = await lt.prompts.invoke({
 }) // results in an openAI ChatCompletion
 ```
 
-Of course this assumes that you have already deployed your prompt to `staging` environment. If not, you will get an error thrown an error: `Error: Failed to fetch prompt: 404 {"error":"Prompt deployment not found"}`
+If you call a prompt that isn't deployed yet, you will get an error thrown an error: `Error: Failed to fetch prompt: 404 {"error":"Prompt deployment not found"}`
 
-## LangtailPrompts
+### 2. Invoke a prompt that's stored in code
 
-In case you only need deployed prompts, you can import just `LangtailPrompts` like this:
+If you're storing your prompt in your codebase and want to give Langtail a try, use this method. You can use `lt.chat.completions.create` as a light wrapper over the OpenAI API that still sends logs and metrics to Langtail.
 
-```ts
-import { LangtailPrompts } from "langtail"
+For more, [see the example in this doc](/proxy/integrate-sdk).
 
-const lt = new LangtailPrompts({
-  apiKey: "<LANGTAIL_API_KEY>",
-})
-// usage
-const deployedPromptCompletion = await lt.invoke({
-  prompt: "<PROMPT_SLUG>",
-  environment: "staging",
-  variables: {
-    about: "cowboy Bebop",
-  },
-})
-```
+### 3. Fetch prompt from Langtail and invoke directly (proxyless)
 
-this way whole `LangtailNode` can get tree shaken away.
+If you're storing your prompt in Langtail but want to invoke it directly from your code without using Langtail as a proxy, use this method.
 
-You can initialize LangtailPrompts with workspace and project slugs like so:
-
-```ts
-import { Langtail } from "langtail"
-
-const lt = new Langtail({
-  apiKey: "<LANGTAIL_API_KEY>",
-  workspace: "<WORKSPACE_SLUG>",
-  project: "<PROJECT_SLUG>",
-})
-```
-
-### proxyless usage
-
-You can avoid langtail API all together by constructing your prompt locally and calling your provider like openAI directly.
-
-let's suppose you have a prompt called `joke-teller` deployed on staging in langtail. You can `get` it's template and all the playground config by calling `get` method like this:
+You can call `LangtailPrompts.get` to retrieve the contents of the prompt:
 
 ```ts
 import { LangtailPrompts } from "langtail"
@@ -105,39 +60,39 @@ const playgroundState = await lt.get({
 })
 ```
 
-`get` will return something like this depending on how your prompt configured when it was deployed:
+The response will return something like this:
 
-```
-          {
-            "chatInput": {
-              "optionalExtra": "",
-            },
-            "state": {
-              "args": {
-                "frequency_penalty": 0,
-                "jsonmode": false,
-                "max_tokens": 800,
-                "model": "gpt-3.5-turbo",
-                "presence_penalty": 0,
-                "stop": [],
-                "stream": true,
-                "temperature": 0.5,
-                "top_p": 1,
-              },
-              "functions": [],
-              "template": [
-                {
-                  "content": "I want you to tell me a joke. Topic of the joke: {{topic}}",
-                  "role": "system",
-                },
-              ],
-              "tools": [],
-              "type": "chat",
-            },
-          }
+```json
+{
+  "chatInput": {
+    "optionalExtra": "",
+  },
+  "state": {
+    "args": {
+      "frequency_penalty": 0,
+      "jsonmode": false,
+      "max_tokens": 800,
+      "model": "gpt-3.5-turbo",
+      "presence_penalty": 0,
+      "stop": [],
+      "stream": true,
+      "temperature": 0.5,
+      "top_p": 1,
+    },
+    "functions": [],
+    "template": [
+      {
+        "content": "I want you to tell me a joke. Topic of the joke: {{topic}}",
+        "role": "system",
+      },
+    ],
+    "tools": [],
+    "type": "chat",
+  },
+}
 ```
 
-render your template and builds the final open AI compatible payload:
+Now you can build the final output:
 
 ```ts
 const openAiBody = lt.build(playgroundState, {
@@ -148,26 +103,26 @@ const openAiBody = lt.build(playgroundState, {
 })
 ```
 
-openAiBody now contains this object:
+Which returns this object:
 
 ```js
 {
-            "frequency_penalty": 0,
-            "max_tokens": 800,
-            "messages": [
-              {
-                "content": "I want you to tell me a joke. Topic of the joke: iron man",
-                "role": "system",
-              },
-            ],
-            "model": "gpt-3.5-turbo",
-            "presence_penalty": 0,
-            "temperature": 0.5,
-            "top_p": 1,
-          }
+  "frequency_penalty": 0,
+  "max_tokens": 800,
+  "messages": [
+    {
+      "content": "I want you to tell me a joke. Topic of the joke: iron man",
+      "role": "system",
+    },
+  ],
+  "model": "gpt-3.5-turbo",
+  "presence_penalty": 0,
+  "temperature": 0.5,
+  "top_p": 1,
+}
 ```
 
-Notice that your langtail template was replaced with a variable passed in. You can directly call openAI SDK with this object:
+Finally, you can directly call the OpenAI SDK with the returned object:
 
 ```ts
 import OpenAI from "openai"
@@ -177,9 +132,7 @@ const openai = new OpenAI()
 const joke = await openai.chat.completions.create(openAiBody)
 ```
 
-This way you are still using langtail prompts without exposing potentially sensitive data in your variables.
-
-
+Using this method, you're getting all of the power of Langtail prompts (like variables) *and* you're able to send requests directly to OpenAI. This can be helpful if you're especially sensitive to performance. If you're taking this route for security reasons, [let us know](/support/get-help) and give you a deeper look into Langtail.
 
 # API reference
 
