@@ -5,7 +5,7 @@
   "paths": {
     "/{workspace}/{project}/{prompt}/{environment}": {
       "post": {
-        "description": "Get completion for stored prompt. The response format is the same as [OpenAI Chat completion response](https://platform.openai.com/docs/api-reference/chat/object).",
+        "description": "Get completion for a stored assistant. This endpoint invokes the assistant and returns its response. It uses chat completions on the backend and maintains OpenAI-compatible format. Assistants are stateful AI agents that can leverage various model providers and tools, access persistent conversation threads, and execute multiple tools in parallel.",
         "servers": [{ "url": "https://api.langtail.com" }],
         "parameters": [
           {
@@ -205,8 +205,14 @@
                     "type": "number",
                     "description": "Overrides the top_p of deployed prompt. An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or `temperature` but not both."
                   },
-                  "presence_penalty": { "type": "number", "description": "Overrides the presence_penalty of deployed prompt." },
-                  "frequency_penalty": { "type": "number", "description": "Overrides the frequency_penalty of deployed prompt." },
+                  "presence_penalty": {
+                    "type": "number",
+                    "description": "Overrides the presence_penalty of deployed prompt."
+                  },
+                  "frequency_penalty": {
+                    "type": "number",
+                    "description": "Overrides the frequency_penalty of deployed prompt."
+                  },
                   "template": {
                     "description": "Overrides the stored template messages with custom template messages.",
                     "type": "array",
@@ -339,7 +345,10 @@
                   "tool_choice": {
                     "description": "Overrides the tool choice of deployed prompt.",
                     "anyOf": [
-                      { "type": "string", "enum": ["auto", "required", "none"] },
+                      {
+                        "type": "string",
+                        "enum": ["auto", "required", "none"]
+                      },
                       {
                         "type": "object",
                         "properties": {
@@ -393,6 +402,541 @@
         "responses": {
           "200": {
             "description": "Chat completion response from OpenAI - see https://platform.openai.com/docs/api-reference/chat/object for more details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "A unique identifier for the chat completion."
+                    },
+                    "object": {
+                      "type": "string",
+                      "description": "The object type, which is always `chat.completion`."
+                    },
+                    "created": {
+                      "type": "number",
+                      "description": "The Unix timestamp (in seconds) of when the chat completion was created."
+                    },
+                    "model": {
+                      "type": "string",
+                      "description": "The model used for the chat completion."
+                    },
+                    "choices": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "index": {
+                            "type": "number",
+                            "description": "The index of the choice in the list of choices.",
+                            "x-internal-comment": "Using enum as example: 0 was ignored",
+                            "enum": [0]
+                          },
+                          "message": {
+                            "type": "object",
+                            "properties": {
+                              "role": {
+                                "type": "string",
+                                "enum": ["assistant"],
+                                "description": "The role of the author of this message."
+                              },
+                              "content": {
+                                "type": "string",
+                                "nullable": true,
+                                "example": "I'm sorry, but I'm not able to fulfill this request."
+                              }
+                            },
+                            "required": ["role", "content"]
+                          },
+                          "finish_reason": {
+                            "type": "string",
+                            "enum": [
+                              "stop",
+                              "length",
+                              "tool_calls",
+                              "content_filter",
+                              "function_call"
+                            ],
+                            "description": "The reason the model stopped generating tokens. This will be `stop` if the model hit a natural stop point or a provided stop sequence, `length` if the maximum number of tokens specified in the request was reached, `content_filter` if content was omitted due to a flag from our content filters, `tool_calls` if the model called a tool, or `function_call` (deprecated) if the model called a function."
+                          }
+                        },
+                        "required": ["index", "message", "finish_reason"]
+                      },
+                      "description": "A list of chat completion choices. Can be more than one if `n` is greater than 1."
+                    }
+                  },
+                  "required": ["id", "object", "created", "model", "choices"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request bodys",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "enum": ["Invalid request body"]
+                    },
+                    "issues": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string",
+                            "enum": ["unrecognized_keys", "invalid_type"]
+                          },
+                          "keys": {
+                            "type": "array",
+                            "items": { "type": "string" }
+                          },
+                          "path": {
+                            "type": "array",
+                            "items": { "type": "string" }
+                          },
+                          "message": { "type": "string" }
+                        },
+                        "required": ["code", "keys", "path", "message"]
+                      }
+                    }
+                  },
+                  "required": ["error", "issues"],
+                  "example": {
+                    "error": "Invalid request body",
+                    "issues": [
+                      {
+                        "code": "unrecognized_keys",
+                        "keys": ["unknown_variable"],
+                        "path": ["variables"],
+                        "message": "Unrecognized key(s) in object: 'unknown_variable'"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{workspace}/{project}/{assistant}/{environment}": {
+      "post": {
+        "description": "Get completion for a stored assistant. This endpoint invokes the assistant and returns its response. It uses chat completions on the backend and maintains OpenAI-compatible format. Assistants are stateful AI agents that can leverage various model providers and tools, access persistent conversation threads, and execute multiple tools in parallel.",
+        "servers": [{ "url": "https://api.langtail.com" }],
+        "parameters": [
+          {
+            "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
+            "required": true,
+            "description": "Your Langtail API Key",
+            "name": "X-API-Key",
+            "in": "header"
+          },
+          {
+            "schema": { "type": "string", "example": "workspace" },
+            "required": true,
+            "description": "Your workspace URL slug",
+            "name": "workspace",
+            "in": "path"
+          },
+          {
+            "schema": { "type": "string", "example": "project" },
+            "required": true,
+            "description": "Your project URL slug",
+            "name": "project",
+            "in": "path"
+          },
+          {
+            "schema": { "type": "string", "example": "assistant" },
+            "required": true,
+            "description": "Your assistant URL slug",
+            "name": "assistant",
+            "in": "path"
+          },
+          {
+            "schema": { "type": "string", "example": "production" },
+            "required": true,
+            "description": "Your environment URL slug",
+            "name": "environment",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "threadId": {
+                    "type": "string",
+                    "description": "A unique identifier for the thread. If not provided, a new thread will be created.",
+                    "example": "thread_123"
+                  },
+                  "variables": {
+                    "type": "object",
+                    "description": "A mapping of variable names to their values. Will be injected in your saved assistant template.",
+                    "additionalProperties": {
+                      "anyOf": [{ "type": "string" }]
+                    },
+                    "example": { "variableName": "Your Value" }
+                  },
+                  "messages": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "role": {
+                          "type": "string",
+                          "enum": [
+                            "assistant",
+                            "user",
+                            "system",
+                            "function",
+                            "tool"
+                          ]
+                        },
+                        "name": { "type": "string" },
+                        "content": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "description": "Text content",
+                              "nullable": false
+                            },
+                            {
+                              "type": "array",
+                              "description": "Mix of text and images.",
+                              "items": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": ["text"]
+                                      },
+                                      "text": { "type": "string" }
+                                    },
+                                    "required": ["type", "text"]
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": ["image_url"]
+                                      },
+                                      "image_url": {
+                                        "type": "object",
+                                        "properties": {
+                                          "url": { "type": "string" },
+                                          "detail": {
+                                            "type": "string",
+                                            "enum": ["auto", "low", "high"],
+                                            "default": "auto"
+                                          }
+                                        },
+                                        "required": ["url", "detail"]
+                                      }
+                                    },
+                                    "required": ["type", "image_url"]
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "nullable": true,
+                              "description": "Can be omited if there is a `function_call` or `tool_calls`"
+                            }
+                          ]
+                        },
+                        "function_call": {
+                          "type": "object",
+                          "properties": {
+                            "name": { "type": "string" },
+                            "arguments": { "type": "string" }
+                          },
+                          "required": ["name", "arguments"]
+                        },
+                        "tool_calls": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": { "type": "string" },
+                              "type": {
+                                "type": "string",
+                                "enum": ["function"]
+                              },
+                              "function": {
+                                "type": "object",
+                                "properties": {
+                                  "name": { "type": "string" },
+                                  "arguments": { "type": "string" }
+                                },
+                                "required": ["name", "arguments"]
+                              }
+                            },
+                            "required": ["id", "type", "function"]
+                          }
+                        },
+                        "tool_choice": {
+                          "anyOf": [
+                            { "type": "string", "enum": ["auto"] },
+                            { "type": "string", "enum": ["none"] },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": ["function"]
+                                },
+                                "function": {
+                                  "type": "object",
+                                  "properties": {
+                                    "name": { "type": "string" }
+                                  },
+                                  "required": ["name"]
+                                }
+                              },
+                              "required": ["type", "function"]
+                            }
+                          ]
+                        },
+                        "tool_call_id": { "type": "string" }
+                      },
+                      "required": ["role", "content"]
+                    },
+                    "description": "Additional messages. These will be appended to the Thread.",
+                    "example": [{ "role": "user", "content": "Hello" }]
+                  },
+                  "stream": { "type": "boolean", "example": false },
+                  "model": {
+                    "type": "string",
+                    "description": "Overrides the model of deployed assistant."
+                  },
+                  "max_tokens": {
+                    "type": "number",
+                    "description": "Overrides the max tokens of deployed assistant. The maximum number of tokens that can be generated in the completion."
+                  },
+                  "temperature": {
+                    "type": "number",
+                    "description": "Overrides the temperature of deployed assistant. What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic."
+                  },
+                  "top_p": {
+                    "type": "number",
+                    "description": "Overrides the top_p of deployed assistant. An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or `temperature` but not both."
+                  },
+                  "presence_penalty": {
+                    "type": "number",
+                    "description": "Overrides the presence_penalty of deployed assistant."
+                  },
+                  "frequency_penalty": {
+                    "type": "number",
+                    "description": "Overrides the frequency_penalty of deployed assistant."
+                  },
+                  "template": {
+                    "description": "Overrides the stored template messages with custom template messages.",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "role": {
+                          "type": "string",
+                          "enum": [
+                            "assistant",
+                            "user",
+                            "system",
+                            "function",
+                            "tool"
+                          ]
+                        },
+                        "name": { "type": "string" },
+                        "content": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "description": "Text content",
+                              "nullable": false
+                            },
+                            {
+                              "type": "array",
+                              "description": "Mix of text and images.",
+                              "items": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": ["text"]
+                                      },
+                                      "text": { "type": "string" }
+                                    },
+                                    "required": ["type", "text"]
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "type": {
+                                        "type": "string",
+                                        "enum": ["image_url"]
+                                      },
+                                      "image_url": {
+                                        "type": "object",
+                                        "properties": {
+                                          "url": { "type": "string" },
+                                          "detail": {
+                                            "type": "string",
+                                            "enum": ["auto", "low", "high"],
+                                            "default": "auto"
+                                          }
+                                        },
+                                        "required": ["url", "detail"]
+                                      }
+                                    },
+                                    "required": ["type", "image_url"]
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "nullable": true,
+                              "description": "Can be omited if there is a `function_call` or `tool_calls`"
+                            }
+                          ]
+                        },
+                        "function_call": {
+                          "type": "object",
+                          "properties": {
+                            "name": { "type": "string" },
+                            "arguments": { "type": "string" }
+                          },
+                          "required": ["name", "arguments"]
+                        },
+                        "tool_calls": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": { "type": "string" },
+                              "type": {
+                                "type": "string",
+                                "enum": ["function"]
+                              },
+                              "function": {
+                                "type": "object",
+                                "properties": {
+                                  "name": { "type": "string" },
+                                  "arguments": { "type": "string" }
+                                },
+                                "required": ["name", "arguments"]
+                              }
+                            },
+                            "required": ["id", "type", "function"]
+                          }
+                        },
+                        "tool_choice": {
+                          "anyOf": [
+                            { "type": "string", "enum": ["auto"] },
+                            { "type": "string", "enum": ["none"] },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": ["function"]
+                                },
+                                "function": {
+                                  "type": "object",
+                                  "properties": {
+                                    "name": { "type": "string" }
+                                  },
+                                  "required": ["name"]
+                                }
+                              },
+                              "required": ["type", "function"]
+                            }
+                          ]
+                        },
+                        "tool_call_id": { "type": "string" }
+                      },
+                      "required": ["role", "content"]
+                    }
+                  },
+                  "tool_choice": {
+                    "description": "Overrides the tool choice of deployed assistant.",
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": ["auto", "required", "none"]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": { "type": "string", "enum": ["function"] },
+                          "function": {
+                            "type": "object",
+                            "properties": { "name": { "type": "string" } },
+                            "required": ["name"]
+                          }
+                        },
+                        "required": ["type", "function"]
+                      }
+                    ]
+                  },
+                  "response_format": {
+                    "description": "Overrides the response format of deployed assistant.",
+                    "type": "object",
+                    "properties": {
+                      "type": { "type": "string", "enum": ["json_object"] }
+                    },
+                    "required": ["type"]
+                  },
+                  "user": {
+                    "type": "string",
+                    "description": "A unique identifier representing your end-user",
+                    "example": "user_123"
+                  },
+                  "doNotRecord": {
+                    "type": "boolean",
+                    "description": "If true, potentially sensitive data like the assistant and response will not be recorded in the logs",
+                    "example": false
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "anyOf": [{ "type": "string" }, { "type": "number" }]
+                    },
+                    "description": "Additional custom data that will be stored for this request",
+                    "example": { "my_identifier": "my-custom-ID" }
+                  },
+                  "seed": {
+                    "type": "number",
+                    "description": "A seed is used  to generate reproducible results",
+                    "example": 123
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Chat completion response from OpenAI - see https://platform.openai.com/docs/api-reference/chat/object for more details. Note: The response includes an 'x-langtail-thread-id' header containing the unique identifier for the thread associated with this response.",
+            "headers": {
+              "x-langtail-thread-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The unique identifier for the thread associated with this response."
+              }
+            },
             "content": {
               "application/json": {
                 "schema": {

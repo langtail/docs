@@ -61,6 +61,10 @@
       ]
     },
     {
+      "group": "Assistants",
+      "pages": ["api-reference/endpoint/invoke-assistant"]
+    },
+    {
       "group": "Observability",
       "pages": ["observability/overview"]
     },
