@@ -5,7 +5,7 @@
   "paths": {
     "/{workspace}/{project}/{prompt}/{environment}": {
       "post": {
-        "description": "Get completion for a stored assistant. This endpoint invokes the assistant and returns its response. It uses chat completions on the backend and maintains OpenAI-compatible format. Assistants are stateful AI agents that can leverage various model providers and tools, access persistent conversation threads, and execute multiple tools in parallel.",
+        "description": "Get completion for stored prompt. The response format is the same as [OpenAI Chat completion response](https://platform.openai.com/docs/api-reference/chat/object).",
         "servers": [{ "url": "https://api.langtail.com" }],
         "parameters": [
           {
