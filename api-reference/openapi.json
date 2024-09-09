@@ -229,6 +229,109 @@
             }
           }
         }
+      },
+      "post": {
+        "description": "Create a new thread. This endpoint allows you to initialize a conversation thread, optionally providing metadata or an initial log.",
+        "servers": [{ "url": "https://api.langtail.com" }],
+        "parameters": [
+          {
+            "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
+            "required": true,
+            "description": "Your Langtail API Key",
+            "name": "X-API-Key",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "metadata": {
+                    "type": "object",
+                    "description": "A set of key-value pairs that can be attached to the thread. This can be used to store additional information about the thread to facilitate filtering or organization.",
+                    "example": {
+                      "user_id": "user_123",
+                      "conversation_topic": "product_inquiry",
+                      "priority": "high"
+                    }
+                  },
+                  "createLog": {
+                    "type": "object",
+                    "description": "A log object that can be passed to create an initial log for the thread."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The unique identifier for the created thread."
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The timestamp when the thread was created."
+                    },
+                    "projectId": {
+                      "type": "string",
+                      "description": "The ID of the project this thread belongs to."
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "The metadata associated with the thread, if provided.",
+                      "nullable": true
+                    },
+                    "deletedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The timestamp when the thread was deleted, if applicable.",
+                      "nullable": true
+                    },
+                    "createLog": {
+                      "type": "object",
+                      "description": "The log created by the first message that creates the thread.",
+                      "nullable": true
+                    }
+                  },
+                  "required": ["id", "createdAt", "projectId"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid request body"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/v2/threads/{threadId}": {

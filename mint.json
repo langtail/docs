@@ -68,6 +68,7 @@
       "group": "Threads",
       "pages": [
         "api-reference/endpoint/threads",
+        "api-reference/endpoint/create-thread",
         "api-reference/endpoint/thread"
       ]
     },
