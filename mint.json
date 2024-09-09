@@ -65,6 +65,10 @@
       "pages": ["api-reference/endpoint/invoke-assistant"]
     },
     {
+      "group": "Threads",
+      "pages": ["api-reference/endpoint/threads"]
+    },
+    {
       "group": "Observability",
       "pages": ["observability/overview"]
     },
