@@ -532,6 +532,79 @@
             }
           }
         }
+      },
+      "delete": {
+        "description": "Deletes a thread by its ID.",
+        "servers": [{ "url": "https://api.langtail.com" }],
+        "parameters": [
+          {
+            "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
+            "required": true,
+            "description": "Your Langtail API Key",
+            "name": "X-API-Key",
+            "in": "header"
+          },
+          {
+            "name": "threadId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the thread to delete.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The unique identifier of the deleted thread."
+                    },
+                    "object": {
+                      "type": "string",
+                      "description": "The object type, which is always 'thread.deleted' for this response.",
+                      "example": "thread.deleted"
+                    },
+                    "deleted": {
+                      "type": "boolean",
+                      "description": "Indicates that the thread was successfully deleted.",
+                      "example": true
+                    }
+                  },
+                  "required": ["id", "object", "deleted"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Thread not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Thread not found"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/{workspace}/{project}/{prompt}/{environment}": {
