@@ -78,7 +78,8 @@
       "group": "Assistant messages in threads",
       "pages": [
         "api-reference/endpoint/thread-messages",
-        "api-reference/endpoint/thread-message"
+        "api-reference/endpoint/thread-message",
+        "api-reference/endpoint/update-message"
       ]
     },
     {
