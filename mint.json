@@ -75,6 +75,10 @@
       ]
     },
     {
+      "group": "Assistant messages in threads",
+      "pages": ["api-reference/endpoint/thread-messages"]
+    },
+    {
       "group": "Observability",
       "pages": ["observability/overview"]
     },
