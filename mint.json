@@ -70,7 +70,8 @@
         "api-reference/endpoint/threads",
         "api-reference/endpoint/create-thread",
         "api-reference/endpoint/thread",
-        "api-reference/endpoint/delete-thread"
+        "api-reference/endpoint/delete-thread",
+        "api-reference/endpoint/update-thread"
       ]
     },
     {
