@@ -66,7 +66,10 @@
     },
     {
       "group": "Threads",
-      "pages": ["api-reference/endpoint/threads"]
+      "pages": [
+        "api-reference/endpoint/threads",
+        "api-reference/endpoint/thread"
+      ]
     },
     {
       "group": "Observability",

@@ -6,7 +6,7 @@
     "/v2/threads": {
       "get": {
         "description": "Get a list of threads within your project.",
-        "servers": [{ "url": "https://api-staging.langtail.com" }],
+        "servers": [{ "url": "https://api.langtail.com" }],
         "parameters": [
           {
             "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
@@ -224,6 +224,206 @@
                     }
                   },
                   "required": ["error", "message"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/threads/{threadId}": {
+      "get": {
+        "description": "Retrieves a thread by its ID.",
+        "servers": [{ "url": "https://api.langtail.com" }],
+        "parameters": [
+          {
+            "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
+            "required": true,
+            "description": "Your Langtail API Key",
+            "name": "X-API-Key",
+            "in": "header"
+          },
+          {
+            "name": "threadId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the thread to retrieve.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The unique identifier for the thread."
+                    },
+                    "createdAt": {
+                      "type": "integer",
+                      "description": "The Unix timestamp (in seconds) of when the thread was created."
+                    },
+                    "projectId": {
+                      "type": "string",
+                      "description": "The ID of the project this thread belongs to."
+                    },
+                    "deletedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The timestamp when the thread was deleted, if applicable.",
+                      "nullable": true
+                    },
+                    "createLog": {
+                      "type": "object",
+                      "description": "A log created by the first message that creates the thread.",
+                      "nullable": true,
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The unique identifier for the log."
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "The URL of the request."
+                        },
+                        "stream": {
+                          "type": "boolean",
+                          "description": "Indicates if the request was streamed."
+                        },
+                        "metadata": {
+                          "type": "string",
+                          "description": "Additional metadata associated with the log."
+                        },
+                        "promptId": {
+                          "type": "string",
+                          "description": "The ID of the prompt used."
+                        },
+                        "threadId": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "The ID of the associated thread, if any."
+                        },
+                        "assistant": {
+                          "type": "boolean",
+                          "description": "Indicates if an assistant was used."
+                        },
+                        "projectId": {
+                          "type": "string",
+                          "description": "The ID of the project."
+                        },
+                        "requestIP": {
+                          "type": "string",
+                          "description": "The IP address of the request."
+                        },
+                        "startedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "The timestamp when the request started."
+                        },
+                        "variables": {
+                          "type": "string",
+                          "description": "Variables used in the request."
+                        },
+                        "parameters": {
+                          "type": "string",
+                          "description": "Parameters used in the request."
+                        },
+                        "promptSlug": {
+                          "type": "string",
+                          "description": "The slug of the prompt used."
+                        },
+                        "doNotRecord": {
+                          "type": "boolean",
+                          "description": "Indicates if the request should not be recorded."
+                        },
+                        "environment": {
+                          "type": "string",
+                          "description": "The environment in which the request was made."
+                        },
+                        "openAIKeyId": {
+                          "type": "string",
+                          "description": "The ID of the OpenAI key used."
+                        },
+                        "projectSlug": {
+                          "type": "string",
+                          "description": "The slug of the project."
+                        },
+                        "requestData": {
+                          "type": "string",
+                          "description": "Data associated with the request."
+                        },
+                        "deploymentId": {
+                          "type": "string",
+                          "description": "The ID of the deployment."
+                        },
+                        "organizationId": {
+                          "type": "string",
+                          "description": "The ID of the organization."
+                        },
+                        "projectAPIKeyId": {
+                          "type": "string",
+                          "description": "The ID of the project API key."
+                        },
+                        "organizationSlug": {
+                          "type": "string",
+                          "description": "The slug of the organization."
+                        },
+                        "deploymentVersion": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "The version of the deployment, if applicable."
+                        },
+                        "promptHistoryHash": {
+                          "type": "string",
+                          "description": "A hash of the prompt history."
+                        },
+                        "openAIOrganization": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "The OpenAI organization, if applicable."
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "A set of key-value pairs that can be attached to the thread. This can be used to store additional information about the thread to facilitate filtering or organization.",
+                      "example": {
+                        "user_id": "user_123",
+                        "conversation_topic": "product_inquiry",
+                        "priority": "high"
+                      },
+                      "nullable": true
+                    }
+                  },
+                  "required": ["id", "createdAt", "projectId"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Thread not found or not in the project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Thread not found"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
                 }
               }
             }
