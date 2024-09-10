@@ -3,6 +3,1646 @@
   "info": { "version": "1.0.0", "title": "Langtail prompt endpoint" },
   "components": { "schemas": {}, "parameters": {} },
   "paths": {
+    "/v2/threads": {
+      "get": {
+        "description": "Get a list of threads within your project.",
+        "servers": [{ "url": "https://api.langtail.com" }],
+        "parameters": [
+          {
+            "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
+            "required": true,
+            "description": "Your Langtail API Key",
+            "name": "X-API-Key",
+            "in": "header"
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of threads to return. Default is 100."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "name": "after",
+            "in": "query",
+            "description": "A cursor for use in pagination. 'after' is a thread ID that defines your place in the list. For instance, if you make a list request and receive 100 threads, ending with thread 'xyz', your subsequent call can include after='xyz' in order to fetch the next page of the list. Pagination works the same as in the OpenAI API https://platform.openai.com/docs/api-reference/assistants/listAssistants."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "object": {
+                      "type": "string",
+                      "enum": ["list"]
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "The unique identifier for the thread."
+                          },
+                          "createdAt": {
+                            "type": "integer",
+                            "description": "The Unix timestamp (in seconds) of when the thread was created."
+                          },
+                          "projectId": {
+                            "type": "string",
+                            "description": "The ID of the project this thread belongs to."
+                          },
+                          "createLog": {
+                            "type": "object",
+                            "description": "A log created by the first message that creates the thread.",
+                            "nullable": true,
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The unique identifier for the log."
+                              },
+                              "url": {
+                                "type": "string",
+                                "description": "The URL of the request."
+                              },
+                              "stream": {
+                                "type": "boolean",
+                                "description": "Indicates if the request was streamed."
+                              },
+                              "metadata": {
+                                "type": "string",
+                                "description": "Additional metadata associated with the log."
+                              },
+                              "promptId": {
+                                "type": "string",
+                                "description": "The ID of the prompt used."
+                              },
+                              "threadId": {
+                                "type": "string",
+                                "nullable": true,
+                                "description": "The ID of the associated thread, if any."
+                              },
+                              "assistant": {
+                                "type": "boolean",
+                                "description": "Indicates if an assistant was used."
+                              },
+                              "projectId": {
+                                "type": "string",
+                                "description": "The ID of the project."
+                              },
+                              "requestIP": {
+                                "type": "string",
+                                "description": "The IP address of the request."
+                              },
+                              "startedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "The timestamp when the request started."
+                              },
+                              "variables": {
+                                "type": "string",
+                                "description": "Variables used in the request."
+                              },
+                              "parameters": {
+                                "type": "string",
+                                "description": "Parameters used in the request."
+                              },
+                              "promptSlug": {
+                                "type": "string",
+                                "description": "The slug of the prompt used."
+                              },
+                              "doNotRecord": {
+                                "type": "boolean",
+                                "description": "Indicates if the request should not be recorded."
+                              },
+                              "environment": {
+                                "type": "string",
+                                "description": "The environment in which the request was made."
+                              },
+                              "openAIKeyId": {
+                                "type": "string",
+                                "description": "The ID of the OpenAI key used."
+                              },
+                              "projectSlug": {
+                                "type": "string",
+                                "description": "The slug of the project."
+                              },
+                              "requestData": {
+                                "type": "string",
+                                "description": "Data associated with the request."
+                              },
+                              "deploymentId": {
+                                "type": "string",
+                                "description": "The ID of the deployment."
+                              },
+                              "organizationId": {
+                                "type": "string",
+                                "description": "The ID of the organization."
+                              },
+                              "projectAPIKeyId": {
+                                "type": "string",
+                                "description": "The ID of the project API key."
+                              },
+                              "organizationSlug": {
+                                "type": "string",
+                                "description": "The slug of the organization."
+                              },
+                              "deploymentVersion": {
+                                "type": "string",
+                                "nullable": true,
+                                "description": "The version of the deployment, if applicable."
+                              },
+                              "promptHistoryHash": {
+                                "type": "string",
+                                "description": "A hash of the prompt history."
+                              },
+                              "openAIOrganization": {
+                                "type": "string",
+                                "nullable": true,
+                                "description": "The OpenAI organization, if applicable."
+                              }
+                            }
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "description": "A set of key-value pairs that can be attached to the thread. This can be used to store additional information about the thread to facilitate filtering or organization.",
+                            "example": {
+                              "user_id": "user_123",
+                              "conversation_topic": "product_inquiry",
+                              "priority": "high"
+                            },
+                            "nullable": true
+                          }
+                        }
+                      }
+                    },
+                    "first_id": {
+                      "type": "string",
+                      "description": "The ID of the first thread in the list, or null if the list is empty.",
+                      "nullable": true
+                    },
+                    "last_id": {
+                      "type": "string",
+                      "description": "The ID of the last thread in the list, or null if the list is empty.",
+                      "nullable": true
+                    },
+                    "has_more": {
+                      "type": "boolean",
+                      "description": "Whether there are more threads available after this batch."
+                    }
+                  },
+                  "required": ["object", "data", "has_more"]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "enum": ["Unauthorized"]
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid API key"
+                    }
+                  },
+                  "required": ["error", "message"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Create a new thread. This endpoint allows you to initialize a conversation thread, optionally providing metadata or an initial log.",
+        "servers": [{ "url": "https://api.langtail.com" }],
+        "parameters": [
+          {
+            "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
+            "required": true,
+            "description": "Your Langtail API Key",
+            "name": "X-API-Key",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "metadata": {
+                    "type": "object",
+                    "description": "A set of key-value pairs that can be attached to the thread. This can be used to store additional information about the thread to facilitate filtering or organization.",
+                    "example": {
+                      "user_id": "user_123",
+                      "conversation_topic": "product_inquiry",
+                      "priority": "high"
+                    }
+                  },
+                  "createLog": {
+                    "type": "object",
+                    "description": "A log object that can be passed to create an initial log for the thread."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The unique identifier for the created thread."
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The timestamp when the thread was created."
+                    },
+                    "projectId": {
+                      "type": "string",
+                      "description": "The ID of the project this thread belongs to."
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "The metadata associated with the thread, if provided.",
+                      "nullable": true
+                    },
+                    "deletedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The timestamp when the thread was deleted, if applicable.",
+                      "nullable": true
+                    },
+                    "createLog": {
+                      "type": "object",
+                      "description": "The log created by the first message that creates the thread.",
+                      "nullable": true
+                    }
+                  },
+                  "required": ["id", "createdAt", "projectId"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid request body"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/threads/{threadId}": {
+      "get": {
+        "description": "Retrieves a thread by its ID.",
+        "servers": [{ "url": "https://api.langtail.com" }],
+        "parameters": [
+          {
+            "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
+            "required": true,
+            "description": "Your Langtail API Key",
+            "name": "X-API-Key",
+            "in": "header"
+          },
+          {
+            "name": "threadId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the thread to retrieve.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The unique identifier for the thread."
+                    },
+                    "createdAt": {
+                      "type": "integer",
+                      "description": "The Unix timestamp (in seconds) of when the thread was created."
+                    },
+                    "projectId": {
+                      "type": "string",
+                      "description": "The ID of the project this thread belongs to."
+                    },
+                    "deletedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The timestamp when the thread was deleted, if applicable.",
+                      "nullable": true
+                    },
+                    "createLog": {
+                      "type": "object",
+                      "description": "A log created by the first message that creates the thread.",
+                      "nullable": true,
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The unique identifier for the log."
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "The URL of the request."
+                        },
+                        "stream": {
+                          "type": "boolean",
+                          "description": "Indicates if the request was streamed."
+                        },
+                        "metadata": {
+                          "type": "string",
+                          "description": "Additional metadata associated with the log."
+                        },
+                        "promptId": {
+                          "type": "string",
+                          "description": "The ID of the prompt used."
+                        },
+                        "threadId": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "The ID of the associated thread, if any."
+                        },
+                        "assistant": {
+                          "type": "boolean",
+                          "description": "Indicates if an assistant was used."
+                        },
+                        "projectId": {
+                          "type": "string",
+                          "description": "The ID of the project."
+                        },
+                        "requestIP": {
+                          "type": "string",
+                          "description": "The IP address of the request."
+                        },
+                        "startedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "The timestamp when the request started."
+                        },
+                        "variables": {
+                          "type": "string",
+                          "description": "Variables used in the request."
+                        },
+                        "parameters": {
+                          "type": "string",
+                          "description": "Parameters used in the request."
+                        },
+                        "promptSlug": {
+                          "type": "string",
+                          "description": "The slug of the prompt used."
+                        },
+                        "doNotRecord": {
+                          "type": "boolean",
+                          "description": "Indicates if the request should not be recorded."
+                        },
+                        "environment": {
+                          "type": "string",
+                          "description": "The environment in which the request was made."
+                        },
+                        "openAIKeyId": {
+                          "type": "string",
+                          "description": "The ID of the OpenAI key used."
+                        },
+                        "projectSlug": {
+                          "type": "string",
+                          "description": "The slug of the project."
+                        },
+                        "requestData": {
+                          "type": "string",
+                          "description": "Data associated with the request."
+                        },
+                        "deploymentId": {
+                          "type": "string",
+                          "description": "The ID of the deployment."
+                        },
+                        "organizationId": {
+                          "type": "string",
+                          "description": "The ID of the organization."
+                        },
+                        "projectAPIKeyId": {
+                          "type": "string",
+                          "description": "The ID of the project API key."
+                        },
+                        "organizationSlug": {
+                          "type": "string",
+                          "description": "The slug of the organization."
+                        },
+                        "deploymentVersion": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "The version of the deployment, if applicable."
+                        },
+                        "promptHistoryHash": {
+                          "type": "string",
+                          "description": "A hash of the prompt history."
+                        },
+                        "openAIOrganization": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "The OpenAI organization, if applicable."
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "A set of key-value pairs that can be attached to the thread. This can be used to store additional information about the thread to facilitate filtering or organization.",
+                      "example": {
+                        "user_id": "user_123",
+                        "conversation_topic": "product_inquiry",
+                        "priority": "high"
+                      },
+                      "nullable": true
+                    }
+                  },
+                  "required": ["id", "createdAt", "projectId"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Thread not found or not in the project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Thread not found"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes a thread by its ID.",
+        "servers": [{ "url": "https://api.langtail.com" }],
+        "parameters": [
+          {
+            "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
+            "required": true,
+            "description": "Your Langtail API Key",
+            "name": "X-API-Key",
+            "in": "header"
+          },
+          {
+            "name": "threadId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the thread to delete.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The unique identifier of the deleted thread."
+                    },
+                    "object": {
+                      "type": "string",
+                      "description": "The object type, which is always 'thread.deleted' for this response.",
+                      "example": "thread.deleted"
+                    },
+                    "deleted": {
+                      "type": "boolean",
+                      "description": "Indicates that the thread was successfully deleted.",
+                      "example": true
+                    }
+                  },
+                  "required": ["id", "object", "deleted"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Thread not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Thread not found"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Updates a thread's metadata by its ID.",
+        "servers": [{ "url": "https://api.langtail.com" }],
+        "parameters": [
+          {
+            "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
+            "required": true,
+            "description": "Your Langtail API Key",
+            "name": "X-API-Key",
+            "in": "header"
+          },
+          {
+            "name": "threadId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the thread to update.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "metadata": {
+                    "type": "object",
+                    "description": "A set of key-value pairs that can be attached to the thread. This can be used to store additional information about the thread to facilitate filtering or organization. Note that the new metadata provided will completely overwrite any existing metadata for the thread.",
+                    "example": {
+                      "user_id": "user_123",
+                      "conversation_topic": "product_inquiry",
+                      "priority": "high"
+                    }
+                  }
+                },
+                "required": ["metadata"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated thread",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The unique identifier for the thread."
+                    },
+                    "createdAt": {
+                      "type": "integer",
+                      "description": "The Unix timestamp (in seconds) of when the thread was created."
+                    },
+                    "projectId": {
+                      "type": "string",
+                      "description": "The ID of the project this thread belongs to."
+                    },
+                    "createLog": {
+                      "type": "object",
+                      "description": "A log created by the first message that creates the thread.",
+                      "nullable": true,
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The unique identifier for the log."
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "The URL of the request."
+                        },
+                        "stream": {
+                          "type": "boolean",
+                          "description": "Indicates if the request was streamed."
+                        },
+                        "metadata": {
+                          "type": "string",
+                          "description": "Additional metadata associated with the log."
+                        },
+                        "promptId": {
+                          "type": "string",
+                          "description": "The ID of the prompt used."
+                        },
+                        "threadId": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "The ID of the associated thread, if any."
+                        },
+                        "assistant": {
+                          "type": "boolean",
+                          "description": "Indicates if an assistant was used."
+                        },
+                        "projectId": {
+                          "type": "string",
+                          "description": "The ID of the project."
+                        },
+                        "requestIP": {
+                          "type": "string",
+                          "description": "The IP address of the request."
+                        },
+                        "startedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "The timestamp when the request started."
+                        },
+                        "variables": {
+                          "type": "string",
+                          "description": "Variables used in the request."
+                        },
+                        "parameters": {
+                          "type": "string",
+                          "description": "Parameters used in the request."
+                        },
+                        "promptSlug": {
+                          "type": "string",
+                          "description": "The slug of the prompt used."
+                        },
+                        "doNotRecord": {
+                          "type": "boolean",
+                          "description": "Indicates if the request should not be recorded."
+                        },
+                        "environment": {
+                          "type": "string",
+                          "description": "The environment in which the request was made."
+                        },
+                        "openAIKeyId": {
+                          "type": "string",
+                          "description": "The ID of the OpenAI key used."
+                        },
+                        "projectSlug": {
+                          "type": "string",
+                          "description": "The slug of the project."
+                        },
+                        "requestData": {
+                          "type": "string",
+                          "description": "Data associated with the request."
+                        },
+                        "deploymentId": {
+                          "type": "string",
+                          "description": "The ID of the deployment."
+                        },
+                        "organizationId": {
+                          "type": "string",
+                          "description": "The ID of the organization."
+                        },
+                        "projectAPIKeyId": {
+                          "type": "string",
+                          "description": "The ID of the project API key."
+                        },
+                        "organizationSlug": {
+                          "type": "string",
+                          "description": "The slug of the organization."
+                        },
+                        "deploymentVersion": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "The version of the deployment, if applicable."
+                        },
+                        "promptHistoryHash": {
+                          "type": "string",
+                          "description": "A hash of the prompt history."
+                        },
+                        "openAIOrganization": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "The OpenAI organization, if applicable."
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "The updated set of key-value pairs attached to the thread.",
+                      "example": {
+                        "user_id": "user_123",
+                        "conversation_topic": "product_inquiry",
+                        "priority": "high"
+                      }
+                    }
+                  },
+                  "required": ["id", "createdAt", "projectId", "metadata"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Metadata is required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Metadata is required"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Thread not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Thread not found"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/threads/{threadId}/messages": {
+      "get": {
+        "description": "Retrieves a list of messages for a specific thread.",
+        "servers": [{ "url": "https://api-staging.langtail.com" }],
+        "parameters": [
+          {
+            "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
+            "required": true,
+            "description": "Your Langtail API Key",
+            "name": "X-API-Key",
+            "in": "header"
+          },
+          {
+            "name": "threadId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the thread to retrieve messages from.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "schema": {
+              "type": "number",
+              "nullable": true
+            },
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of threads to return. Default is 100."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "name": "after",
+            "in": "query",
+            "description": "A cursor for use in pagination. 'after' is a thread ID that defines your place in the list. For instance, if you make a list request and receive 100 threads, ending with thread 'xyz', your subsequent call can include after='xyz' in order to fetch the next page of the list. Pagination works the same as in the OpenAI API https://platform.openai.com/docs/api-reference/assistants/listAssistants."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "object": {
+                      "type": "string",
+                      "enum": ["list"],
+                      "description": "The object type, which is always 'list' for a list of messages."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "The unique identifier for the message."
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "The timestamp when the message was created."
+                          },
+                          "threadId": {
+                            "type": "string",
+                            "description": "The ID of the thread this message belongs to."
+                          },
+                          "content": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "role": {
+                                  "type": "string",
+                                  "enum": [
+                                    "assistant",
+                                    "user",
+                                    "system",
+                                    "function",
+                                    "tool"
+                                  ]
+                                },
+                                "content": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "description": "Text content",
+                                      "nullable": false
+                                    },
+                                    {
+                                      "type": "array",
+                                      "description": "Mix of text and images.",
+                                      "items": {
+                                        "anyOf": [
+                                          {
+                                            "type": "object",
+                                            "properties": {
+                                              "type": {
+                                                "type": "string",
+                                                "enum": ["text"]
+                                              },
+                                              "text": { "type": "string" }
+                                            },
+                                            "required": ["type", "text"]
+                                          },
+                                          {
+                                            "type": "object",
+                                            "properties": {
+                                              "type": {
+                                                "type": "string",
+                                                "enum": ["image_url"]
+                                              },
+                                              "image_url": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "url": { "type": "string" },
+                                                  "detail": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "auto",
+                                                      "low",
+                                                      "high"
+                                                    ],
+                                                    "default": "auto"
+                                                  }
+                                                },
+                                                "required": ["url", "detail"]
+                                              }
+                                            },
+                                            "required": ["type", "image_url"]
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "nullable": true,
+                                      "description": "Can be omited if there is a `function_call` or `tool_calls`"
+                                    }
+                                  ]
+                                },
+                                "function_call": {
+                                  "type": "object",
+                                  "properties": {
+                                    "name": { "type": "string" },
+                                    "arguments": { "type": "string" }
+                                  },
+                                  "required": ["name", "arguments"]
+                                },
+                                "tool_calls": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": { "type": "string" },
+                                      "type": {
+                                        "type": "string",
+                                        "enum": ["function"]
+                                      },
+                                      "function": {
+                                        "type": "object",
+                                        "properties": {
+                                          "name": { "type": "string" },
+                                          "arguments": { "type": "string" }
+                                        },
+                                        "required": ["name", "arguments"]
+                                      }
+                                    },
+                                    "required": ["id", "type", "function"]
+                                  }
+                                },
+                                "tool_choice": {
+                                  "anyOf": [
+                                    { "type": "string", "enum": ["auto"] },
+                                    { "type": "string", "enum": ["none"] },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": ["function"]
+                                        },
+                                        "function": {
+                                          "type": "object",
+                                          "properties": {
+                                            "name": { "type": "string" }
+                                          },
+                                          "required": ["name"]
+                                        }
+                                      },
+                                      "required": ["type", "function"]
+                                    }
+                                  ]
+                                },
+                                "tool_call_id": { "type": "string" }
+                              },
+                              "required": ["role", "content"]
+                            },
+                            "description": "Additional messages. These will be appended to the Prompt Template.",
+                            "example": [{ "role": "user", "content": "Hello" }]
+                          },
+                          "requestLogId": {
+                            "type": "string",
+                            "nullable": true,
+                            "description": "The ID of the associated request log, if available."
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "nullable": true,
+                            "description": "A set of key-value pairs that can be attached to the message."
+                          }
+                        },
+                        "required": ["id", "createdAt", "threadId"]
+                      }
+                    },
+                    "first_id": {
+                      "type": "string",
+                      "description": "The ID of the first thread in the list, or null if the list is empty.",
+                      "nullable": true
+                    },
+                    "last_id": {
+                      "type": "string",
+                      "description": "The ID of the last thread in the list, or null if the list is empty.",
+                      "nullable": true
+                    },
+                    "has_more": {
+                      "type": "boolean",
+                      "description": "Whether there are more threads available after this batch."
+                    }
+                  },
+                  "required": ["data", "has_more"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid request parameters"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Thread not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Thread not found"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/threads/{threadId}/messages/{messageId}": {
+      "get": {
+        "description": "Retrieves a specific message from a thread.",
+        "servers": [{ "url": "https://api.langtail.com" }],
+        "parameters": [
+          {
+            "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
+            "required": true,
+            "description": "Your Langtail API Key",
+            "name": "X-API-Key",
+            "in": "header"
+          },
+          {
+            "name": "threadId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the thread containing the message.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "messageId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the message to retrieve.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The unique identifier for the message."
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The timestamp when the message was created."
+                    },
+                    "threadId": {
+                      "type": "string",
+                      "description": "The ID of the thread this message belongs to."
+                    },
+                    "content": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "role": {
+                            "type": "string",
+                            "enum": [
+                              "assistant",
+                              "user",
+                              "system",
+                              "function",
+                              "tool"
+                            ]
+                          },
+                          "content": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "description": "Text content",
+                                "nullable": false
+                              },
+                              {
+                                "type": "array",
+                                "description": "Mix of text and images.",
+                                "items": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": ["text"]
+                                        },
+                                        "text": { "type": "string" }
+                                      },
+                                      "required": ["type", "text"]
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": ["image_url"]
+                                        },
+                                        "image_url": {
+                                          "type": "object",
+                                          "properties": {
+                                            "url": { "type": "string" },
+                                            "detail": {
+                                              "type": "string",
+                                              "enum": ["auto", "low", "high"],
+                                              "default": "auto"
+                                            }
+                                          },
+                                          "required": ["url", "detail"]
+                                        }
+                                      },
+                                      "required": ["type", "image_url"]
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "nullable": true,
+                                "description": "Can be omited if there is a `function_call` or `tool_calls`"
+                              }
+                            ]
+                          },
+                          "function_call": {
+                            "type": "object",
+                            "properties": {
+                              "name": { "type": "string" },
+                              "arguments": { "type": "string" }
+                            },
+                            "required": ["name", "arguments"]
+                          },
+                          "tool_calls": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": { "type": "string" },
+                                "type": {
+                                  "type": "string",
+                                  "enum": ["function"]
+                                },
+                                "function": {
+                                  "type": "object",
+                                  "properties": {
+                                    "name": { "type": "string" },
+                                    "arguments": { "type": "string" }
+                                  },
+                                  "required": ["name", "arguments"]
+                                }
+                              },
+                              "required": ["id", "type", "function"]
+                            }
+                          },
+                          "tool_choice": {
+                            "anyOf": [
+                              { "type": "string", "enum": ["auto"] },
+                              { "type": "string", "enum": ["none"] },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": ["function"]
+                                  },
+                                  "function": {
+                                    "type": "object",
+                                    "properties": {
+                                      "name": { "type": "string" }
+                                    },
+                                    "required": ["name"]
+                                  }
+                                },
+                                "required": ["type", "function"]
+                              }
+                            ]
+                          },
+                          "tool_call_id": { "type": "string" }
+                        },
+                        "required": ["role", "content"]
+                      },
+                      "description": "Additional messages. These will be appended to the Prompt Template.",
+                      "example": [{ "role": "user", "content": "Hello" }]
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "A key-value store for additional metadata associated with the message.",
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "requestLog": {
+                      "type": "object",
+                      "description": "Information about the request log, if available.",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The unique identifier for the request log."
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "The timestamp when the request log was created."
+                        },
+                        "request": {
+                          "type": "object",
+                          "description": "Details of the request made."
+                        },
+                        "response": {
+                          "type": "object",
+                          "description": "Details of the response received."
+                        }
+                      },
+                      "nullable": true
+                    },
+                    "requestLogId": {
+                      "type": "string",
+                      "description": "The unique identifier for the request log, if available.",
+                      "nullable": true
+                    }
+                  },
+                  "required": ["id", "createdAt", "threadId"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Thread not found, message not in thread, or message does not exist"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Updates the metadata of a specific message within a thread.",
+        "servers": [{ "url": "https://api.langtail.com" }],
+        "parameters": [
+          {
+            "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
+            "required": true,
+            "description": "Your Langtail API Key",
+            "name": "X-API-Key",
+            "in": "header"
+          },
+          {
+            "name": "threadId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the thread containing the message.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "messageId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the message to update.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "metadata": {
+                    "type": "object",
+                    "description": "Set of key-value pairs that you can attach to the message. This can be useful for storing additional information about the message in a structured format.",
+                    "example": { "my_key": "my key value" }
+                  }
+                },
+                "required": ["metadata"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The unique identifier for the message."
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The timestamp when the message was created."
+                    },
+                    "deletedAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The timestamp when the message was deleted.",
+                      "nullable": true
+                    },
+                    "threadId": {
+                      "type": "string",
+                      "description": "The ID of the thread this message belongs to."
+                    },
+                    "content": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "role": {
+                            "type": "string",
+                            "enum": [
+                              "assistant",
+                              "user",
+                              "system",
+                              "function",
+                              "tool"
+                            ]
+                          },
+                          "content": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "description": "Text content",
+                                "nullable": false
+                              },
+                              {
+                                "type": "array",
+                                "description": "Mix of text and images.",
+                                "items": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": ["text"]
+                                        },
+                                        "text": { "type": "string" }
+                                      },
+                                      "required": ["type", "text"]
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": ["image_url"]
+                                        },
+                                        "image_url": {
+                                          "type": "object",
+                                          "properties": {
+                                            "url": { "type": "string" },
+                                            "detail": {
+                                              "type": "string",
+                                              "enum": ["auto", "low", "high"],
+                                              "default": "auto"
+                                            }
+                                          },
+                                          "required": ["url", "detail"]
+                                        }
+                                      },
+                                      "required": ["type", "image_url"]
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "nullable": true,
+                                "description": "Can be omited if there is a `function_call` or `tool_calls`"
+                              }
+                            ]
+                          },
+                          "function_call": {
+                            "type": "object",
+                            "properties": {
+                              "name": { "type": "string" },
+                              "arguments": { "type": "string" }
+                            },
+                            "required": ["name", "arguments"]
+                          },
+                          "tool_calls": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": { "type": "string" },
+                                "type": {
+                                  "type": "string",
+                                  "enum": ["function"]
+                                },
+                                "function": {
+                                  "type": "object",
+                                  "properties": {
+                                    "name": { "type": "string" },
+                                    "arguments": { "type": "string" }
+                                  },
+                                  "required": ["name", "arguments"]
+                                }
+                              },
+                              "required": ["id", "type", "function"]
+                            }
+                          },
+                          "tool_choice": {
+                            "anyOf": [
+                              { "type": "string", "enum": ["auto"] },
+                              { "type": "string", "enum": ["none"] },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": ["function"]
+                                  },
+                                  "function": {
+                                    "type": "object",
+                                    "properties": {
+                                      "name": { "type": "string" }
+                                    },
+                                    "required": ["name"]
+                                  }
+                                },
+                                "required": ["type", "function"]
+                              }
+                            ]
+                          },
+                          "tool_call_id": { "type": "string" }
+                        },
+                        "required": ["role", "content"]
+                      },
+                      "description": "Additional messages. These will be appended to the Prompt Template.",
+                      "example": [{ "role": "user", "content": "Hello" }]
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "description": "A set of key-value pairs that can be attached to the message.",
+                      "nullable": true,
+                      "example": { "my_key": "my key value" }
+                    },
+                    "requestLogId": {
+                      "type": "string",
+                      "nullable": true,
+                      "description": "The ID of the associated request log, if available."
+                    }
+                  },
+                  "required": ["id", "createdAt", "threadId", "metadata"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Metadata is required"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Message not found"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/{workspace}/{project}/{prompt}/{environment}": {
       "post": {
         "description": "Get completion for stored prompt. The response format is the same as [OpenAI Chat completion response](https://platform.openai.com/docs/api-reference/chat/object).",

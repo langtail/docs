@@ -65,6 +65,24 @@
       "pages": ["api-reference/endpoint/invoke-assistant"]
     },
     {
+      "group": "Threads",
+      "pages": [
+        "api-reference/endpoint/threads",
+        "api-reference/endpoint/create-thread",
+        "api-reference/endpoint/thread",
+        "api-reference/endpoint/delete-thread",
+        "api-reference/endpoint/update-thread"
+      ]
+    },
+    {
+      "group": "Assistant messages in threads",
+      "pages": [
+        "api-reference/endpoint/thread-messages",
+        "api-reference/endpoint/thread-message",
+        "api-reference/endpoint/update-message"
+      ]
+    },
+    {
       "group": "Observability",
       "pages": ["observability/overview"]
     },

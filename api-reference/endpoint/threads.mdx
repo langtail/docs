@@ -1,0 +1,30 @@
+---
+title: "List Threads"
+openapi: "GET /v2/threads"
+---
+
+Before using the Threads API, make sure you have set up the REST API integration.
+
+Threads are a fundamental component of the Langtail API, designed to manage and maintain the state of conversations with AI assistants. Here's how the Threads API works:
+
+1. Creation: A thread can be created either as a new conversation or by referencing an existing thread ID.
+
+2. Message Storage: Threads store all messages exchanged during a conversation, including both user inputs and assistant responses.
+
+3. Conversation Continuity: By using thread IDs, you can maintain context across multiple interactions, allowing for coherent, ongoing dialogues.
+
+## Pagination
+
+This endpoint supports pagination in the same way as the OpenAI API. Specifically, it follows the pagination mechanism described in the [OpenAI API documentation for listing Assistants](https://platform.openai.com/docs/api-reference/assistants/listAssistants).
+
+Here's how it works:
+
+1. The `limit` parameter allows you to specify the maximum number of threads to return in a single request. The default and maximum value is 100.
+
+2. The `after` parameter is used as a cursor for pagination. It should be set to any thread ID from which you want to retrieve the next set of results.
+
+3. To fetch the next page of results, make a new request with the `after` parameter set to the ID of the last thread in the current response.
+
+4. The response includes a `has_more` parameter, which indicates whether there are more results available.
+
+This pagination approach allows you to efficiently retrieve and process large numbers of threads in manageable chunks.

@@ -1,0 +1,12 @@
+---
+title: "List Thread Messages"
+openapi: "GET /v2/threads/{threadId}/messages"
+---
+
+This endpoint allows you to retrieve a list of messages for a specific thread. Messages are an essential part of the thread, representing the conversation history between the user and the AI assistant.
+
+## Pagination
+
+This endpoint supports pagination in the same way as the Threads API. It uses the `limit` parameter to specify the maximum number of messages per request, and the `after` parameter as a cursor for pagination. The response includes a `has_more` parameter to indicate if more results are available.
+
+For detailed information on how pagination works, refer to the Threads API documentation.
