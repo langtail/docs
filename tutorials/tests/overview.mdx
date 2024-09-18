@@ -1,0 +1,20 @@
+---
+title: 'Tests Overview'
+sidebarTitle:  'Overview'
+---
+In Langtail, testing is a crucial feature that allows you to evaluate and ensure the reliability and consistency of your language models. A test in Langtail consists of a collection of cases and assertions. When a test is run, each individual case is evaluated against all of the assertions, providing you with valuable insights into your model's performance.
+
+**Cases**
+A case represents a user message and/or variable values that are added to the prompt before it is executed in a test run. This allows you to simulate real-world scenarios and test your model's behavior under different conditions.
+
+**Assertions**
+Assertions are used to evaluate the prompt's output against expected results. Langtail supports the following assertion types:
+
+- **equals**: Checks if the specified value exactly matches the output.
+- **contains**: Checks if the specified value is somewhere in the output.
+- **icontains**: Similar to `contains`, but case-insensitive.
+- **javascript**: The most powerful and flexible assertion type. It allows you to define a custom JavaScript function to perform complex checks on the output.
+
+Langtail's testing capabilities go beyond simple assertions. You can add new variables to test your prompts with different inputs, define how many times a test should be repeated to ensure consistency, and even compare how your prompts perform when you change the language model or modify its properties. This flexibility allows you to thoroughly test your language models under various conditions and scenarios.
+
+After a test is finished, you can easily see the results with pass rates and duration, enabling you to identify and address any issues quickly. The testing feature in Langtail provides a comprehensive and user-friendly environment for evaluating and improving the reliability and performance of your language models.

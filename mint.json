@@ -41,64 +41,74 @@
   ],
   "navigation": [
     {
-      "group": "Getting Started",
-      "pages": ["getting-started/introduction", "getting-started/quickstart"]
+      "group": "Introduction",
+      "pages": ["introduction/overview", "introduction/what-is-langtail", "introduction/changelog"]
     },
     {
-      "group": "Playground",
-      "pages": ["playground/overview", "playground/templating"]
-    },
-    {
-      "group": "Tests",
-      "pages": ["tests/overview"]
-    },
-    {
-      "group": "Deployments",
-      "pages": [
-        "deployments/deploy-prompt",
-        "deployments/invoke-sdk",
-        "api-reference/endpoint/invoke-deployed-prompt"
+      "group": "Tutorials",
+      "pages": ["tutorials/overview", "tutorials/getting-started", 
+        {
+        "group":"Playground", 
+        "pages": ["tutorials/playground/overview", "tutorials/playground/variables", "tutorials/playground/tools", "tutorials/playground/templating"]
+        },
+        {
+          "group":"Tests", 
+          "pages": ["tutorials/tests/overview", "tutorials/tests/basic-tests"]
+        },
+        {
+          "group":"Deployments", 
+          "pages": ["tutorials/deployments/overview","tutorials/deployments/deploy-prompt", "tutorials/deployments/invoke-sdk" ]
+        },
+        {
+          "group":"Logs and Metrics", 
+          "pages": ["tutorials/logs-and-metrics/overview" ]
+        }
+
       ]
     },
+
     {
-      "group": "Assistants",
-      "pages": ["api-reference/endpoint/invoke-assistant"]
-    },
-    {
-      "group": "Threads",
-      "pages": [
-        "api-reference/endpoint/threads",
-        "api-reference/endpoint/create-thread",
-        "api-reference/endpoint/thread",
-        "api-reference/endpoint/delete-thread",
-        "api-reference/endpoint/update-thread"
+      "group": "How to Guides",
+      "pages": ["how-to-guides/overview", 
+        {
+        "group":"OpenAI Proxy", 
+        "pages": ["how-to-guides/proxy/integrate-sdk", "how-to-guides/proxy/openai", "how-to-guides/proxy/rest", "how-to-guides/proxy/langchain"]
+        },
+        {
+          "group":"SDKs", 
+          "pages": ["how-to-guides/sdks/typescript"]
+        }
+
       ]
     },
+   
     {
-      "group": "Assistant messages in threads",
-      "pages": [
-        "api-reference/endpoint/thread-messages",
-        "api-reference/endpoint/thread-message",
-        "api-reference/endpoint/update-message"
+   "group": "References",
+      "pages": ["references/overview",
+        {
+          "group": "Assistants",
+          "pages": ["api-reference/endpoint/invoke-assistant"]
+        },
+        {
+          "group": "Threads",
+          "pages": [
+            "api-reference/endpoint/threads",
+            "api-reference/endpoint/create-thread",
+            "api-reference/endpoint/thread",
+            "api-reference/endpoint/delete-thread",
+            "api-reference/endpoint/update-thread"
+          ]
+        },
+        {
+          "group": "Assistant messages in threads",
+          "pages": [
+            "api-reference/endpoint/thread-messages",
+            "api-reference/endpoint/thread-message",
+            "api-reference/endpoint/update-message"
+          ]
+        }
       ]
-    },
-    {
-      "group": "Observability",
-      "pages": ["observability/overview"]
-    },
-    {
-      "group": "OpenAI Proxy",
-      "pages": [
-        "proxy/integrate-sdk",
-        "proxy/openai",
-        "proxy/rest",
-        "proxy/langchain"
-      ]
-    },
-    {
-      "group": "SDKs",
-      "pages": ["sdks/typescript"]
-    },
+      },
     {
       "group": "Support & Community",
       "pages": ["support/get-help"]

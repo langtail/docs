@@ -1,21 +1,6 @@
 ---
-title: 'Tests Overview'
+title: 'Basic Tests'
 ---
-
-In Langtail, a test consists of a collection of cases and assertions. When run, each individual case is evaluated against all of the assertions.
-
-A **case** is a user message and/or variable values that are added to the prompt before it is executed in a test run.
-
-An **assertion** evaluates the prompt's output. Langtail supports the following assertion types:
-    - **equals**: Checks if the specified value exactly matches the output.
-    - **contains**: Checks if the specified value is somewhere in the output.
-    - **icontains**: Similar to *contains* except it is case insensitive.
-    - **javascript**: The most powerful and flexible assertion. Allows you to define a custom JavaScript function to check the output.
-
-## Example
-
-Let's explain it further with an example.
-
 [Here is a prompt](https://app.langtail.com/playground?shareid=U_-cFxHZwq) that that analyzes the sentiment of some text and returns a JSON object containing that sentiment. Here's what a basic set of tests could look like:
 
 ![Screenshot of Langtail's test section](/images/tests/overview/screenshot.png)
