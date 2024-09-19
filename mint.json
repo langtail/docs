@@ -42,11 +42,11 @@
   "navigation": [
     {
       "group": "Introduction",
-      "pages": ["introduction/overview", "introduction/what-is-langtail", "introduction/changelog"]
+      "pages": ["introduction/overview", "introduction/what-is-langtail", "introduction/getting-started", "introduction/changelog"]
     },
     {
-      "group": "Tutorials",
-      "pages": ["tutorials/overview", "tutorials/getting-started", 
+      "group": "Concepts and Examples",
+      "pages": ["tutorials/overview", 
         {
         "group":"Playground", 
         "pages": ["tutorials/playground/overview", "tutorials/playground/variables", "tutorials/playground/tools"]
