@@ -49,7 +49,7 @@
       "pages": ["tutorials/overview", "tutorials/getting-started", 
         {
         "group":"Playground", 
-        "pages": ["tutorials/playground/overview", "tutorials/playground/variables", "tutorials/playground/tools", "tutorials/playground/templating"]
+        "pages": ["tutorials/playground/overview", "tutorials/playground/variables", "tutorials/playground/tools"]
         },
         {
           "group":"Tests", 
@@ -57,7 +57,7 @@
         },
         {
           "group":"Deployments", 
-          "pages": ["tutorials/deployments/overview","tutorials/deployments/deploy-prompt", "tutorials/deployments/invoke-sdk" ]
+          "pages": ["tutorials/deployments/overview","tutorials/deployments/deploy-prompt" ]
         },
         {
           "group":"Logs and Metrics", 
@@ -69,7 +69,8 @@
 
     {
       "group": "How to Guides",
-      "pages": ["how-to-guides/overview", 
+      "pages": ["how-to-guides/overview", "how-to-guides/templating", "how-to-guides/invoke-sdk",
+
         {
         "group":"OpenAI Proxy", 
         "pages": ["how-to-guides/proxy/integrate-sdk", "how-to-guides/proxy/openai", "how-to-guides/proxy/rest", "how-to-guides/proxy/langchain"]
