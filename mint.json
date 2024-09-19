@@ -86,6 +86,10 @@
    "group": "References",
       "pages": ["references/overview",
         {
+        "group": "Deployments",
+        "pages": ["api-reference/endpoint/invoke-deployed-prompt"]
+        },
+        {
           "group": "Assistants",
           "pages": ["api-reference/endpoint/invoke-assistant"]
         },
