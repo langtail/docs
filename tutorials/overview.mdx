@@ -13,6 +13,39 @@ From there, you can explore the other examples based on your interests and needs
 - **Deployments**: Take your prompts to production by publishing them as API endpoints.
 - **Logs and Metrics**: Gain valuable insights into your deployed prompts' performance and usage.
 
-*Suggested visual: Screenshot or GIF showcasing the Langtail interface or a specific feature.*
+```mermaid
+flowchart TD
+    Langtail((("🚀 Langtail")))
+    Playground[("🎮 Playground")]
+    Tests[("🧪 Tests")]
+    Deployments[("🚀 Deployments")]
+    LogsMetrics[("📊 Logs and Metrics")]
+
+    Langtail --> Playground
+    Langtail --> Tests
+    Langtail --> Deployments
+    Langtail --> LogsMetrics
+
+    Playground --> Create("✏️ Create")
+    Playground --> Manage("🔧 Manage")
+    Playground --> Enhance("🔼 Enhance")
+
+    Tests --> CreateTests("✏️ Create")
+    Tests --> RunTests("▶️ Run")
+
+    Deployments --> Publish("📤 Publish")
+    Deployments --> API("🔌 API Endpoints")
+
+    LogsMetrics --> Performance("📈 Performance")
+    LogsMetrics --> Usage("📉 Usage")
+
+    classDef default fill:#f9f7f7,stroke:#112d4e,stroke-width:2px,color:#112d4e;
+    classDef highlight fill:#3f72af,stroke:#112d4e,stroke-width:4px,color:#f9f7f7;
+    classDef subfeature fill:#dbe2ef,stroke:#112d4e,stroke-width:2px,color:#112d4e;
+    
+    class Langtail highlight;
+    class Playground,Tests,Deployments,LogsMetrics default;
+    class Create,Manage,Enhance,CreateTests,RunTests,Publish,API,Performance,Usage subfeature;
+```
 
 For advanced users or those looking for more specific guidance, we recommend checking out the [**How-to Guides**](https://langtail.com/docs/how-to-guides/overview) section, which covers a wide range of topics and provides goal-oriented instructions.
