@@ -69,7 +69,7 @@
 
     {
       "group": "How to Guides",
-      "pages": ["how-to-guides/overview", "how-to-guides/templating", "how-to-guides/invoke-sdk",
+      "pages": ["how-to-guides/overview", "how-to-guides/templating","how-to-guides/adv-tests", "how-to-guides/invoke-sdk",
 
         {
         "group":"OpenAI Proxy", 
