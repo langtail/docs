@@ -42,18 +42,18 @@
   "navigation": [
     {
       "group": "Introduction",
-      "pages": ["introduction/overview", "introduction/what-is-langtail", "introduction/getting-started","introduction/main-concepts-in-langtail", "introduction/changelog"]
+      "pages": ["introduction/what-is-langtail", "introduction/getting-started","introduction/main-concepts-in-langtail", "introduction/changelog"]
     },
     {
       "group": "Concepts and Examples",
       "pages": ["tutorials/overview", 
         {
         "group":"Playground", 
-        "pages": ["tutorials/playground/overview", "tutorials/playground/variables", "tutorials/playground/tools"]
+        "pages": ["tutorials/playground/overview", "tutorials/playground/variables", "tutorials/playground/tools", "tutorials/templating"]
         },
         {
           "group":"Tests", 
-          "pages": ["tutorials/tests/overview", "tutorials/tests/basic-tests"]
+          "pages": ["tutorials/tests/overview", "tutorials/tests/basic-tests", "tutorials/tests/adv-tests"]
         },
         {
           "group":"Deployments", 
@@ -62,22 +62,14 @@
         {
           "group":"Logs and Metrics", 
           "pages": ["tutorials/logs-and-metrics/overview" ]
-        }
-
-      ]
-    },
-
-    {
-      "group": "How to Guides",
-      "pages": ["how-to-guides/overview", "how-to-guides/templating","how-to-guides/adv-tests", "how-to-guides/invoke-sdk",
-
-        {
-        "group":"OpenAI Proxy", 
-        "pages": ["how-to-guides/proxy/integrate-sdk", "how-to-guides/proxy/openai", "how-to-guides/proxy/rest", "how-to-guides/proxy/langchain"]
         },
         {
-          "group":"SDKs", 
-          "pages": ["how-to-guides/sdks/typescript"]
+          "group":"OpenAI Proxy", 
+          "pages": ["tutorials/proxy/integrate-sdk", "tutorials/proxy/openai", "tutorials/proxy/rest", "tutorials/proxy/langchain"]
+          },
+        {
+            "group":"SDKs", 
+            "pages": ["tutorials/sdks/typescript"]
         }
 
       ]
@@ -85,7 +77,7 @@
    
     {
    "group": "References",
-      "pages": ["references/overview",
+      "pages": [
         {
         "group": "Deployments",
         "pages": ["api-reference/endpoint/invoke-deployed-prompt"]
