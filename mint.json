@@ -49,7 +49,7 @@
       "pages": ["tutorials/overview", 
         {
         "group":"Playground", 
-        "pages": ["tutorials/playground/overview", "tutorials/playground/variables", "tutorials/playground/tools", "tutorials/templating"]
+        "pages": ["tutorials/playground/overview", "tutorials/playground/variables", "tutorials/playground/tools", "tutorials/playground/templating"]
         },
         {
           "group":"Tests", 
