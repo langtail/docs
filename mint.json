@@ -49,7 +49,7 @@
       "pages": ["tutorials/overview", 
         {
         "group":"Playground", 
-        "pages": ["tutorials/playground/overview", "tutorials/playground/variables", "tutorials/playground/tools", "tutorials/playground/templating"]
+        "pages": ["tutorials/playground/overview", "tutorials/playground/variables", "tutorials/playground/tools", "tutorials/playground/templating", "tutorials/playground/assistants-threads"]
         },
         {
           "group":"Tests", 
@@ -57,7 +57,7 @@
         },
         {
           "group":"Deployments", 
-          "pages": ["tutorials/deployments/overview","tutorials/deployments/deploy-prompt" ]
+          "pages": ["tutorials/deployments/overview","tutorials/deployments/deploy-prompt", "tutorials/deployments/api-keys" ]
         },
         {
           "group":"Logs and Metrics", 
