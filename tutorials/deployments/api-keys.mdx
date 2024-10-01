@@ -1,4 +1,76 @@
 ---
 title: 'API keys and Env Variables'
 ---
-TBD
+![Screenshot of Langtail's API keys section](/images/deployments/api-key.png)
+## Secrets
+
+In Langtail, the "Secrets" section allows you to manage your API keys and Environment Variables, ensuring secure access to your language models and providing a centralized location for configuring global settings.
+
+### API Keys
+
+API keys are used to authenticate your application with Langtail and enable secure communication with the platform's APIs. In the API Keys section, you can create, manage, and revoke API keys as needed.
+
+#### Creating a New API Key
+
+<Steps>
+<Step>
+Click the "New API Key" button in the API Keys section.
+</Step>
+<Step>
+A modal will appear, prompting you to provide a name for the new API key.
+</Step>
+<Step title="Optional Step">
+Set budget limits for total requests and/or requests per individual user. This feature helps prevent overspending and protects against malicious or accidental misuse.
+   
+  <video
+      controls
+      className="w-full aspect-video"
+      src="/images/deployments/api-key.mp4"
+    ></video>
+</Step>
+<Step>
+Click "Create" to generate the new API key.
+</Step>
+</Steps>
+
+<Note>
+For security reasons, API keys are only displayed once during creation. Make sure to copy and store the key securely, as it won't be shown again.
+</Note>
+
+#### Managing API Keys
+
+In the API Keys section, you can view a list of all your existing API keys, including their names, creation dates, and any configured budget limits. From here, you can revoke API keys that are no longer needed or have been compromised.
+
+<Tip>
+It's a good practice to create separate API keys for different environments (e.g., development, staging, production) and revoke them when they're no longer needed.
+</Tip>
+
+### Environment Variables
+
+Environment Variables are global variables that can be accessed and used throughout your Langtail project. Unlike Prompt Variables, which are specific to individual prompts, Environment Variables are project-wide and can be useful for various purposes, such as testing, custom code assertions, or sharing common values across multiple prompts.
+
+#### Managing Environment Variables
+
+<Steps>
+<Step>
+Switch to the "Env Variables" tab in the top navigation of the Secrets section.
+</Step>
+<Step>
+You'll see a list of all existing Environment Variables, along with their names and values.
+</Step>
+<Step>
+To create a new Environment Variable, click the "New Variable" button and provide a name and value.
+</Step>
+<Step>
+To edit an existing Environment Variable, click on the Edit and update the value as needed.
+</Step>
+<Step>
+To delete an Environment Variable, click the delete next to the variable you want to remove.
+</Step>
+</Steps>
+
+<Callout>
+Environment Variables can be useful for storing sensitive information, such as API keys for third-party services, database credentials, or other configuration values that should not be hardcoded in your application.
+</Callout>
+
+By leveraging the Secrets section in Langtail, you can securely manage API keys and Environment Variables, ensuring proper access control and configuration management for your language models and applications.
