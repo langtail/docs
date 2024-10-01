@@ -45,7 +45,7 @@ To get started with Tools in Langtail, follow these steps:
     Once you've added a tool, you can test it by providing sample user inputs. Langtail will evaluate the input and determine if the correct tool function should be called based on your prompt.
     
     <Note>
-    While Langtail can simulate the tool function call and evaluate the prompt, actual execution requires backend integration. Langtail 1.0 will introduce custom API support, enabling fully functional tools within the Langtail environment.
+    Langtail supports custom API integration through a feature called Hosted Functions, allowing you to test your tools right inside Langtail by directly calling external APIs.
     </Note>
     </Step>
 </Steps>
@@ -96,4 +96,4 @@ Let's explore how to use the `get_weather` tool in Langtail:
         While the actual weather data retrieval won't occur within Langtail, you can simulate the function call and observe the expected output format.
     </Step>
 </Steps>
-By using Tools in Langtail, you can create more powerful and context-aware language models that can leverage external data sources and services. As Langtail continues to evolve, the upcoming ability to define custom APIs will further enhance the functionality of Tools, allowing you to integrate your language models seamlessly with your backend systems.
+By using Tools in Langtail, you can create more powerful and context-aware language models that can leverage external data sources and services.

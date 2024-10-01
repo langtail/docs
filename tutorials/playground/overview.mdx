@@ -10,6 +10,9 @@ Here's a quick overview of its interface:
 ![Screenshot of the Langtail Playground](/images/playground/overview/Playground-overview.png)
 
 1. **Templates Panel**: Here you can incorporate 'System', 'Assistant', and 'User' templates into your prompts for use during deployment. Insert variables using `{{myVariable}}` and format prompts with the templating syntax.
+<Tip> 
+The different templates such as 'System', 'Assistant', and 'User' are used if you want to steer the conversation in a specific direction. It can also be useful if you have simple instructions in the system message and then fill in variables in subsequent user messages. But in general it is enough to fill in the system message.
+</Tip>
 2. **Parameters Panel**: Here you can choose an AI model and adjust its parameters to tailor the model's behavior to your project.
 3. **Variables Panel**: Here you can find and modify the variables defined within your templates to refine your prompt's outputs.
 4. **Tools Panel**: Here you can create a custom tool specification that can enrich the AI model's response. If the AI model decides to use the tool, the Assistant response will be a function call. You can mock the response, send it back to the model, and see what the final output will be.
