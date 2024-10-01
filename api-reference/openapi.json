@@ -845,7 +845,7 @@
     "/v2/threads/{threadId}/messages": {
       "get": {
         "description": "Retrieves a list of messages for a specific thread.",
-        "servers": [{ "url": "https://api-staging.langtail.com" }],
+        "servers": [{ "url": "https://api.langtail.com" }],
         "parameters": [
           {
             "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
