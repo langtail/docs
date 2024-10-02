@@ -1,6 +1,6 @@
 ---
 title: 'Tools'
-description: 'Use Tools to test if your functions are used correctly'
+description: 'Use Tools to test if your functions and external APIs are used correctly'
 ---
 
 ![Screenshot of Variables in Langtail playground](/images/playground/tools/tools.png)
@@ -49,51 +49,65 @@ To get started with Tools in Langtail, follow these steps:
     </Note>
     </Step>
 </Steps>
-### Example: Using the Weather Tool
+### Example: Using the Weather Tool with external API
 
-Let's explore how to use the `get_weather` tool in Langtail:
-
+Let's explore how to use the `get_weather` tool in Langtail with external [open weather API](https://openweathermap.org/api):
+ <video
+      controls
+      className="w-full aspect-video"
+      src="/images/playground/tools/hosted.mp4"
+    ></video>
 
 <Steps>
-    <Step title="Add the Weather Tool"> 
-        In the Tools panel, click on the "Plus Tool" button and manually create the `get_weather` tool function using the structure provided below.
+    <Step title="Add the Weather Tool definition"> 
+        In the Tools panel, click on the "Plus Tool" button and manually create the `get_weather` tool function using the structure provided below. This is the definiton part.
         ```json
             {
-            "name": "get_weather",
-            "parameters": {
-                "type": "object",
-                "required": [
-                "location"
-                ],
-                "properties": {
-                "unit": {
-                    "enum": [
-                    "celsius",
-                    "fahrenheit"
+                "name": "get_weather",
+                "parameters": {
+                    "type": "object",
+                    "required": [
+                     "location"
                     ],
-                    "type": "string",
-                    "default": "celsius",
-                    "description": "The unit of temperature"
+                    "properties": {
+                        "unit": {
+                         "enum": [
+                            "celsius",
+                            "fahrenheit"
+                        ],
+                        "type": "string",
+                        "default": "celsius",
+                        "description": "The unit of temperature"
                 },
-                "location": {
+                 "location": {
                     "type": "string",
                     "description": "The city and state, e.g. San Francisco, CA"
                 }
-                }
-            },
-            "description": "Get the current weather in a given location"
+                    }
+                }, "description": "Get the current weather in a given location"
             }
-
             ```
+    
+    </Step>
+    <Step title="Add the Weather Tool handler"> 
+    Now lets add this to the handler part of the tool. Don't forget to user your API key from the open weather.
+    ```json
+    export default execute(async (args, context) => {
+    const apiKey = 'd5d0be4cb42f683ef45a0e6b20bff763';
+    const city = args.location
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+    return JSON.stringify(data)
+    })
+    ```
     </Step>
     <Step title="Test the Tool"> 
-        In the input field, enter a query related to weather, such as "What's the weather like in San Francisco, CA today?"
+        In the input field, enter a query related to weather, such as "What should I wear today in San Francisco, CA?"
     </Step>
     <Step title="Evaluate the Prompt"> 
-        Langtail will analyze the input and determine if the `get_weather` tool should be called based on your prompt. If the evaluation is successful, you'll see the tool function call displayed in the output, along with the required parameters (`location` and optionally `unit`).
-    </Step>
-    <Step title="Simulate the Function Call"> 
-        While the actual weather data retrieval won't occur within Langtail, you can simulate the function call and observe the expected output format.
+        Langtail will analyze the input and determine if the `get_weather` tool should be called based on your prompt. If the evaluation is successful, you'll see the tool function call displayed in the output, along with the correct response.
     </Step>
 </Steps>
 By using Tools in Langtail, you can create more powerful and context-aware language models that can leverage external data sources and services.
