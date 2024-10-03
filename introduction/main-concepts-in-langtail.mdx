@@ -1,0 +1,96 @@
+---
+title: 'Main concepts in Langtail'
+sidebarTitle:  'Main concepts in Langtail'
+---
+
+This section explains the main concepts in Langtail. If you are new to LLMs or prompt development, start from this glossary to familiarize yourself with the terminology.
+
+### API keys	
+API Keys used to authenticate to Langtail. Can be generated here or from Deployments tab.
+
+### Assertion	
+To validate the outputs of your language models and prompts, Langtail provides three powerful assertion types: Text, Javascript and LLMs.
+
+### Config	
+A set of different prompt parameters that will be used in the test.
+
+### Deploy	
+Creates a deployment of the selected prompt version.
+
+### Deployment	
+A prompt version that is available on the Langtail API.
+
+### Environment	
+An alias to a deployment. For example, the production API URL stays the same but is served by different deployments over time.
+
+### Log	
+A single execution of a deployment. This allows you to see some metadata, the request to Langtail, the request to the provider, and the response from the provider.
+
+### Member	
+A user in Langtail.
+
+### Message	
+A specific type of template that is only used in the playground and not deployed with the prompt version.
+
+### Metric	
+Aggregated data about activity in the prompt or project. 
+
+### Model	
+A LLM model that will be used to run the prompt.
+
+### Output	
+The result of running a single test case. Either Success or Fail.
+
+### Parameter	
+A single setting for the prompt. For example, model or temperature.
+
+### Playground	
+An interface to easily edit and run a prompt. You can add templates, messages, variables, tools, and modify parameters.
+
+### Preview deployment	
+A specific environment called preview.
+
+### Production deployment	
+A specific environment called production.
+
+### Project	
+A collection of prompts. Also contains project-level API keys (shared across prompts) and an aggregated view of metrics and logs (from all prompts).
+
+### Prompt	
+A collection of parameters, templates, messages, variables, and tools. Sent as a single request to the model.	
+
+### Prompt version	
+A single version of a prompt which includes everything except for the messages entered in the playground. A user can revert back to a version at any time.
+
+### Provider	
+Company or organization that develops, trains, and offers access to the underlying language model, such as OpenAI (for GPT models), Google (for LaMDA), or Anthropic (for Claude).
+
+### Provider key	
+API key used to authenticate to the provider .
+
+### Response	
+The response from the provider.
+
+### Staging 
+deployment	A specific environment called staging.
+
+### Template	
+A text string that is part of a prompt. Valid types are system, assistant, user, function, and tool.
+
+### Test	
+A collection of configs, assertions and test cases. When run, each individual case is compared against every config and assertion and shows an output.
+
+### Test case	
+A user message  and/or variable values which are executed with the prompt version that is being tested. When run, it returns an output.
+
+### Tool	
+A single custom function definition. Based on the user message, the provider can invoke this function to get external data or provide extra functionality.
+
+### Variable	
+Text that can be inserted into a template and changed dynamically when run.
+
+### Workspace	
+A collection of projects.
+
+### Workspace settings	
+Settings for a workspace where you can manage members and provider keys.

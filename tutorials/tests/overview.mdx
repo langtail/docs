@@ -1,0 +1,31 @@
+---
+title: 'Tests Overview'
+sidebarTitle:  'Overview'
+---
+In Langtail, testing is a crucial feature that allows you to evaluate and ensure the reliability and consistency of your language models. A test in Langtail consists of a collection of cases and assertions. When a test is run, each individual case is evaluated against all of the assertions, providing you with valuable insights into your model's performance.
+
+![Screenshot of Variables in Langtail playground](/images/playground/tests/tests.png)
+
+**Cases**
+A case represents a user message and/or variable values that are added to the prompt before it is executed in a test run. This allows you to simulate real-world scenarios and test your model's behavior under different conditions.
+
+**Assertions**
+To validate the outputs of your language models and prompts, Langtail provides three powerful assertion types:
+
+1. **Text Assertions**: Validate prompt outputs by comparing the generated text with expected values. You can use `{{ variables }}` to reference dynamic content in the expected output, making it easier to test prompts with variable inputs or outputs.
+    - **equals**: Checks if the specified value exactly matches the output.
+    - **contains**: Checks if the specified value is somewhere in the output.
+    - **icontains**: Similar to `contains`, but case-insensitive.
+
+2. **JavaScript Assertions**: For more advanced validation scenarios, you can create your own checks for comparing output data using JavaScript. This feature allows you to define custom criteria, validation rules, and comparison algorithms, ensuring that your prompts meet your specific requirements.
+
+3. **LLM Assertions**: Leverage the power of language models to classify and evaluate the output of your prompts. With LLM assertions, you can define your success criteria in plain English, and Langtail will handle the evaluation process for you. Choose from three scoring types:
+   - **Yes/No**: Evaluate whether the output meets or fails your criteria.
+   - **A-E Scale**: Assign a letter grade to the output based on your criteria.
+   - **Categories**: Classify the output into predefined categories based on your criteria.
+
+   LLM assertions allow you to describe your expectations in natural language, making it easier to define complex evaluation criteria without writing custom code.
+    ![Screenshot of LLM assertion](/images/tests/overview/LLM.png)
+Langtail's testing capabilities go beyond simple assertions. You can add new variables to test your prompts with different inputs, define how many times a test should be repeated to ensure consistency, and even compare how your prompts perform when you change the language model or modify its properties. This flexibility allows you to thoroughly test your language models under various conditions and scenarios.
+
+After a test is finished, you can easily see the results with pass rates and duration, enabling you to identify and address any issues quickly. The testing feature in Langtail provides a comprehensive and user-friendly environment for evaluating and improving the reliability and performance of your language models.

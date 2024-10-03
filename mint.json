@@ -41,63 +41,74 @@
   ],
   "navigation": [
     {
-      "group": "Getting Started",
-      "pages": ["getting-started/introduction", "getting-started/quickstart"]
+      "group": "Introduction",
+      "pages": ["introduction/what-is-langtail", "introduction/getting-started","introduction/main-concepts-in-langtail", "introduction/changelog"]
     },
     {
-      "group": "Playground",
-      "pages": ["playground/overview", "playground/templating"]
-    },
-    {
-      "group": "Tests",
-      "pages": ["tests/overview"]
-    },
-    {
-      "group": "Deployments",
-      "pages": [
-        "deployments/deploy-prompt",
-        "deployments/invoke-sdk",
-        "api-reference/endpoint/invoke-deployed-prompt"
+      "group": "Concepts and Examples",
+      "pages": ["tutorials/overview", 
+        {
+        "group":"Playground", 
+        "pages": ["tutorials/playground/overview", "tutorials/playground/variables", "tutorials/playground/tools", "tutorials/playground/templating", "tutorials/playground/assistants-threads"]
+        },
+        {
+          "group":"Tests", 
+          "pages": ["tutorials/tests/overview", "tutorials/tests/basic-tests", "tutorials/tests/adv-tests"]
+        },
+        {
+          "group":"Deployments", 
+          "pages": ["tutorials/deployments/overview","tutorials/deployments/deploy-prompt", "tutorials/deployments/api-keys" ]
+        },
+        {
+          "group":"Logs and Metrics", 
+          "pages": ["tutorials/logs-and-metrics/overview" ]
+        },
+        {
+          "group":"OpenAI Proxy", 
+          "pages": ["tutorials/proxy/integrate-sdk", "tutorials/proxy/openai", "tutorials/proxy/rest", "tutorials/proxy/langchain"]
+          },
+        {
+            "group":"SDKs", 
+            "pages": ["tutorials/sdks/typescript"]
+        }
+
       ]
     },
+   
     {
-      "group": "Assistants",
-      "pages": ["api-reference/endpoint/invoke-assistant"]
-    },
-    {
-      "group": "Threads",
+   "group": "References",
       "pages": [
-        "api-reference/endpoint/threads",
-        "api-reference/endpoint/create-thread",
-        "api-reference/endpoint/thread",
-        "api-reference/endpoint/delete-thread",
-        "api-reference/endpoint/update-thread"
+        {
+        "group": "Deployments",
+        "pages": ["api-reference/endpoint/invoke-deployed-prompt"]
+        },
+        {
+          "group": "Assistants",
+          "pages": ["api-reference/endpoint/invoke-assistant"]
+        },
+        {
+          "group": "Threads",
+          "pages": [
+            "api-reference/endpoint/threads",
+            "api-reference/endpoint/create-thread",
+            "api-reference/endpoint/thread",
+            "api-reference/endpoint/delete-thread",
+            "api-reference/endpoint/update-thread"
+          ]
+        },
+        {
+          "group": "Assistant messages in threads",
+          "pages": [
+            "api-reference/endpoint/thread-messages",
+            "api-reference/endpoint/thread-message",
+            "api-reference/endpoint/update-message"
+          ]
+        }
       ]
-    },
+      },
     {
-      "group": "Assistant messages in threads",
-      "pages": [
-        "api-reference/endpoint/thread-messages",
-        "api-reference/endpoint/thread-message",
-        "api-reference/endpoint/update-message"
-      ]
-    },
-    {
-      "group": "Observability",
-      "pages": ["observability/overview"]
-    },
-    {
-      "group": "OpenAI Proxy",
-      "pages": [
-        "proxy/integrate-sdk",
-        "proxy/openai",
-        "proxy/rest",
-        "proxy/langchain"
-      ]
-    },
-    {
-      "group": "SDKs",
-      "pages": ["sdks/typescript"]
+        "group": "Media & Presentations",
+        "pages": ["videos-and-talks/web-expo","videos-and-talks/deepnote-case"]
     },
     {
       "group": "Support & Community",
