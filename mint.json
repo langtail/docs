@@ -42,7 +42,7 @@
   "navigation": [
     {
       "group": "Introduction",
-      "pages": ["introduction/what-is-langtail", "introduction/getting-started","introduction/main-concepts-in-langtail", "introduction/changelog"]
+      "pages": ["introduction/what-is-langtail", "introduction/getting-started","introduction/main-concepts-in-langtail"]
     },
     {
       "group": "Concepts and Examples",
