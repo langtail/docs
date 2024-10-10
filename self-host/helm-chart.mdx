@@ -1,3 +1,120 @@
 ---
 title: 'Kubernetes - Helm Chart'
 ---
+
+This guide covers deploying Langtail for **production** using Kubernetes with a Helm chart.
+
+> **Note:** This setup is for **production**, and it is **highly recommended** to generate your own secrets for security. Using default or insecure secrets in production is not advised.
+
+## Prerequisites
+
+1. A running **Kubernetes cluster**.
+2. **Helm** installed on your local machine.
+3. A **managed MySQL database**.
+4. Access to the [Langtail Helm chart repository](https://github.com/langtail/langtail-k8s).
+
+### Required Environment Variables
+
+Before deploying, ensure you have the following environment variables configured in your Helm values file:
+
+```yaml
+# ENVs
+DATABASE_URL: "mysql://user:password@your-database-host:3306/your-database"
+MIGRATIONS_DATABASE_URL: "mysql://user:password@your-database-host:3306/your-database"
+
+EMAIL_FROM: "your-email@example.com"
+SMTP_URL: "smtp://user:password@smtp.example.com:587"
+EMAIL_VERIFICATION_SECRET: "your-email-verification-secret"
+
+JWT_SIGNING_KEY: "your-jwt-signing-key"
+JWT_PRIVATE: "your-jwt-private-key"
+JWT_PUBLIC: "your-jwt-public-key"
+AUTH_SECRET: "your-auth-secret"
+
+LANGTAIL_MAGIC_TOKEN: "your-langtail-magic-token"
+LANGTAIL_MAGIC_TESTS_TOKEN: "your-langtail-magic-tests-token"
+
+PRISMA_FIELD_ENCRYPTION_KEY: "your-prisma-field-encryption-key"
+IMAGES_AWS_SECRET_ACCESS_KEY: "your-aws-secret-access-key"
+```
+
+### Generating Production-Ready Secrets
+
+In production, you **must** generate and set secure values for the following secrets. Here’s how to generate them:
+
+**Generate `AUTH_SECRET`**
+
+Run the following command to generate a new `AUTH_SECRET`:
+
+```bash
+$ openssl rand -base64 32
+```
+
+**Generate `JWT_PUBLIC` and `JWT_PRIVATE`**
+
+To generate new JWT keys:
+
+1. Go to [https://mkjwk.org/](https://mkjwk.org/).
+1. Select **EC** as the key type and **P-256** as the curve.
+1. Copy the public and private keys and replace them in your `docker-compose.yml` under `JWT_PRIVATE` and `JWT_PUBLIC`.
+
+**Generate `JWT_SIGNING_KEY`**
+
+To generate a new signing key:
+
+1. Go to [https://mkjwk.org/](https://mkjwk.org/).
+1. Select **oct** as the key type and **Signature** as the key use.
+1. Copy the generated key and replace the `JWT_SIGNING_KEY` in your `docker-compose.yml`.
+
+### Configuring Social Logins (Google and GitHub)
+
+To configure social login with Google and GitHub, follow the steps below:
+
+- **Google OAuth Credentials**: 
+  [NextAuth.js - Google Provider](https://next-auth.js.org/providers/google)
+
+- **GitHub OAuth Credentials**: 
+  [NextAuth.js - GitHub Provider](https://next-auth.js.org/providers/github)
+
+Set the corresponding environment variables in your Helm values:
+
+```yaml
+GITHUB_ID: "your-github-client-id"
+GITHUB_SECRET: "your-github-client-secret"
+GOOGLE_ID: "your-google-client-id"
+GOOGLE_SECRET: "your-google-client-secret"
+```
+
+## Installing the Helm Chart
+
+To install Langtail using the Helm chart, follow these steps:
+
+1. Add the Langtail Helm repository:
+
+   ```bash
+   helm repo add langtail https://github.com/langtail/langtail-k8s
+   ```
+
+2. Install the Helm chart with your configured values (replace placeholders with your actual values):
+
+   ```bash
+   helm install langtail langtail/langtail \
+     --set-file values.yaml
+   ```
+
+## Running Migrations with Helm Hooks
+
+Langtail uses **Helm chart hooks** to manage migrations. The migration job runs automatically as part of the Helm chart upgrade process, ensuring that migrations are applied before the new version of the app is deployed.
+
+To deploy or upgrade the Helm chart and apply the migrations:
+
+```bash
+helm upgrade langtail langtail/langtail \
+  --set-file values.yaml
+```
+
+This will ensure that the migrations are run before the app spins up with the new version.
+
+## Accessing Langtail
+
+Once the deployment is complete, your Langtail instance will be running on your Kubernetes cluster. Use the service details provided by Kubernetes to access the application.
