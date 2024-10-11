@@ -1282,7 +1282,7 @@
                   },
                   "metadata": {
                     "type": "object",
-                    "description": "A set of key-value pairs that can be attached to the thread. This can be used to store additional information about the thread to facilitate filtering or organization. Note that the new metadata provided will completely overwrite any existing metadata for the thread.",
+                    "description": "A set of key-value pairs that can be attached to the message.",
                     "example": {
                       "user_id": "user_123",
                       "conversation_topic": "product_inquiry",
