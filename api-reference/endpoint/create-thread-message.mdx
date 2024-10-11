@@ -3,4 +3,7 @@ title: "Create Thread Message"
 openapi: "POST /v2/threads/{threadId}/messages"
 ---
 
-This endpoint allows you to add a message to thread. This will not call the LLM - you can use the [Invoke Assistant API](api-reference/endpoint/invoke-assistant) to add messages and get a response from LLM at the same time.
+Use this endpoint to add a message to a thread without calling the LLM.
+
+In most cases, you should use the [Invoke Assistant API](api-reference/endpoint/invoke-assistant) to add messages and get a response from the LLM.
+However, this endpoint is useful when you need to add messages without immediate LLM processing, such as for creating placeholder messages or updating thread content separately.
