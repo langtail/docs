@@ -52,6 +52,7 @@ services:
       # Email settings
       SMTP_URL: "smtp://user:password@smtp.example.com:587"
       EMAIL_FROM: "default@example.com"
+      EMAIL_VERIFICATION_SECRET: "default-email-verification-secret"
       
       # JWT keys (use default or generate your own)
       JWT_PRIVATE: '{"key_ops":["sign"],"kty": "EC","d": "bSsPE9H0IiKvxxZA6zPxjUpSLqa0bIDlluPxnTNnt88","use": "sig","crv": "P-256","x": "IavsPecpkyukuGxL6qcS6a-TG_yE9Rv4O_MaM8moUI0","y": "S9NhGgdxLrZHYgvrcT1xEMW76rM_x2C64h_y2oUGnfo","alg": "ES256"}'
@@ -67,7 +68,6 @@ services:
       PRISMA_FIELD_ENCRYPTION_KEY: "k1.aesgcm256.Yf2B9VlwQGmRSOzppSxEgnAgxCnk3ucvbwcqul17f_g="  # Use default or generate your own
       
       # Misc configurations (adjust if needed)
-      TINYBIRD_API_URL: "https://default-tinybird-api-url.com"
       EVALUATOR_URL: "https://default-evaluator-url.com"
       IS_E2E_TEST: "false"
       SENTRY_ENABLED: "true"
@@ -77,11 +77,6 @@ services:
       IMAGES_AWS_SECRET_ACCESS_KEY: "default-aws-secret-access-key"  # Generate your own
       LANGTAIL_MAGIC_TOKEN: "default-langtail-magic-token"  # TODO what's this?
       LANGTAIL_MAGIC_TESTS_TOKEN: "default-langtail-magic-tests-token"  # TODO what's this?
-      EMAIL_VERIFICATION_SECRET: "default-email-verification-secret"
-      STRIPE_SECRET_KEY: "default-stripe-secret-key"
-      TINYBIRD_API_KEY: "default-tinybird-api-key"
-      CANNY_JWT_KEY: "default-canny-jwt-key"
-      STRIPE_SECRET_KEY: "default-stripe-secret-key"
       EVALUATOR_API_KEY: "default-evaluator-api-key"  # TODO should be removed?
 
       # Social login IDs (use default or customize)
@@ -94,6 +89,11 @@ services:
       CLERK_SECRET_KEY: "default-clerk-secret-key"
       LOOPS_API_KEY: "default-loops-api-key"
       NEXT_PUBLIC_REWARDFUL_API_KEY: "default-rewardful-api-key"
+      TINYBIRD_API_URL: "https://default-tinybird-api-url.com"
+      STRIPE_SECRET_KEY: "default-stripe-secret-key"
+      TINYBIRD_API_KEY: "default-tinybird-api-key"
+      CANNY_JWT_KEY: "default-canny-jwt-key"
+      STRIPE_SECRET_KEY: "default-stripe-secret-key"
     ports:
       - 3000:3000
     depends_on:
