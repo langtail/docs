@@ -46,30 +46,30 @@
     },
     {
       "group": "Concepts and Examples",
-      "pages": ["tutorials/overview", 
+      "pages": ["concepts-and-examples/overview", 
         {
         "group":"Playground", 
-        "pages": ["tutorials/playground/overview", "tutorials/playground/templating", "tutorials/playground/assistants-threads", "tutorials/playground/variables", "tutorials/playground/tools"]
+        "pages": ["concepts-and-examples/playground/overview", "concepts-and-examples/playground/templating", "concepts-and-examples/playground/assistants-threads", "concepts-and-examples/playground/variables", "concepts-and-examples/playground/tools"]
         },
         {
           "group":"Tests", 
-          "pages": ["tutorials/tests/overview", "tutorials/tests/basic-tests", "tutorials/tests/adv-tests"]
+          "pages": ["concepts-and-examples/tests/overview", "concepts-and-examples/tests/basic-tests", "concepts-and-examples/tests/adv-tests"]
         },
         {
           "group":"Deployments", 
-          "pages": ["tutorials/deployments/overview","tutorials/deployments/deploy-prompt", "tutorials/deployments/api-keys" ]
+          "pages": ["concepts-and-examples/deployments/overview","concepts-and-examples/deployments/deploy-prompt", "concepts-and-examples/deployments/api-keys" ]
         },
         {
           "group":"Logs and Metrics", 
-          "pages": ["tutorials/logs-and-metrics/overview" ]
+          "pages": ["concepts-and-examples/logs-and-metrics/overview" ]
         },
         {
           "group":"OpenAI Proxy", 
-          "pages": ["tutorials/proxy/integrate-sdk", "tutorials/proxy/openai", "tutorials/proxy/rest", "tutorials/proxy/langchain"]
+          "pages": ["concepts-and-examples/proxy/integrate-sdk", "concepts-and-examples/proxy/openai", "concepts-and-examples/proxy/rest", "concepts-and-examples/proxy/langchain"]
           },
         {
             "group":"SDKs", 
-            "pages": ["tutorials/sdks/typescript"]
+            "pages": ["concepts-and-examples/sdks/typescript"]
         }
 
       ]
