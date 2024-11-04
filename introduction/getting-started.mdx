@@ -16,14 +16,14 @@ This guide will walk you through building a sample application powered by GPT-4.
     <video
       controls
       className="w-full aspect-video"
-      src="/images/quickstart/step2.mp4"
+      src="/images/quickstart/step1.mp4"
     ></video>
 
     Next, we will create a prompt that will act as the core of our application.
 
     1. [Click here](https://app.langtail.com/playground?shareid=OU4Bu-sPxb) to open the quickstart prompt.
     1. In the top right, click "Save as..."
-    1. Select your new project, rename the prompt to *Quickstart*, and click "Save".
+    1. Select your new project, rename the prompt to *Meal ideas*, and click "Save".
 
     <Note>This template references a variable named `selectedIngredients` and iterates over it to form a bulleted list. For more on the templating syntax, see [the prompt templating guide](/playground/templating).</Note>
   </Step>
@@ -32,7 +32,7 @@ This guide will walk you through building a sample application powered by GPT-4.
     <video
       controls
       className="w-full aspect-video"
-      src="/images/quickstart/step3.mp4"
+      src="/images/quickstart/step2.mp4"
     ></video>
 
     Now, let's try out the new prompt.
@@ -40,6 +40,20 @@ This guide will walk you through building a sample application powered by GPT-4.
     1. Navigate to the Variables panel where you will find the `selectedIngredients` variable. Paste this value: `["Turkey", "Spinach", "Berries"]`.
     1. At the bottom of the playground, select "Send".
     1. You should now see a response with two recipes formatted in Markdown. Feel free to adjust any model parameters or prompt templates to improve the output.
+  </Step>
+  
+  <Step title="Improve the prompt">
+    <video
+      controls
+      className="w-full aspect-video"
+      src="/images/quickstart/step3.mp4"
+    ></video>
+
+    Now, let's try to improve your prompt.
+
+    1. Navigate to your prompt template and hit the sparkles button.
+    1. See if the prompt seems better (it should) and select "Send".
+    1. You should now see a response, you can compare if it is better with the new prompt. If you don't like it just discard changes at the top.
   </Step>
 
   <Step title="Create a basic test">
@@ -55,6 +69,7 @@ This guide will walk you through building a sample application powered by GPT-4.
     1. From the navigation bar, select "Tests".
     1. Click "+ Add Test".
     1. A new test will be created with our example value for `selectedIngredients`.
+    1. Use the magic button in the botton to create 5 more example values.
     1. Select "New Assertion", then "contains".
     1. In the "Title" field, write `Contains additional ingredients`.
     1. In the "Value" field, write `**Additional Ingredients:**`.
@@ -66,7 +81,7 @@ This guide will walk you through building a sample application powered by GPT-4.
     <video
       controls
       className="w-full aspect-video"
-      src="/images/quickstart/step5.mp4"
+      src="/images/quickstart/step4.mp4"
     ></video>
 
     Next, we will create an assertion that checks if exactly 2 recipes were returned.

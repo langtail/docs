@@ -1,24 +1,4 @@
 [
-{"activeModifiers":["command"],"character":"a","isARepeat":false,"processTimeMs":7315.591916663834,"type":"keyDown","unixTimeMs":1711641999413.7722},
-{"activeModifiers":["command"],"character":"a","isARepeat":false,"processTimeMs":7451.977416665613,"type":"keyUp","unixTimeMs":1711641999550.1575},
-{"activeModifiers":["shift"],"character":"M","isARepeat":false,"processTimeMs":8306.274124664924,"type":"keyDown","unixTimeMs":1711642000404.4543},
-{"activeModifiers":[],"character":"m","isARepeat":false,"processTimeMs":8418.925832665991,"type":"keyUp","unixTimeMs":1711642000517.106},
-{"activeModifiers":[],"character":"e","isARepeat":false,"processTimeMs":8464.833499663655,"type":"keyDown","unixTimeMs":1711642000563.0137},
-{"activeModifiers":[],"character":"a","isARepeat":false,"processTimeMs":8577.695374664472,"type":"keyDown","unixTimeMs":1711642000675.8755},
-{"activeModifiers":[],"character":"l","isARepeat":false,"processTimeMs":8665.83879166501,"type":"keyDown","unixTimeMs":1711642000764.019},
-{"activeModifiers":[],"character":"e","isARepeat":false,"processTimeMs":8667.762124667206,"type":"keyUp","unixTimeMs":1711642000765.9421},
-{"activeModifiers":[],"character":"a","isARepeat":false,"processTimeMs":8711.112666664121,"type":"keyUp","unixTimeMs":1711642000809.2927},
-{"activeModifiers":[],"character":" ","isARepeat":false,"processTimeMs":8733.611749667034,"type":"keyDown","unixTimeMs":1711642000831.792},
-{"activeModifiers":[],"character":"l","isARepeat":false,"processTimeMs":8800.614999665413,"type":"keyUp","unixTimeMs":1711642000898.7952},
-{"activeModifiers":["shift"],"character":" ","isARepeat":false,"processTimeMs":8867.774374666624,"type":"keyUp","unixTimeMs":1711642000965.9543},
-{"activeModifiers":["shift"],"character":"I","isARepeat":false,"processTimeMs":8959.006082666747,"type":"keyDown","unixTimeMs":1711642001057.186},
-{"activeModifiers":[],"character":"i","isARepeat":false,"processTimeMs":9049.709541664924,"type":"keyUp","unixTimeMs":1711642001147.8896},
-{"activeModifiers":[],"character":"d","isARepeat":false,"processTimeMs":9117.14204166492,"type":"keyDown","unixTimeMs":1711642001215.322},
-{"activeModifiers":[],"character":"d","isARepeat":false,"processTimeMs":9228.83391666619,"type":"keyUp","unixTimeMs":1711642001327.014},
-{"activeModifiers":[],"character":"e","isARepeat":false,"processTimeMs":9296.61087466593,"type":"keyDown","unixTimeMs":1711642001394.791},
-{"activeModifiers":[],"character":"e","isARepeat":false,"processTimeMs":9433.3124996665,"type":"keyUp","unixTimeMs":1711642001531.4927},
-{"activeModifiers":[],"character":"a","isARepeat":false,"processTimeMs":9456.335374667105,"type":"keyDown","unixTimeMs":1711642001554.5154},
-{"activeModifiers":[],"character":"s","isARepeat":false,"processTimeMs":9569.32329166375,"type":"keyDown","unixTimeMs":1711642001667.5034},
-{"activeModifiers":[],"character":"a","isARepeat":false,"processTimeMs":9658.06387466364,"type":"keyUp","unixTimeMs":1711642001756.244},
-{"activeModifiers":[],"character":"s","isARepeat":false,"processTimeMs":9725.389457664278,"type":"keyUp","unixTimeMs":1711642001823.5696}
+{"activeModifiers":["command"],"character":"v","isARepeat":false,"processTimeMs":3951.5344999963418,"type":"keyDown","unixTimeMs":1730722660870.2273},
+{"activeModifiers":[],"character":"v","isARepeat":false,"processTimeMs":4047.5454579973302,"type":"keyUp","unixTimeMs":1730722660966.2385}
 ]

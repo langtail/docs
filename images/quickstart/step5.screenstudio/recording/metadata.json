@@ -1,6 +1,6 @@
 {
   "logFilename" : "polyrecorder.log",
-  "polyrecorderVersion" : "1.6.0",
+  "polyrecorderVersion" : "1.10.1",
   "recorders" : [
     {
       "configuration" : {
@@ -18,14 +18,14 @@
       "id" : "channel-0-input",
       "sessions" : [
         {
-          "durationMs" : 28111.089250000077,
+          "durationMs" : 27312.620458331367,
           "keyStrokesFilename" : "keystrokes-0.json",
           "mouseClicksFilename" : "mouseclicks-0.json",
           "mouseMovesFilename" : "mousemoves-0.json",
-          "processTimeEndMs" : 28824.897916667396,
-          "processTimeStartMs" : 713.8086666673189,
-          "unixEndMs" : 1711381568051.0583,
-          "unixStartMs" : 1711381539939.969
+          "processTimeEndMs" : 28102.15858333322,
+          "processTimeStartMs" : 789.5381250018545,
+          "unixEndMs" : 1730724020459.08,
+          "unixStartMs" : 1730723993146.4597
         }
       ],
       "type" : "input"
@@ -35,17 +35,18 @@
         "cropRect" : {
           "height" : 1080,
           "width" : 1920,
-          "x" : 643,
-          "y" : 149,
+          "x" : 0,
+          "y" : 25,
           "yAxis" : "topBasedIncreasingDownwards"
         },
         "displayId" : 2,
+        "excludeFinderDesktopIcons" : false,
         "excludedWindowIds" : [
-          430,
-          136,
-          429
-        ],
-        "excludeFinderDesktopIcons" : false
+          3008,
+          2962,
+          2606,
+          3007
+        ]
       },
       "id" : "channel-1-display",
       "sessions" : [
@@ -53,17 +54,17 @@
           "bounds" : {
             "height" : 1080,
             "width" : 1920,
-            "x" : 643,
-            "y" : 149
+            "x" : 0,
+            "y" : 25
           },
           "displayRefreshRate" : 60,
-          "durationMs" : 28111.666666666668,
+          "durationMs" : 27313.333333333332,
           "outputFilename" : "channel-1-display-0.mp4",
-          "processTimeEndMs" : 28825.475333333987,
-          "processTimeStartMs" : 713.8086666673189,
+          "processTimeEndMs" : 28102.87145833155,
+          "processTimeStartMs" : 789.5381249982165,
           "recordingScale" : 0.5,
-          "unixEndMs" : 1711381568051.6357,
-          "unixStartMs" : 1711381539939.969
+          "unixEndMs" : 1730724020459.793,
+          "unixStartMs" : 1730723993146.4597
         }
       ],
       "type" : "display"
@@ -71,11 +72,11 @@
   ],
   "sessions" : [
     {
-      "durationMs" : 28111.089250000077,
-      "processTimeEndMs" : 28824.897916667396,
-      "processTimeStartMs" : 713.8086666673189,
-      "unixEndMs" : 1711381568051.0583,
-      "unixStartMs" : 1711381539939.969
+      "durationMs" : 27312.620458331367,
+      "processTimeEndMs" : 28102.15858333322,
+      "processTimeStartMs" : 789.5381250018545,
+      "unixEndMs" : 1730724020459.08,
+      "unixStartMs" : 1730723993146.4597
     }
   ]
 }
