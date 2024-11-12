@@ -1,6 +1,194 @@
 ---
 title: 'Changelog'
 ---
+<Update label="06/12/2024">
+ # 🎯 Testing Enhancements: Keyboard-Friendly Table, Helper Variables, and Improved LLM Assertions
+
+## ⌨️ Keyboard-Friendly Testing Table ⌨️
+We've made our testing table more keyboard-friendly, allowing you to bulk delete rows and copy multiple values at once.
+
+<iframe width="720" height="400" src="https://www.youtube.com/embed/sAvjbuYm3j8?si=zDG6o23d9sMNjPOY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+
+
+## 🧮 Helper Variables for Assertions 🧮
+You can now add additional columns that act as helper variables for assertions (JavaScript, LLM assertions). Place the correct answer in these helper variables and use them in assertions for more efficient and accurate testing.
+
+<iframe width="720" height="400" src="https://www.youtube.com/embed/ZjmtlFU4HrY?si=GbMs2cX0Xe2P6Ius" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+
+
+## 📚 Improved LLM Assertions 📚
+Based on user feedback, we've improved LLM assertions. Now, the entire conversation history is included in the context, providing a more comprehensive view for better testing.
+
+<iframe width="720" height="400" src="https://www.youtube.com/embed/vsbw6tSF0Qs?si=dQTeGheyJ3ee5bQF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+
+
+## 📨 Multiple Messages in the “Messages” Column 📨
+You can now use multiple messages in the “messages” column. Currently, it's possible to simulate user and assistant messages. We're working on the ability to mock Tools and upload images for Vision testing.
+
+<iframe width="720" height="400" src="https://www.youtube.com/embed/PzK-36KVsVc?si=4SEHYJJzRPL1MZN-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+
+
+Tests are a big focus for us, and we're committed to continuously improving them. 
+Stay tuned for more updates!
+</Update>
+
+<Update label="04/19/2024">
+ # ⚡ Major Upgrade to Langtail's Testing Table Component and Upcoming Features
+
+![enhanced testing](/images/support/enhanced-testing.png)
+
+
+## ⚡ Langtail's Testing Table Component Upgrade ⚡
+We're excited to announce significant updates to Langtail's table component aimed at improving your test-writing experience:
+
+- 🚀 Lightning-fast row addition and cell content deletion for efficient test setup
+- ➡️ Tab navigation between cells for seamless navigation
+- 🗑️ Bulk row deletion for quick test cleanup
+- 🎯 Selective test case execution for focused testing
+- 🎁 Test result display with LLM and assertion outcomes for comprehensive insights
+
+## 🔜 Upcoming Feature: LLM as a Judge Assertion 🔜
+Stay tuned! We're in the process of developing an "LLM as a judge assertion" feature, set to take our testing capabilities to the next level. More updates coming your way soon!
+
+</Update>
+
+<Update label="04/12/2024">
+ # New Dashboard View and Launch of Langtail SDK 🚀 
+
+## 📊 New Dashboard View 📊
+
+![dashboard](/images/support/dashboard.png)
+
+
+We're thrilled to introduce our new dashboard view! Now serving as the main hub for each project, the dashboard provides a snapshot of your project's activity and performance at a glance. With recent logs and quick statistics, you can stay updated the moment you log in.
+
+## 🎯 Langtail SDK Release 🎯
+
+![Langtail-SDK](/images/support/langtail-sdk.png)
+
+
+The first version of the Langtail SDK is now live! 🥳 The SDK can function as an OpenAI proxy and is also compatible with prompts directly deployed within Langtail. Dive into the details over at our [GitHub docs](https://github.com/langtail/langtail-node).
+
+Currently, we've rolled out the JS SDK. If you're interested in a Python SDK, we'd love to hear from you.
+
+</Update>
+
+<Update label="04/05/2024">
+ # New Homepage Video, About Us Page, and Embeddable Prompts
+
+## 🎞️ New Homepage Video 🎞️
+We've released a new video that's now featured on our homepage. Get a quick overview of what Langtail offers by watching our latest video.
+
+<iframe width="720" height="400" src="https://www.youtube.com/embed/0g1oGDxYOck?si=gP_I7730eUQvKMPu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+
+
+## 🧑‍💻 About Us Page 🧑‍💻
+Curious about the team behind Langtail? Visit our newly updated About Us page to learn more about our mission and the people who make Langtail possible. [Learn more](https://langtail.com/about)
+
+## 🛣️ Roadmap, Changelog, and Feedback 🛣️
+Your feedback is crucial in helping us improve. Visit our feedback portal to see our roadmap, changelog, and to share your thoughts. [Give feedback](http://feedback.langtail.com/)
+
+## 🖼️ Embeddable Prompts 🖼️
+We're happy to announce that you can now embed publicly shared prompts into iframes! Here's a quick example:
+
+```
+<iframe src="https://app.langtail.com/playground?shareid=cbGLHKSIff" width="650" height="400" allow="clipboard-write"> </iframe>
+```
+
+</Update>
+
+<Update label="03/29/2024">
+ # 📚 Docs Expansion, 🖼️ Dynamic OG Images, and 🌍 Project-Level Env Variables
+
+![public sharing](/images/support/public-sharing.png)
+
+## 📚 Expanded Documentation for Seamless Integration 📚
+We've significantly expanded our documentation to help you hit the ground running:
+- 🚀 Deploying Prompts: Learn how to deploy your prompts effortlessly. [Read more](https://langtail.com/docs/deployments/deploy-prompt)
+- 🌐 REST API Usage: Discover how to leverage our powerful REST API. [Learn how](https://langtail.com/docs/api-reference/endpoint/invoke-deployed-prompt)
+
+## 🖼️ Dynamic OG Images for Shared Prompts 🖼️
+Sharing is caring, and we've made it even better! When you share a prompt publicly, we'll automatically generate an OG image for you.
+
+## 🌍 Project-Level Environment Variables 🌍
+Tired of hardcoding API endpoints and keys directly in code? We've got you covered! Introducing project-level environment variables:
+- 🔒 Secure: Keep your sensitive information safe and separate from the code
+- 🎛️ Centralized: Set your variables once at the project level
+- 🌐 Accessible: Use your env variables in the JavaScript editor for Test Assertions and soon in the Playground too
+
+![env-vars](/images/support/env-vars.png)
+![js-editor](/images/support/js-editor.png)
+
+</Update>
+
+
+<Update label="03/15/2024">
+ # 📆 $Date Helper, 🔍 Enhanced Log Filters, and 🏠 Webpage Updates
+
+<iframe width="720" height="400" src="https://www.youtube.com/embed/DWFnIIqZB1I?si=RTkW7B45O36GBiKG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+
+
+## 📆 $Date Helper for Chatbots 📆
+Chatbots can now stay up-to-date with the current date! Introducing the `$date` helper, a new feature designed to keep your chatbots in sync with real-time.
+
+## 🔍 Log Filtering 🔍
+Say hello to granular control over your logs. You can now filter logs by any column, even custom-send metadata. Find what you need, when you need it.
+
+<iframe width="720" height="400" src="https://www.youtube.com/embed/Q5kop3J8g-w?si=xUV2KMVMcmY28ys3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+
+
+## 💰 Pricing Page is Live 💰
+Ever wondered about our pricing? We've just launched our pricing page, making it easier for you to find the perfect plan for your needs. Check it out!
+
+</Update>
+
+<Update label="03/12/2024">
+ # 🚀 Introducing Public Sharing of Prompts and Read-Only Playground!
+
+![public sharing](/images/support/public-sharing.png)
+
+## 🎡 Public Sharing of Prompts 🎡
+Good news, everyone! We've just launched a new feature that lets you publicly share your prompts. Previously, users needed an account to view a shared prompt, but now, anyone can view it thanks to our new read-only Playground view. 🎉
+
+## 🏞️ Read-Only Playground 🏞️
+In the read-only Playground, you can see all messages, variables, and Tools (functions). It's an open window to the world of your prompts. Currently, only a fixed version of the prompt can be shared, but we're already working on updates that will let you share and always view the most recent version of a prompt.
+
+</Update>
+
+<Update label="03/07/2024">
+ # 🚀 Major DX Improvements for JavaScript Assertions in Tests and Upcoming Playground Enhancements 🛠️
+
+![JavaScript assertions](/images/support/javascript-assertions.png)
+
+## 🧪 Enhanced JavaScript Assertions in Tests 🧪
+We've made some significant improvements to our developer experience for JavaScript assertions in Tests:
+
+- 📝 Run functions with example input: Simply fill in your example input in the left column and run the function.
+- ✅ Auto Input Addition: If any input already exists, we'll automatically add it for you.
+- 🐞 Debugging Support: Use `console.log` to debug your tests effectively.
+- 🌐 API Calls: For advanced use cases, you can now call external APIs using the Fetch API.
+- ⚡️ Ultra-fast API requests: Thanks to our robust infrastructure, your API requests will execute swiftly.
+
+
+
+</Update>
+
+<Update label="02/27/2024">
+  # 🚀 New Templating Engine Based on Handlebars for Enhanced Prompt Handling
+
+  <iframe width="720" height="400" src="https://www.youtube.com/embed/jfX9JiT3JDI?si=RbOYrQ67bM4IBQJZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+
+  ## 🎨 Templating Engine Support 🎨
+We're excited to announce that we've released support for a templating engine, based on Handlebars! With this new feature, you can now tackle more complex use cases, including:
+
+- Conditional parts of prompts
+- Variations of prompts
+
+Simply deploy a prompt with this template, send the correct variable, and watch as the final version of the prompt resolves. You can then view this in the Logs. This added flexibility opens up a world of possibilities for your prompt handling.
+
+![Templating Engine Support](/images/support/templating-engine-support.png)
+
+</Update>
 
 <Update label="02/20/2024">
   # 🚀 Project Settings, Workspace Refinement, Redesigned Logs, and OpenAI Tools Support!
@@ -18,10 +206,15 @@ title: 'Changelog'
   ## 📜 Redesigned Logs 📜
 
   We've completely redesigned our Logs for a cleaner, more user-friendly interface. Plus, Logs now also display the JSON representation of what's being sent from Langtail to end providers like OpenAI. We think you'll love this upgrade as much as we do!
+  
+  ![Redesigned Logs](/images/support/redesigned-logs.png)
 
   ## 🔍 OpenAI Tools Support 🔍
 
   We're thrilled to announce that support for the new OpenAI Tools is here! Functions now visually resemble TypeScript functions and are even typesafe. The types are generated based on the JSON schema. We're confident you'll find them incredibly useful.
+
+  ![OpenAI Tools Support ](/images/support/openai-tools-support.png)
+
 </Update>
 
 <Update label="02/08/2024">
