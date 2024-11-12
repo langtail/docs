@@ -3,9 +3,11 @@ title: 'Advanced tests'
 sidebarTitle:  'Advanced tests'
 description: 'Utilize Configs to evaluate your prompts across diverse scenarios and observe the outcomes.'
 ---
+
 ### Introduction
+
 Testing prompts and language models is crucial for ensuring the reliability and consistency of AI-powered applications. While basic tests provide a foundation, advanced testing techniques are necessary for thoroughly evaluating complex scenarios, handling edge cases, and validating multi-step prompts. This guide explores Langtail's advanced testing features, including different assertion types and configs, best practices, and a step-by-step example.
-<Note>  Familiarity with [Basic Tests](/tutorials/tests/basic-tests) is assumed.</Note>
+<Note>  Familiarity with [Basic Tests](/concepts-and-examples/tests/basic-tests) is assumed.</Note>
 
 ### When to Use Advanced Tests
 
@@ -15,75 +17,79 @@ Evaluating different language models or adjusting their settings: Advanced tests
 
 Testing multi-step or conditional prompts: If your application relies on prompts that involve multiple steps, branching logic, or conditional responses based on user inputs, advanced tests can help ensure the correct flow and output for each possible path. You can create test cases that simulate different input scenarios and assert the expected behavior at each step.
 
-<Tip>This guide focuses on Langtail's advanced testing features. To learn more about the various assertion types available and their respective use cases, refer to the [Tests Overview](/tutorials/tests/overview) section.</Tip>
+<Tip>This guide focuses on Langtail's advanced testing features. To learn more about the various assertion types available and their respective use cases, refer to the [Tests Overview](/concepts-and-examples/tests/overview) section.</Tip>
 
-<iframe
-  width="720"
-  height="400"
-  src="https://www.youtube.com/embed/sMGLqpYNYtI?si=-ImMV43W9nAhN9rj"
-  title="YouTube video player"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen
-></iframe>
+<iframe width="720" height="400" src="https://www.youtube.com/embed/sMGLqpYNYtI?si=-ImMV43W9nAhN9rj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
 
 ### Step-by-Step Guide: Testing a Movie Recommendation Prompt
+
 [Here is a prompt](https://app.langtail.com/playground?shareid=4XLkASmjNA) that provides movie recommendations based on the user's preferences for genre, rating, and year. Let's take a look how we can leverage different configs in testing this prompt.
+
 <Steps>
-<Step title="Set up the test suite">
+  <Step title="Set up the test suite">
+    1. Log into Langtail and select your project.
 
-1. Log into Langtail and select your project.
-2. Navigate to 'Evalution - Tests' to either open an existing Test or create a new one.
-3. Create a few user messages that will be sent, you can either create them manually or use our ✨ magic button in the left right corner to create those for you.
-4. Fill out variable values.
-</Step>
+    2. Navigate to 'Evalution - Tests' to either open an existing Test or create a new one.
 
-<Step title="Define assertions">
+    3. Create a few user messages that will be sent, you can either create them manually or use our ✨ magic button in the left right corner to create those for you.
 
-1. Click on "New Assertion" and select LLM
-2. Let's check if the prompt works and it is giving us any recommendations at all.
-![Screenshot of LLM assertion](/images/tests/advanced/assertion.png)
-3. You can try to create your own LLM assertions. In this case I also created assertion to check if the Movie matched the provided criteria and if the rating of the movie is above 7.0.
-4. Optionally, create custom assertions for more complex validations.
-</Step>
+    4. Fill out variable values.
+  </Step>
 
-<Step title="Run the tests">
+  <Step title="Define assertions">
+    1. Click on "New Assertion" and select LLM
 
-1. Once you've set up your test suite and defined the assertions, it's time to run the tests. Click on the "Run Test" button to initiate the test execution.
-2. Langtail will process each test case, sending the user messages to the prompt and evaluating the output against the defined assertions.
-![Screenshot of test execution](/images/tests/advanced/test-execution.png)
-3. As the tests run, you'll see the progress and status of each test case displayed in real-time. Langtail will indicate whether a test case passed or failed based on the assertions.
-4. If any test cases fail, you'll have the opportunity to review the detailed output and compare it against the expected results. This can help you identify potential issues with your prompt or fine-tune the assertions for better accuracy.
-<Note>
-Depending on the complexity of your test suite and the number of test cases, the execution time may vary. Langtail provides real-time updates to keep you informed about the test progress.
-</Note>
-5. Once the test execution is complete, you'll see a summary of the test results, including the number of passed and failed test cases.
-![Screenshot of test results summary](/images/tests/advanced/test-results.png)
-6. You can also export the test results in CSV or JSON format for further analysis or integration with other tools.
+    2. Let's check if the prompt works and it is giving us any recommendations at all.
+       ![Screenshot of LLM assertion](/images/tests/advanced/assertion.png)
 
-</Step>
-<Step title="Iterate and Refine">
+    3. You can try to create your own LLM assertions. In this case I also created assertion to check if the Movie matched the provided criteria and if the rating of the movie is above 7.0.
 
-1. Based on the test results, you may identify areas for improvement or refinement in your prompt or assertions. Langtail's advanced testing features allow you to iterate and experiment with different configurations to optimize your prompt's performance.
+    4. Optionally, create custom assertions for more complex validations.
+  </Step>
 
-2. Click on the "Config" tab to set up multiple configurations for your test suite. Here, you can create different configurations with varying language models, parameters, or prompt versions.
+  <Step title="Run the tests">
+    1. Once you've set up your test suite and defined the assertions, it's time to run the tests. Click on the "Run Test" button to initiate the test execution.
 
-![Screenshot of configs tab](/images/tests/advanced/configs.png)
+    2. Langtail will process each test case, sending the user messages to the prompt and evaluating the output against the defined assertions.
+       ![Screenshot of test execution](/images/tests/advanced/test-execution.png)
 
-3. For example, you could create one configuration using the default GPT-4o model and another with a specialized model fine-tuned for movie recommendations. Additionally, you can adjust parameters like temperature, max tokens, or presence penalty to see how they impact the prompt's output.
+    3. As the tests run, you'll see the progress and status of each test case displayed in real-time. Langtail will indicate whether a test case passed or failed based on the assertions.
 
-4. Once you've set up your desired configurations, you can run the tests simultaneously for all configurations. Langtail will execute the test suite for each configuration, providing you with a comprehensive view of how your prompt performs under different settings.
-<Tip>
-Try creating configurations with different versions of your prompt to evaluate how changes in wording or structure affect the output quality. This can be especially helpful when iterating on your prompt to improve its performance.
-</Tip>
-5. Review the test results for each configuration and compare their performance. This can help you identify the optimal configuration for your movie recommendation prompt, balancing factors like output quality, diversity, and coherence.
+    4. If any test cases fail, you'll have the opportunity to review the detailed output and compare it against the expected results. This can help you identify potential issues with your prompt or fine-tune the assertions for better accuracy.
 
-6. Based on your findings, you can refine your prompt, update the assertions, or adjust the configurations further. Langtail's iterative testing approach allows you to continuously improve and fine-tune your language model until you achieve the desired results.
+    <Note>
+      Depending on the complexity of your test suite and the number of test cases, the execution time may vary. Langtail provides real-time updates to keep you informed about the test progress.
+    </Note>
 
-<Tip>
-Regularly review and update your test suite as your prompt evolves or new requirements emerge. This ensures that your tests remain relevant and effective in validating your language model's performance.
-</Tip>
-</Step>
+    5. Once the test execution is complete, you'll see a summary of the test results, including the number of passed and failed test cases.
+       ![Screenshot of test results summary](/images/tests/advanced/test-results.png)
+
+    6. You can also export the test results in CSV or JSON format for further analysis or integration with other tools.
+  </Step>
+
+  <Step title="Iterate and Refine">
+    1. Based on the test results, you may identify areas for improvement or refinement in your prompt or assertions. Langtail's advanced testing features allow you to iterate and experiment with different configurations to optimize your prompt's performance.
+
+    2. Click on the "Config" tab to set up multiple configurations for your test suite. Here, you can create different configurations with varying language models, parameters, or prompt versions.
+
+    ![Screenshot of configs tab](/images/tests/advanced/configs.png)
+
+    3. For example, you could create one configuration using the default GPT-4o model and another with a specialized model fine-tuned for movie recommendations. Additionally, you can adjust parameters like temperature, max tokens, or presence penalty to see how they impact the prompt's output.
+
+    4. Once you've set up your desired configurations, you can run the tests simultaneously for all configurations. Langtail will execute the test suite for each configuration, providing you with a comprehensive view of how your prompt performs under different settings.
+
+    <Tip>
+      Try creating configurations with different versions of your prompt to evaluate how changes in wording or structure affect the output quality. This can be especially helpful when iterating on your prompt to improve its performance.
+    </Tip>
+
+    5. Review the test results for each configuration and compare their performance. This can help you identify the optimal configuration for your movie recommendation prompt, balancing factors like output quality, diversity, and coherence.
+
+    6. Based on your findings, you can refine your prompt, update the assertions, or adjust the configurations further. Langtail's iterative testing approach allows you to continuously improve and fine-tune your language model until you achieve the desired results.
+
+    <Tip>
+      Regularly review and update your test suite as your prompt evolves or new requirements emerge. This ensures that your tests remain relevant and effective in validating your language model's performance.
+    </Tip>
+  </Step>
 </Steps>
 
 ### Tips and Best Practices
@@ -98,5 +104,5 @@ For multi-step or conditional prompts, test each possible path and validate the 
 As your test suite grows, organize and maintain it effectively. Group related test cases into logical suites. Regularly review and update your test suite to ensure it remains relevant and aligned with your application's evolving requirements.
 
 <Tip>
-For a real-world example of how Langtail's testing capabilities can save significant time and effort, read our [case study with Deepnote](https://langtail.com/customers/deepnote) on how Langtail saved them days of fine-tuning their AI features.
+  For a real-world example of how Langtail's testing capabilities can save significant time and effort, read our [case study with Deepnote](https://langtail.com/customers/deepnote) on how Langtail saved them days of fine-tuning their AI features.
 </Tip>

@@ -1,35 +1,40 @@
 ---
 title: 'Basic Tests'
 ---
+
 [Here is a prompt](https://app.langtail.com/playground?shareid=U_-cFxHZwq) that that analyzes the sentiment of some text and returns a JSON object containing that sentiment. Here's what a basic set of tests could look like:
 
 ![Screenshot of Langtail's test section](/images/tests/overview/screenshot.png)
 
 1. **Test 1 - Positive Sentiment**
-    - **Case**: "I am happy."
-    - **Assertion**: An *equals* assertion with the value `{"sentiment": "positive"}`
 
-1. **Test 2 - Positive Sentiment**
-    - **Case**: "I am sad."
-    - **Assertion**: An *equals* assertion with the value `{"sentiment": "negative"}`
+   * **Case**: "I am happy."
 
-1. **Test 3 - Is Valid JSON**
-    - **Case**: "I saw a blue car."
-    - **Assertion**: A *javascript* assertion with the following code:
+   * **Assertion**: An *equals* assertion with the value `{"sentiment": "positive"}`
 
-        ```javascript
-        test(async ({ message, variables }) => {
-          try {
-                JSON.parse(message.content);
-                return true; // Parsing succeeded, so it's valid JSON
-            } catch (e) {
-                return false; // Parsing failed, so it's not valid JSON
-            }
-        });
-        ```
+2. **Test 2 - Positive Sentiment**
+
+   * **Case**: "I am sad."
+
+   * **Assertion**: An *equals* assertion with the value `{"sentiment": "negative"}`
+
+3. **Test 3 - Is Valid JSON**
+
+   * **Case**: "I saw a blue car."
+
+   * **Assertion**: A *javascript* assertion with the following code:```javascript
+     test(async ({ message, variables }) => {
+       try {
+             JSON.parse(message.content);
+             return true; // Parsing succeeded, so it's valid JSON
+         } catch (e) {
+             return false; // Parsing failed, so it's not valid JSON
+         }
+     });
+     ```
 
 There's a lot more that could be tested, but having even a basic test suite for each of your prompts can be a great way to safeguard against typos (like misspelling "positive") or parameter changes (like turning off JSON mode).
 
-<Tip>For more comprehensive testing scenarios and advanced configurations, explore our in-depth guide on [advanced testing](/how-to-guides/adv-tests) techniques.</Tip>
+<Tip>For more comprehensive testing scenarios and advanced configurations, explore our in-depth guide on [advanced testing](/concepts-and-examples/tests/adv-tests) techniques.</Tip>
 
 If you have any questions regarding tests or best practices for your project, [get in touch with us](/support/get-help).
