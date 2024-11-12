@@ -1,188 +1,196 @@
 ---
 title: 'Getting started'
 ---
+
 This guide will walk you through building a sample application powered by GPT-4. This app will suggest meals based on the ingredients you have in your refrigerator. We will use Langtail as the source of truth for the prompt, tests, logging, and metrics. Additionally, we will create a simple frontend using Next.js. Let's begin!
 
 <Steps>
-
   <Step title="Prepare your account">
     Let's start by preparing your account with the necessary details for prompt creation.
 
     1. Navigate to [Langtail](https://app.langtail.com). If you don't have an account, create one for free.
-    1. Create a new project and name it `quickstart`.
+
+    2. Create a new project and name it `quickstart`.
   </Step>
 
   <Step title="Create a prompt">
-    <video
-      controls
-      className="w-full aspect-video"
-      src="/images/quickstart/step1.mp4"
-    ></video>
+    <video controls className="w-full aspect-video" src="/images/quickstart/step1.mp4" />
 
     Next, we will create a prompt that will act as the core of our application.
 
     1. [Click here](https://app.langtail.com/playground?shareid=OU4Bu-sPxb) to open the quickstart prompt.
-    1. In the top right, click "Save as..."
-    1. Select your new project, rename the prompt to *Meal ideas*, and click "Save".
+
+    2. In the top right, click "Save as..."
+
+    3. Select your new project, rename the prompt to *Meal ideas*, and click "Save".
 
     <Note>This template references a variable named `selectedIngredients` and iterates over it to form a bulleted list. For more on the templating syntax, see [the prompt templating guide](/playground/templating).</Note>
   </Step>
 
   <Step title="Try the prompt">
-    <video
-      controls
-      className="w-full aspect-video"
-      src="/images/quickstart/step2.mp4"
-    ></video>
+    <video controls className="w-full aspect-video" src="/images/quickstart/step2.mp4" />
 
     Now, let's try out the new prompt.
 
     1. Navigate to the Variables panel where you will find the `selectedIngredients` variable. Paste this value: `["Turkey", "Spinach", "Berries"]`.
-    1. At the bottom of the playground, select "Send".
-    1. You should now see a response with two recipes formatted in Markdown. Feel free to adjust any model parameters or prompt templates to improve the output.
+
+    2. At the bottom of the playground, select "Send".
+
+    3. You should now see a response with two recipes formatted in Markdown. Feel free to adjust any model parameters or prompt templates to improve the output.
   </Step>
-  
+
   <Step title="Improve the prompt">
-    <video
-      controls
-      className="w-full aspect-video"
-      src="/images/quickstart/step3.mp4"
-    ></video>
+    <video controls className="w-full aspect-video" src="/images/quickstart/step3.mp4" />
 
     Now, let's try to improve your prompt.
 
     1. Navigate to your prompt template and hit the ✨ magic button.
-    1. See if the prompt seems better (it should) and select "Send".
-    1. You should now see a response, you can compare if it is better with the new prompt. If you don't like it just discard changes at the top.
+
+    2. See if the prompt seems better (it should) and select "Send".
+
+    3. You should now see a response, you can compare if it is better with the new prompt. If you don't like it just discard changes at the top.
   </Step>
 
   <Step title="Create a basic test">
-    <video
-      controls
-      className="w-full aspect-video"
-      src="/images/quickstart/step4.mp4"
-    ></video>
+    <video controls className="w-full aspect-video" src="/images/quickstart/step4.mp4" />
 
     Let's create a test to verify that the prompt is working as expected.
 
     1. Click "Save" to save the prompt.
-    1. From the navigation bar, select "Tests".
-    1. Click "+ Add Test".
-    1. A new test will be created with our example value for `selectedIngredients`.
-    1. Use the magic button in the botton to create 5 more example values.
-    1. Select "New Assertion", then "contains".
-    1. In the "Title" field, write `Contains additional ingredients`.
-    1. In the "Value" field, write `**Additional Ingredients:**`.
-    1. Select "Save".
-    1. Click "Run" and ensure that the test passes.
+
+    2. From the navigation bar, select "Tests".
+
+    3. Click "+ Add Test".
+
+    4. A new test will be created with our example value for `selectedIngredients`.
+
+    5. Use the magic button in the botton to create 5 more example values.
+
+    6. Select "New Assertion", then "contains".
+
+    7. In the "Title" field, write `Contains additional ingredients`.
+
+    8. In the "Value" field, write `**Additional Ingredients:**`.
+
+    9. Select "Save".
+
+    10. Click "Run" and ensure that the test passes.
   </Step>
 
   <Step title="Create a more complex assertion">
-    <video
-      controls
-      className="w-full aspect-video"
-      src="/images/quickstart/step5.mp4"
-    ></video>
+    <video controls className="w-full aspect-video" src="/images/quickstart/step5.mp4" />
 
     Next, we will create an assertion that checks if exactly 2 recipes were returned.
 
     1. In the test you just created, select "New Assertion" and then "javascript".
-    1. Name the assertion "Has two recipes".
-    1. Paste in the following code:
-        ```javascript
-        test(async ({ message, variables }) => {
-          const numberOfRecipes = message.content.split("##").length - 1;
-          return message.content && numberOfRecipes === 2;
-        });
-        ```
-    1. Select "Run" to ensure that both assertions now pass.
+
+    2. Name the assertion "Has two recipes".
+
+    3. Paste in the following code:
+
+       ```javascript
+       test(async ({ message, variables }) => {
+         const numberOfRecipes = message.content.split("##").length - 1;
+         return message.content && numberOfRecipes === 2;
+       });
+       ```
+
+    4. Select "Run" to ensure that both assertions now pass.
 
     <Note>If you need to debug a JavaScript assertion, you can add `console.log` statements and click "Run" to execute the code.</Note>
   </Step>
 
   <Step title="Deploy the prompt">
-    <video
-      controls
-      className="w-full aspect-video"
-      src="/images/quickstart/step6.mp4"
-    ></video>
+    <video controls className="w-full aspect-video" src="/images/quickstart/step6.mp4" />
 
     With the prompt tested, it's time to deploy it for testing in our app.
 
     1. From the navigation bar, select "Playground".
-    1. Click "Save" and write a message.
-    1. Select "Deploy", then "Staging environment".
+
+    2. Click "Save" and write a message.
+
+    3. Select "Deploy", then "Staging environment".
   </Step>
 
   <Step title="Generate a project API key">
-    <video
-      controls
-      className="w-full aspect-video"
-      src="/images/quickstart/step7.mp4"
-    ></video>
+    <video controls className="w-full aspect-video" src="/images/quickstart/step7.mp4" />
 
     Next, let's generate a project API key.
 
     1. In the navigation bar, select the project name to go to the current project.
-    1. From the left sidebar, select *Secrets*.
-    1. Click *New API Key*, optionally set a name and a budget limit, then click *Create*.
-    1. Copy the key and save it for the next step.
+
+    2. From the left sidebar, select *Secrets*.
+
+    3. Click *New API Key*, optionally set a name and a budget limit, then click *Create*.
+
+    4. Copy the key and save it for the next step.
   </Step>
 
   <Step title="Integrate with the sample app">
-    <video
-      controls
-      className="w-full aspect-video"
-      src="/images/quickstart/step8.mp4"
-    ></video>
+    <video controls className="w-full aspect-video" src="/images/quickstart/step8.mp4" />
 
     Now, let's integrate the project API key with the sample app.
 
     1. Make sure that you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Node.js](https://nodejs.org/en/download) installed on your computer.
-    1. Clone the quickstart repository using this command:
-        ```
-        git clone https://github.com/langtail/quickstart.git
-        ```
-    1. Open a terminal in the repository:
-        ```
-        cd quickstart
-        ```
-    1. install the packages using this command:
-        ```
-        npm install
-        ```
-    1. Open this repository in your code editor (for example, [VS Code](https://code.visualstudio.com/download)).
-    1. Duplicate the `.env.local.example` file and rename it to `.env.local`.
-    1. Replace the value of `LANGTAIL_API_KEY` with the project API key generated in the last step.
-    1. If you didn't name your prompt `quickstart`, modify the `generate_meals.ts` file with the one you used. [Here's the exact line.](https://github.com/langtail/quickstart/blob/main/pages/api/generate-meals.ts#L18-L19)
-    1. Start the app using this command:
-        ```
-        npm run dev
-        ```
-    1. Open the app in your browser. By default, the app is served on http://localhost:3000.
-    1. Choose some ingredients and click "Find Inspiration".
-    1. If everything is set up correctly, you should see some ideas appear at the bottom of the page. This may take a few seconds.
+
+    2. Clone the quickstart repository using this command:
+
+       ```
+       git clone https://github.com/langtail/quickstart.git
+       ```
+
+    3. Open a terminal in the repository:
+
+       ```
+       cd quickstart
+       ```
+
+    4. install the packages using this command:
+
+       ```
+       npm install
+       ```
+
+    5. Open this repository in your code editor (for example, [VS Code](https://code.visualstudio.com/download)).
+
+    6. Duplicate the `.env.local.example` file and rename it to `.env.local`.
+
+    7. Replace the value of `LANGTAIL_API_KEY` with the project API key generated in the last step.
+
+    8. If you didn't name your prompt `quickstart`, modify the `generate_meals.ts` file with the one you used. [Here's the exact line.](https://github.com/langtail/quickstart/blob/main/pages/api/generate-meals.ts#L18-L19)
+
+    9. Start the app using this command:
+
+       ```
+       npm run dev
+       ```
+
+    10. Open the app in your browser. By default, the app is served on http://localhost:3000.
+
+    11. Choose some ingredients and click "Find Inspiration".
+
+    12. If everything is set up correctly, you should see some ideas appear at the bottom of the page. This may take a few seconds.
   </Step>
 
   <Step title="View logs and metrics">
-    <video
-      controls
-      className="w-full aspect-video"
-      src="/images/quickstart/step9.mp4"
-    ></video>
+    <video controls className="w-full aspect-video" src="/images/quickstart/step9.mp4" />
 
     Finally, let's view logs and metrics.
 
     1. Navigate back to Langtail, go to the project view and select "Logs".
-    1. Click the latest log entry and notice all the available information. You can see the system prompt, user prompt, and direct response from the LLM. By clicking "Show more", you can also see stats like cost.
-    1. From the left sidebar, select "Metrics" to view aggregated stats.
+
+    2. Click the latest log entry and notice all the available information. You can see the system prompt, user prompt, and direct response from the LLM. By clicking "Show more", you can also see stats like cost.
+
+    3. From the left sidebar, select "Metrics" to view aggregated stats.
   </Step>
 </Steps>
 
 Congratulations! You have successfully explored the core functionality of Langtail. For more helpful documentation, you can explore the following sections:
 
-- [Advanced Tests](/tutorials/tests/adv-tests): Learn more about testing prompts and assistants to ensure everything functions as expected.
-- [OpenAI Proxy](/tutorials/proxy/integrate-sdk): If you're interested in trying out Langtail without committing to the full workflow, using the OpenAI Proxy via the SDK is a great way to get started.
-- [SDK](/tutorials/sdks/typescript): Discover how Langtail’s TypeScript SDK enhances OpenAI’s API client, allowing seamless integration with Langtail. Store prompts, reference them by slug and environment, and enjoy benefits like logs and metrics by routing requests through Langtail.
+* [Advanced Tests](/concepts-and-examples/tests/adv-tests): Learn more about testing prompts and assistants to ensure everything functions as expected.
+
+* [OpenAI Proxy](/concepts-and-examples/proxy/integrate-sdk): If you're interested in trying out Langtail without committing to the full workflow, using the OpenAI Proxy via the SDK is a great way to get started.
+
+* [SDK](/concepts-and-examples/sdks/typescript): Discover how Langtail’s TypeScript SDK enhances OpenAI’s API client, allowing seamless integration with Langtail. Store prompts, reference them by slug and environment, and enjoy benefits like logs and metrics by routing requests through Langtail.
 
 If you have any questions, feel free to ask in our [Discord community](https://discord.com/invite/PpNqWYdBCS).
