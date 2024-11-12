@@ -112,7 +112,7 @@
     },
     {
       "group": "Support & Community",
-      "pages": ["support/get-help"]
+      "pages": ["support/changelog","support/get-help"]
     }
   ],
   "footerSocials": {
