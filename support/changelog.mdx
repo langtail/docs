@@ -278,3 +278,187 @@ Simply deploy a prompt with this template, send the correct variable, and watch 
 
   * Refined UX for Per API Budget: Based on your feedback, we've refined the UX and terminology for the per API budget. You must now enable the budget before setting the total for your API key and specific user allowances.
 </Update>
+
+<Update label="06/19/2024">
+# 🐞 Test Table UX Enhancements and Bug Fixes
+
+We've made several improvements to the test table user experience and addressed some pesky bugs:
+
+- 🖼️ Text table UX improvements
+- 🎯 Streamlined the handling of messages in the test table for a smoother workflow.
+- 🔍 Enhanced the behavior of the edit drawer, ensuring a more intuitive experience.
+- ⌨️ Improved keyboard navigation and selection within the test table.
+- 🐛 Fixed issues related to arrow key navigation and drawer behavior.
+
+</Update>
+
+<Update label="06/20/2024">
+# 🤖 Introducing Anthropic's Claude 3.5 Sonnet Model
+
+- 🆕 Added support for Anthropic's Claude 3.5 Sonnet model, offering faster and cheaper performance compared to Claude 3 Opus, with enhanced reasoning, knowledge, and coding abilities.
+
+</Update>
+
+<Update label="07/15/2024">
+# 🎨 Layout Redesign and Test Table Improvements
+
+## 🔍 Enhanced Project-Level Visibility
+We've redesigned the layout to provide better visibility and access to key project-level components:
+- Playground
+- Tests
+- Deployments
+- Assistants
+
+![Redesigned langtail](/images/support/redesign.png)
+
+## 🐞 Test Table Fixes and Enhancements
+- 🎥 Fixed an issue with the test table width when the drawer is open.
+- 🔘 Added the ability to close the cell edit drawer by pressing the ESC key.
+- 🐛 Resolved issues with HTML pasting in the data table.
+- 📋 Improved the display of relevant information in the test history.
+
+## 🔒 Security Enhancements
+- 🔒 Fixed issues related to system_fingerprint and model value for Anthropic models.
+- 🔼 Updated to the latest SDK, resolving an OpenAI issue with images.
+
+</Update>
+
+<Update label="07/16/2024">
+# 🌐 Expanded Message Types and Provider Visibility
+
+- 📨 Added support for other message types, tools, and images in the "messages" column, allowing you to simulate user and assistant messages, as well as mock tools and upload images for Vision testing.
+- 🔓 Unlocked providers are now displayed at the top for better visibility.
+
+</Update>
+
+<Update label="07/22/2024">
+# 💰 Usage Limits, Test Improvements, and GPT-4o Mini Support
+
+- 🤖 Added support for GPT-4o Mini, OpenAI's cost-efficient model offering advanced text and multimodal performance
+- 💰 Implemented a banner to notify free users when they exceed usage limits.
+- 🐞 Fixed an issue with the test ID for the assertion popup in test results.
+- 🎚️ Improved the layout styles for project logs.
+
+</Update>
+
+<Update label="07/24/2024">
+# 📝 Text Assertion Enhancements and LLaMa 3.1 Support
+
+![Grouped text assertions](/images/support/grouped-text-assertions.png)
+
+- 📝 Grouped all text operation assertions under "Text" for better organization.
+- 🔖 Added new text assertion options: not equals, does not contain, and does not icontain.
+- 📝 Introduced a text editor for the "Text" assertion modal form, with support for variables.
+- 🤖 Added support for new LLaMa 3.1 models from groq.
+
+</Update>
+
+<Update label="09/19/2024">
+# 🌐 Assistant Sharing Redesign, LLM Leaderboard, and Hosted Functions
+
+## 🤖 Assistant Sharing Redesign
+![Assistant Sharing](/images/support/assistant-sharing.png)
+- 🌐 Redesigned the assistant sharing feature, allowing you to make your AI assistants publicly accessible and share them as standalone apps.
+
+## 📊 LLM Leaderboard
+- 📈 Introduced a new LLM leaderboard page to compare the performance of different language models.
+
+## 🛠️ Hosted Code Support
+![Hosted Code](/images/support/hosted.png)
+- 🔌 Added support for Hosted Code, enabling you to test your tools right inside Langtail by directly calling external APIs.
+
+## 🔒 Security and Stability Improvements
+- 🔒 Ensured that only team members can edit shared assistants.
+- 🤖 Added support for new OpenAI models: o1-mini and o1-preview.
+- 🔧 Fixed issues with tool usage for Azure models and display names.
+
+## 🔍 Shared Assistant Indexes
+- 🔍 Implemented shared assistant indexes for improved discoverability and searchability.
+
+</Update>
+
+<Update label="09/24/2024">
+# 🛠️ Tool Calls in Assistant Playground and Gemini Support
+- 🛠️ Added the ability to handle tool calls in the Assistant Playground, allowing you to provide responses for tool calls not handled by Langtail function handlers.
+- 🤖 Introduced native support for Gemini models, leveraging the @google/generative-ai library under the hood, with support for tools, streaming, and various media formats as input.
+
+## 📋 Other Improvements
+- 🔍 Fixed an issue with opening logs with prompts in the playground.
+- 💰 Set Gemini model prices.
+
+</Update>
+
+<Update label="10/24/2024">
+# 🚀 Langtail 1.0: Brand New Testing Interface, Assistants, and More!
+
+We're thrilled to announce the release of Langtail 1.0, packed with exciting new features and improvements!
+
+<iframe width="536" height="297" src="https://www.youtube.com/embed/g2Xj7_jYRa4?si=Us02BLVp9Bu6fPM5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+
+
+## 📊 Brand New Testing Interface
+![Testing Interface](/images/support/testing-table.webp)
+- 📝 At the core of Langtail 1.0 is our new spreadsheet-like interface for testing LLM applications, designed to feel natural for anyone used to working with Excel or Google Sheets.
+
+## 🔄 Test Configurations
+![Test Configurations](/images/support/test-configs.webp)
+- 🎚️ Introducing test configurations, allowing you to easily create and compare tests across different models with just a few clicks.
+
+## 🛠️ Tools with Hosted Code
+![Tools with Hosted Code](/images/support/hosted-code.webp)
+- 💻 Your prompts can now call tools and have the code run directly within Langtail, making prototyping and testing much easier without the need for mocking responses.
+- 🔒 Enjoy secure and fast code execution in a sandboxed environment powered by QuickJS.
+
+## 🧠 Assistants: Memory Management for Prompts
+![Assistants](/images/support/assistants.webp)
+- 🧠 Langtail 1.0 introduces Assistants – stateful entities that automatically manage memory and conversation history, reducing the need for additional code.
+- 🔄 Assistants can be used across models, in tests, deployed as APIs, or integrated with tools.
+
+## 🔒 Additional Features
+- 🌞 Light Mode: Introduced a new Light mode for the Langtail app, providing a refreshing alternative to the default Dark mode.
+- 🛡️ Protect your AI apps from prompt injection attacks and other security vulnerabilities with our built-in AI Firewall.
+- 🔐 Execute LLM-generated code securely in a sandboxed container, thanks to our partnership with E2B.
+- 📚 Explore a gallery of templates showcasing different ways Langtail can help your team.
+- 🤖 Added support for Google Gemini models, including the ability to attach videos to prompts.
+- 🏢 Self-hosting: Langtail can now be self-hosted entirely on your infrastructure (contact us for more information).
+
+</Update>
+
+<Update label="10/29/2024">
+# 🐞 Post 1.0 Fixes and UI Improvements
+
+- 🎨 Implemented various small UI fixes and improvements.
+- 🔢 Fixed an issue with ordering items in the testing table when they have the same creation date.
+- 📝 Improved test generation by passing test_inputs to the magic function for better test data.
+- 📚 Added templates and documentation links to the sidebar for easier access.
+
+</Update>
+
+<Update label="11/05/2024">
+# 🤖 New Model Support, Magic buttons, Testing Improvements, and Onboarding
+
+- 🤖 Added support for the Claude 3.5 Haiku model from Anthropic.
+- ✨ Introduced several "magic" buttons throughout the app to improve your experience with LLMs. These include prompts for enhancing prompts, generating test cases, and more! Let us know which ones you find and how useful they are - it's like an Easter egg hunt!
+- 🐞 Fixed an issue where the test data grid couldn't delete repeated test cases.
+- ⚙️ Introduced a "none" option for tool choice.
+- 🔍 Added a history viewer for better visibility into past events.
+- 📱 Improved onboarding experience for mobile devices.
+
+</Update>
+
+<Update label="11/12/2024">
+# 🔗 Shareable Prompts and Assistants, and UX Enhancements
+
+- 🔗 Added OG tags to shareable prompt assistants for better visibility and discoverability.
+- 📝 Introduced a temporary ID prop for TestInput to improve the testing experience.
+- ⌨️ Enhanced tab navigation in the messages drawer for better accessibility.
+- 🔄 Implemented proper handling of multiple test runs.
+- 📋 Formatted the test output preview and added a copy button for improved readability.
+- 🐞 Fixed null error strings in logs.
+- 🐞 Resolved issues with Gemini tool calls in tests and Anthropic model behavior.
+- 📝 Added undo/redo functionality to the test table for easier editing.
+- 🤖 Introduced a prototype for LLM assertion generation.
+- 🤖 Added support for the xAI grok-beta model.
+- ✨ Implemented magic to generate descriptions and titles for assistants.
+
+</Update>
