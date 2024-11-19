@@ -21,21 +21,17 @@ Before deploying, ensure you have the following environment variables configured
 # ENVs
 DATABASE_URL: "mysql://user:password@your-database-host:3306/your-database"
 MIGRATIONS_DATABASE_URL: "mysql://user:password@your-database-host:3306/your-database"
-
-EMAIL_FROM: "your-email@example.com"
-SMTP_URL: "smtp://user:password@smtp.example.com:587"
-EMAIL_VERIFICATION_SECRET: "your-email-verification-secret"
-
 JWT_SIGNING_KEY: "your-jwt-signing-key"
 JWT_PRIVATE: "your-jwt-private-key"
 JWT_PUBLIC: "your-jwt-public-key"
 AUTH_SECRET: "your-auth-secret"
-
-LANGTAIL_MAGIC_TOKEN: "your-langtail-magic-token"
-LANGTAIL_MAGIC_TESTS_TOKEN: "your-langtail-magic-tests-token"
-
 PRISMA_FIELD_ENCRYPTION_KEY: "your-prisma-field-encryption-key"
 IMAGES_AWS_SECRET_ACCESS_KEY: "your-aws-secret-access-key"
+
+# In case you want to enable login using email code
+EMAIL_FROM: "your-email@example.com"
+SMTP_URL: "smtp://user:password@smtp.example.com:587"
+EMAIL_VERIFICATION_SECRET: "your-email-verification-secret"
 ```
 
 ### Generating Production-Ready Secrets

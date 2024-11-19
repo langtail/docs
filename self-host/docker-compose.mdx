@@ -49,7 +49,7 @@ services:
     platform: linux/amd64
     image: langtail/langtail:latest
     environment:
-      # Email settings
+      # Email login (remove if not needed)
       SMTP_URL: "smtp://user:password@smtp.example.com:587"
       EMAIL_FROM: "default@example.com"
       EMAIL_VERIFICATION_SECRET: "default-email-verification-secret"
@@ -60,40 +60,22 @@ services:
       JWT_SIGNING_KEY: '{"kty": "oct","use": "sig","k": "vRCzGRHUGztzfvB-TSmNmcBHiC2ccz92M0RDJNkmwZjmFHsD_xlfHGD_3qewcO0p23s_BJIQkW92pRW4zNVPnO66jY3-ZZ7dIbt4x3ETh6-9TJ5X_B9Rb9e9ZNraH3TSKidW0Q6IvZq01qRSBiuhIddeC20HdFdUe-M-yGygie3EvsxXA3tL__o9pb25LHovsqZDwAi46TpovwHF5lS9K_a79-a9HLhPLvqbclSbhcC0mDwFiHaRGyB-xKiOpgpmdbdf2d1sdUnx8i8sA3sYS5Lo4gyhk2r_U2a8l9oU2s44erp-i3klGsVYuE82JNOeB9B7-hYuTwckvXLm75G0Ng"}'
       
       # Authentication settings
-      AUTH_SECRET: "7AdqG566X2lX2klWVbgjlLZVjgxLve2a/NVRHCs0PnI="  # Use default or generate your own
+      AUTH_SECRET: "7AdqG566X2lX2klWVbgjlLZVjgxLve2a/NVRHCs0PnI="  # Generate using guide below
       AUTH_URL: "http://localhost:3000"
       
       # Database
       DATABASE_URL: "mysql://admin:admin@db:3306/langtail"
-      PRISMA_FIELD_ENCRYPTION_KEY: "k1.aesgcm256.Yf2B9VlwQGmRSOzppSxEgnAgxCnk3ucvbwcqul17f_g="  # Use default or generate your own
+      PRISMA_FIELD_ENCRYPTION_KEY: "k1.aesgcm256.Yf2B9VlwQGmRSOzppSxEgnAgxCnk3ucvbwcqul17f_g="  # Generate using guide below
       
       # Misc configurations (adjust if needed)
-      EVALUATOR_URL: "https://default-evaluator-url.com"
-      IS_E2E_TEST: "false"
-      SENTRY_ENABLED: "true"
-      SKIP_ENV_VALIDATION: "false"
+      SENTRY_ENABLED: "false"
+      IMAGES_AWS_SECRET_ACCESS_KEY: "default-aws-secret-access-key"  # Key to S3 compatible image storage
 
-      # API Keys (use default or customize)
-      IMAGES_AWS_SECRET_ACCESS_KEY: "default-aws-secret-access-key"  # Generate your own
-      LANGTAIL_MAGIC_TOKEN: "default-langtail-magic-token"  # TODO what's this?
-      LANGTAIL_MAGIC_TESTS_TOKEN: "default-langtail-magic-tests-token"  # TODO what's this?
-      EVALUATOR_API_KEY: "default-evaluator-api-key"  # TODO should be removed?
-
-      # Social login IDs (use default or customize)
+      # Social login IDs (remove if you don't need them)
       GITHUB_ID: "default-github-id"
       GITHUB_SECRET: "default-github-secret"
       GOOGLE_ID: "default-google-id"
       GOOGLE_SECRET: "default-google-secret"
-
-      # TODO should be removed?
-      CLERK_SECRET_KEY: "default-clerk-secret-key"
-      LOOPS_API_KEY: "default-loops-api-key"
-      NEXT_PUBLIC_REWARDFUL_API_KEY: "default-rewardful-api-key"
-      TINYBIRD_API_URL: "https://default-tinybird-api-url.com"
-      STRIPE_SECRET_KEY: "default-stripe-secret-key"
-      TINYBIRD_API_KEY: "default-tinybird-api-key"
-      CANNY_JWT_KEY: "default-canny-jwt-key"
-      STRIPE_SECRET_KEY: "default-stripe-secret-key"
     ports:
       - 3000:3000
     depends_on:
