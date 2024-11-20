@@ -3,16 +3,27 @@ title: 'Changelog'
 ---
 
 
+<Update label="11/20/2024">
+
+# 🔗 Improved test response UX and other fixes
+
+- 📏 You can now enable test response text wrapping to easily see longer responses
+- 📝 Added support for markdown in the test response drawer
+- 🔧 Fixed selection of content in the test response drawer
+- 🎨 Fixed test variable icon color on theme switch without reload
+- 🔧 Adjusted LLM assertion to allow shorter Yes/No descriptions
+- 🔄 Fixed thread messages not saving with assistant API in Anthropic/Google
+- 🐛 Fixed a rare bug where a second main test config could be created
+</Update>
 
 <Update label="11/12/2024">
 # 🔗 Shareable Prompts and Assistants, and UX Enhancements
 
 - 🔗 Added OG tags to shareable prompt assistants for better visibility and discoverability.
-- 📝 Introduced a temporary ID prop for TestInput to improve the testing experience.
+- 🐞 When copy-pasting multiple rows into Tests, the order is now fixed.
 - ⌨️ Enhanced tab navigation in the messages drawer for better accessibility.
 - 🔄 Implemented proper handling of multiple test runs.
 - 📋 Formatted the test output preview and added a copy button for improved readability.
-- 🐞 Fixed null error strings in logs.
 - 🐞 Resolved issues with Gemini tool calls in tests and Anthropic model behavior.
 - 📝 Added undo/redo functionality to the test table for easier editing.
 - 🤖 Introduced a prototype for LLM assertion generation.
