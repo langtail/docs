@@ -18,7 +18,10 @@ This guide covers deploying Langtail for **production** using Kubernetes with a 
 Before deploying, ensure you have the following environment variables configured in your Helm values file:
 
 ```yaml
-# ENVs
+# Env vars
+AUTH_URL: https://langtail.yourdomain.com # Replace with the URL where the instance will be accessible
+
+# Secret envs
 DATABASE_URL: "mysql://user:password@your-database-host:3306/your-database"
 MIGRATIONS_DATABASE_URL: "mysql://user:password@your-database-host:3306/your-database"
 JWT_SIGNING_KEY: "your-jwt-signing-key"
@@ -26,12 +29,26 @@ JWT_PRIVATE: "your-jwt-private-key"
 JWT_PUBLIC: "your-jwt-public-key"
 AUTH_SECRET: "your-auth-secret"
 PRISMA_FIELD_ENCRYPTION_KEY: "your-prisma-field-encryption-key"
-IMAGES_AWS_SECRET_ACCESS_KEY: "your-aws-secret-access-key"
+IMAGES_AWS_SECRET_ACCESS_KEY: "your-aws-secret-access-key" # Optional - used for image uploads
 
 # In case you want to enable login using email code
 EMAIL_FROM: "your-email@example.com"
 SMTP_URL: "smtp://user:password@smtp.example.com:587"
 EMAIL_VERIFICATION_SECRET: "your-email-verification-secret"
+```
+
+### Securely handling secrets
+
+It's **highly recommended** to encrypt your secrets using a secret manager like Helm Secrets before storing the values yaml file.
+
+You can also use your own secrets manager, but you'll add these values to configure langtail to use your own secrets in kubernetes:
+
+```
+manageSecret: false
+secretRef:
+  name: "your-secret-name"
+  migrationName: "your-migration-secret-name" 
+
 ```
 
 ### Generating Production-Ready Secrets
