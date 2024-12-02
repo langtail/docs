@@ -39,7 +39,7 @@ EMAIL_VERIFICATION_SECRET: "your-email-verification-secret"
 
 ### Securely handling secrets
 
-It's **highly recommended** to encrypt your secrets using a secret manager like Helm Secrets before storing the values yaml file.
+It's **highly recommended** to encrypt your secrets using a secret manager like [Helm Secrets](https://github.com/jkroepke/helm-secrets) before storing the values yaml file.
 
 You can also use your own secrets manager, but you'll add these values to configure langtail to use your own secrets in kubernetes:
 
@@ -78,6 +78,16 @@ To generate a new signing key:
 1. Go to [https://mkjwk.org/](https://mkjwk.org/).
 1. Select **oct** as the key type and **Signature** as the key use.
 1. Copy the generated key and replace the `JWT_SIGNING_KEY` in your `docker-compose.yml`.
+
+**Generate `PRISMA_FIELD_ENCRYPTION_KEY`**
+
+This key is used to encrypt LLM provider keys in database.
+
+Generate it via a web UI: cloak.47ng.com or via the command line:
+  ```bash
+  npm install -g @47ng/cloak
+  cloak generate
+  ```
 
 ### Configuring Social Logins (Google and GitHub)
 
