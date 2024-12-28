@@ -2,6 +2,37 @@
 title: 'Changelog'
 ---
 
+<Update label="12/28/2024">
+
+# 🤖 DeepSeek-V3 Support Added
+
+- 🧠 Added support for DeepSeek-V3, the latest model from the DeepSeek team
+- 📚 Pre-trained on nearly 15 trillion tokens
+- ⌨️ Excels at instruction following and coding tasks
+- 🏆 Outperforms other open-source models and rivals leading closed-source models
+
+</Update>
+
+<Update label="12/23/2024">
+
+# 🧠 OpenAI o1 Models Now Available
+
+- 🤖 Added support for OpenAI's new o1 models
+- 🎯 Features internal reasoning chains for complex problem-solving
+- 🤔 Models demonstrate improved reasoning capabilities by thinking before answering
+
+</Update>
+
+<Update label="12/16/2024">
+
+# 🔍 Gemini 2.0 Flash (Experimental) Integration
+
+- 🆕 Added Gemini 2.0 Flash (Experimental) model
+- 🎯 First model with precise object bounds detection in images
+- 🖼️ Eliminates guesswork in image analysis tasks
+- ✅ Extensively tested with impressive results
+
+</Update>
 
 <Update label="12/11/2024">
 
@@ -30,7 +61,6 @@ title: 'Changelog'
 
 </Update>
 
-
 <Update label="11/20/2024">
 
 # 🔗 Improved test response UX and other fixes
@@ -42,6 +72,7 @@ title: 'Changelog'
 - 🔧 Adjusted LLM assertion to allow shorter Yes/No descriptions
 - 🔄 Fixed thread messages not saving with assistant API in Anthropic/Google
 - 🐛 Fixed a rare bug where a second main test config could be created
+
 </Update>
 
 <Update label="11/12/2024">
@@ -87,28 +118,44 @@ title: 'Changelog'
 
 We're thrilled to announce the release of Langtail 1.0, packed with exciting new features and improvements!
 
-<iframe width="536" height="297" src="https://www.youtube.com/embed/g2Xj7_jYRa4?si=Us02BLVp9Bu6fPM5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-
+<iframe
+  width="536"
+  height="297"
+  src="https://www.youtube.com/embed/g2Xj7_jYRa4?si=Us02BLVp9Bu6fPM5"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+/>
 
 ## 📊 Brand New Testing Interface
+
 ![Testing Interface](/images/support/testing-table.webp)
+
 - 📝 At the core of Langtail 1.0 is our new spreadsheet-like interface for testing LLM applications, designed to feel natural for anyone used to working with Excel or Google Sheets.
 
 ## 🔄 Test Configurations
+
 ![Test Configurations](/images/support/test-configs.webp)
+
 - 🎚️ Introducing test configurations, allowing you to easily create and compare tests across different models with just a few clicks.
 
 ## 🛠️ Tools with Hosted Code
+
 ![Tools with Hosted Code](/images/support/hosted-code.webp)
+
 - 💻 Your prompts can now call tools and have the code run directly within Langtail, making prototyping and testing much easier without the need for mocking responses.
 - 🔒 Enjoy secure and fast code execution in a sandboxed environment powered by QuickJS.
 
 ## 🧠 Assistants: Memory Management for Prompts
+
 ![Assistants](/images/support/assistants.webp)
+
 - 🧠 Langtail 1.0 introduces Assistants – stateful entities that automatically manage memory and conversation history, reducing the need for additional code.
 - 🔄 Assistants can be used across models, in tests, deployed as APIs, or integrated with tools.
 
 ## 🔒 Additional Features
+
 - 🌞 Light Mode: Introduced a new Light mode for the Langtail app, providing a refreshing alternative to the default Dark mode.
 - 🛡️ Protect your AI apps from prompt injection attacks and other security vulnerabilities with our built-in AI Firewall.
 - 🔐 Execute LLM-generated code securely in a sandboxed container, thanks to our partnership with E2B.
@@ -118,44 +165,48 @@ We're thrilled to announce the release of Langtail 1.0, packed with exciting new
 
 </Update>
 
-
 <Update label="09/24/2024">
 # 🛠️ Tool Calls in Assistant Playground and Gemini Support
 - 🛠️ Added the ability to handle tool calls in the Assistant Playground, allowing you to provide responses for tool calls not handled by Langtail function handlers.
 - 🤖 Introduced native support for Gemini models, leveraging the @google/generative-ai library under the hood, with support for tools, streaming, and various media formats as input.
 
 ## 📋 Other Improvements
+
 - 🔍 Fixed an issue with opening logs with prompts in the playground.
 - 💰 Set Gemini model prices.
 
 </Update>
 
-
 <Update label="09/19/2024">
 # 🌐 Assistant Sharing Redesign, LLM Leaderboard, and Hosted Functions
 
 ## 🤖 Assistant Sharing Redesign
+
 ![Assistant Sharing](/images/support/assistant-sharing.png)
+
 - 🌐 Redesigned the assistant sharing feature, allowing you to make your AI assistants publicly accessible and share them as standalone apps.
 
 ## 📊 LLM Leaderboard
+
 - 📈 Introduced a new LLM leaderboard page to compare the performance of different language models.
 
 ## 🛠️ Hosted Code Support
+
 ![Hosted Code](/images/support/hosted.png)
+
 - 🔌 Added support for Hosted Code, enabling you to test your tools right inside Langtail by directly calling external APIs.
 
 ## 🔒 Security and Stability Improvements
+
 - 🔒 Ensured that only team members can edit shared assistants.
 - 🤖 Added support for new OpenAI models: o1-mini and o1-preview.
 - 🔧 Fixed issues with tool usage for Azure models and display names.
 
 ## 🔍 Shared Assistant Indexes
+
 - 🔍 Implemented shared assistant indexes for improved discoverability and searchability.
 
 </Update>
-
-
 
 <Update label="07/24/2024">
 # 📝 Text Assertion Enhancements and LLaMa 3.1 Support
@@ -191,7 +242,9 @@ We're thrilled to announce the release of Langtail 1.0, packed with exciting new
 # 🎨 Layout Redesign and Test Table Improvements
 
 ## 🔍 Enhanced Project-Level Visibility
+
 We've redesigned the layout to provide better visibility and access to key project-level components:
+
 - Playground
 - Tests
 - Deployments
@@ -200,12 +253,14 @@ We've redesigned the layout to provide better visibility and access to key proje
 ![Redesigned langtail](/images/support/redesign.png)
 
 ## 🐞 Test Table Fixes and Enhancements
+
 - 🎥 Fixed an issue with the test table width when the drawer is open.
 - 🔘 Added the ability to close the cell edit drawer by pressing the ESC key.
 - 🐛 Resolved issues with HTML pasting in the data table.
 - 📋 Improved the display of relevant information in the test history.
 
 ## 🔒 Security Enhancements
+
 - 🔒 Fixed issues related to system_fingerprint and model value for Anthropic models.
 - 🔼 Updated to the latest SDK, resolving an OpenAI issue with images.
 
@@ -231,37 +286,68 @@ We've made several improvements to the test table user experience and addressed 
 
 </Update>
 
-
-
 <Update label="06/12/2024">
  # 🎯 Testing Enhancements: Keyboard-Friendly Table, Helper Variables, and Improved LLM Assertions
 
 ## ⌨️ Keyboard-Friendly Testing Table ⌨️
+
 We've made our testing table more keyboard-friendly, allowing you to bulk delete rows and copy multiple values at once.
 
-<iframe width="536" height="297" src="https://www.youtube.com/embed/sAvjbuYm3j8?si=zDG6o23d9sMNjPOY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-
+<iframe
+  width="536"
+  height="297"
+  src="https://www.youtube.com/embed/sAvjbuYm3j8?si=zDG6o23d9sMNjPOY"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+/>
 
 ## 🧮 Helper Variables for Assertions 🧮
+
 You can now add additional columns that act as helper variables for assertions (JavaScript, LLM assertions). Place the correct answer in these helper variables and use them in assertions for more efficient and accurate testing.
 
-<iframe width="536" height="297" src="https://www.youtube.com/embed/ZjmtlFU4HrY?si=GbMs2cX0Xe2P6Ius" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-
+<iframe
+  width="536"
+  height="297"
+  src="https://www.youtube.com/embed/ZjmtlFU4HrY?si=GbMs2cX0Xe2P6Ius"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+/>
 
 ## 📚 Improved LLM Assertions 📚
+
 Based on user feedback, we've improved LLM assertions. Now, the entire conversation history is included in the context, providing a more comprehensive view for better testing.
 
-<iframe width="536" height="297" src="https://www.youtube.com/embed/vsbw6tSF0Qs?si=dQTeGheyJ3ee5bQF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-
+<iframe
+  width="536"
+  height="297"
+  src="https://www.youtube.com/embed/vsbw6tSF0Qs?si=dQTeGheyJ3ee5bQF"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+/>
 
 ## 📨 Multiple Messages in the “Messages” Column 📨
+
 You can now use multiple messages in the “messages” column. Currently, it's possible to simulate user and assistant messages. We're working on the ability to mock Tools and upload images for Vision testing.
 
-<iframe width="536" height="297" src="https://www.youtube.com/embed/PzK-36KVsVc?si=4SEHYJJzRPL1MZN-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+<iframe
+  width="536"
+  height="297"
+  src="https://www.youtube.com/embed/PzK-36KVsVc?si=4SEHYJJzRPL1MZN-"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+/>
 
-
-Tests are a big focus for us, and we're committed to continuously improving them. 
+Tests are a big focus for us, and we're committed to continuously improving them.
 Stay tuned for more updates!
+
 </Update>
 
 <Update label="04/19/2024">
@@ -269,8 +355,8 @@ Stay tuned for more updates!
 
 ![enhanced testing](/images/support/enhanced-testing.png)
 
-
 ## ⚡ Langtail's Testing Table Component Upgrade ⚡
+
 We're excited to announce significant updates to Langtail's table component aimed at improving your test-writing experience:
 
 - 🚀 Lightning-fast row addition and cell content deletion for efficient test setup
@@ -280,24 +366,23 @@ We're excited to announce significant updates to Langtail's table component aime
 - 🎁 Test result display with LLM and assertion outcomes for comprehensive insights
 
 ## 🔜 Upcoming Feature: LLM as a Judge Assertion 🔜
+
 Stay tuned! We're in the process of developing an "LLM as a judge assertion" feature, set to take our testing capabilities to the next level. More updates coming your way soon!
 
 </Update>
 
 <Update label="04/12/2024">
- # New Dashboard View and Launch of Langtail SDK 🚀 
+ # New Dashboard View and Launch of Langtail SDK 🚀
 
 ## 📊 New Dashboard View 📊
 
 ![dashboard](/images/support/dashboard.png)
-
 
 We're thrilled to introduce our new dashboard view! Now serving as the main hub for each project, the dashboard provides a snapshot of your project's activity and performance at a glance. With recent logs and quick statistics, you can stay updated the moment you log in.
 
 ## 🎯 Langtail SDK Release 🎯
 
 ![Langtail-SDK](/images/support/langtail-sdk.png)
-
 
 The first version of the Langtail SDK is now live! 🥳 The SDK can function as an OpenAI proxy and is also compatible with prompts directly deployed within Langtail. Dive into the details over at our [GitHub docs](https://github.com/langtail/langtail-node).
 
@@ -309,18 +394,29 @@ Currently, we've rolled out the JS SDK. If you're interested in a Python SDK, we
  # New Homepage Video, About Us Page, and Embeddable Prompts
 
 ## 🎞️ New Homepage Video 🎞️
+
 We've released a new video that's now featured on our homepage. Get a quick overview of what Langtail offers by watching our latest video.
 
-<iframe width="536" height="297" src="https://www.youtube.com/embed/0g1oGDxYOck?si=gP_I7730eUQvKMPu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-
+<iframe
+  width="536"
+  height="297"
+  src="https://www.youtube.com/embed/0g1oGDxYOck?si=gP_I7730eUQvKMPu"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+/>
 
 ## 🧑‍💻 About Us Page 🧑‍💻
+
 Curious about the team behind Langtail? Visit our newly updated About Us page to learn more about our mission and the people who make Langtail possible. [Learn more](https://langtail.com/about)
 
 ## 🛣️ Roadmap, Changelog, and Feedback 🛣️
+
 Your feedback is crucial in helping us improve. Visit our feedback portal to see our roadmap, changelog, and to share your thoughts. [Give feedback](http://feedback.langtail.com/)
 
 ## 🖼️ Embeddable Prompts 🖼️
+
 We're happy to announce that you can now embed publicly shared prompts into iframes! Here's a quick example:
 
 ```
@@ -335,15 +431,20 @@ We're happy to announce that you can now embed publicly shared prompts into ifra
 ![public sharing](/images/support/public-sharing.png)
 
 ## 📚 Expanded Documentation for Seamless Integration 📚
+
 We've significantly expanded our documentation to help you hit the ground running:
+
 - 🚀 Deploying Prompts: Learn how to deploy your prompts effortlessly. [Read more](https://langtail.com/docs/deployments/deploy-prompt)
 - 🌐 REST API Usage: Discover how to leverage our powerful REST API. [Learn how](https://langtail.com/docs/api-reference/endpoint/invoke-deployed-prompt)
 
 ## 🖼️ Dynamic OG Images for Shared Prompts 🖼️
+
 Sharing is caring, and we've made it even better! When you share a prompt publicly, we'll automatically generate an OG image for you.
 
 ## 🌍 Project-Level Environment Variables 🌍
+
 Tired of hardcoding API endpoints and keys directly in code? We've got you covered! Introducing project-level environment variables:
+
 - 🔒 Secure: Keep your sensitive information safe and separate from the code
 - 🎛️ Centralized: Set your variables once at the project level
 - 🌐 Accessible: Use your env variables in the JavaScript editor for Test Assertions and soon in the Playground too
@@ -357,55 +458,80 @@ Tired of hardcoding API endpoints and keys directly in code? We've got you cover
 # Langtail.com updates, Proxy Integration, and Quality of Life Improvements 🚀
 <iframe width="536" height="297" src="https://www.youtube.com/embed/0hXAlFrdscU?si=EY7H9fWoIEKmh-OV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
 
-
 ## ✨ Landing page updates ✨
+
 Our brand new website is live, showcasing the four key features that make Langtail the ultimate tool for prompt engineering:
+
 1. 🐛 Debug prompts effortlessly in the playground
 2. ✅ Run tests to ensure your prompts are top-notch
 3. 🚀 Deploy prompts in a flash
 4. 📊 Monitor production with comprehensive logs and metrics
 
 ## 💸 Pricing Preview 💸
+
 We've got a pricing plan for everyone! Choose from three tiers:
+
 - 🆓 Free Tier: Perfect for getting started
 - 💰 Mid Tier: Unleash more power at just $99 per month
 - 🏢 Enterprise Tier: Tailored solutions for your business needs
 
 ## 📚 Docs Page Expansion 📚
+
 We've been busy expanding our documentation to help you get the most out of Langtail. Head over to our docs page to explore the latest information and guides.
 
 ## 🌉 Langtail Proxy: Seamless Integration 🌉
+
 Already building your application using the OpenAI SDK? No problem! With Langtail Proxy, you can experiment with Langtail without migrating your prompts. Here's how:
+
 1. Create your Langtail account
 2. Generate your project API key
 3. Modify your code by updating the base URL to `"https://proxy.langtail.com/v1` and passing the Langtail API key
 4. Test it out and witness the magic!
 
 ## 🎨 Quality of Life Improvements 🎨
+
 We've also released some handy enhancements to make your life easier:
+
 - 🔍 Log Filtering: Easily filter logs by categories like proxy
 - 🎯 Single Test Run: Run individual tests instead of the entire suite
 - ❌ Test Cancellation: Cancel test runs whenever you need
 - 📅 Current Date in System Prompt: Add the current date using handlebars
-</Update>
 
+</Update>
 
 <Update label="03/15/2024">
  # 📆 $Date Helper, 🔍 Enhanced Log Filters, and 🏠 Webpage Updates
 
-<iframe width="536" height="297" src="https://www.youtube.com/embed/DWFnIIqZB1I?si=RTkW7B45O36GBiKG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-
+<iframe
+  width="536"
+  height="297"
+  src="https://www.youtube.com/embed/DWFnIIqZB1I?si=RTkW7B45O36GBiKG"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+/>
 
 ## 📆 $Date Helper for Chatbots 📆
+
 Chatbots can now stay up-to-date with the current date! Introducing the `$date` helper, a new feature designed to keep your chatbots in sync with real-time.
 
 ## 🔍 Log Filtering 🔍
+
 Say hello to granular control over your logs. You can now filter logs by any column, even custom-send metadata. Find what you need, when you need it.
 
-<iframe width="536" height="297" src="https://www.youtube.com/embed/Q5kop3J8g-w?si=xUV2KMVMcmY28ys3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
-
+<iframe
+  width="536"
+  height="297"
+  src="https://www.youtube.com/embed/Q5kop3J8g-w?si=xUV2KMVMcmY28ys3"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+/>
 
 ## 💰 Pricing Page is Live 💰
+
 Ever wondered about our pricing? We've just launched our pricing page, making it easier for you to find the perfect plan for your needs. Check it out!
 
 </Update>
@@ -416,9 +542,11 @@ Ever wondered about our pricing? We've just launched our pricing page, making it
 ![public sharing](/images/support/public-sharing.png)
 
 ## 🎡 Public Sharing of Prompts 🎡
+
 Good news, everyone! We've just launched a new feature that lets you publicly share your prompts. Previously, users needed an account to view a shared prompt, but now, anyone can view it thanks to our new read-only Playground view. 🎉
 
 ## 🏞️ Read-Only Playground 🏞️
+
 In the read-only Playground, you can see all messages, variables, and Tools (functions). It's an open window to the world of your prompts. Currently, only a fixed version of the prompt can be shared, but we're already working on updates that will let you share and always view the most recent version of a prompt.
 
 </Update>
@@ -429,6 +557,7 @@ In the read-only Playground, you can see all messages, variables, and Tools (fun
 ![JavaScript assertions](/images/support/javascript-assertions.png)
 
 ## 🧪 Enhanced JavaScript Assertions in Tests 🧪
+
 We've made some significant improvements to our developer experience for JavaScript assertions in Tests:
 
 - 📝 Run functions with example input: Simply fill in your example input in the left column and run the function.
@@ -437,16 +566,25 @@ We've made some significant improvements to our developer experience for JavaScr
 - 🌐 API Calls: For advanced use cases, you can now call external APIs using the Fetch API.
 - ⚡️ Ultra-fast API requests: Thanks to our robust infrastructure, your API requests will execute swiftly.
 
-
-
 </Update>
 
 <Update label="02/27/2024">
   # 🚀 New Templating Engine Based on Handlebars for Enhanced Prompt Handling
 
-  <iframe width="536" height="297" src="https://www.youtube.com/embed/jfX9JiT3JDI?si=RbOYrQ67bM4IBQJZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+{' '}
 
-  ## 🎨 Templating Engine Support 🎨
+<iframe
+  width="536"
+  height="297"
+  src="https://www.youtube.com/embed/jfX9JiT3JDI?si=RbOYrQ67bM4IBQJZ"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+/>
+
+## 🎨 Templating Engine Support 🎨
+
 We're excited to announce that we've released support for a templating engine, based on Handlebars! With this new feature, you can now tackle more complex use cases, including:
 
 - Conditional parts of prompts
@@ -461,53 +599,73 @@ Simply deploy a prompt with this template, send the correct variable, and watch 
 <Update label="02/20/2024">
   # 🚀 Project Settings, Workspace Refinement, Redesigned Logs, and OpenAI Tools Support!
 
-  <iframe width="536" height="297" src="https://www.youtube.com/embed/RroImGCy9Zw?si=9SYb2naLKwUhUML3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+{' '}
 
-  ## 🔧 New Project Settings 🔧
+<iframe
+  width="536"
+  height="297"
+  src="https://www.youtube.com/embed/RroImGCy9Zw?si=9SYb2naLKwUhUML3"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+/>
 
-  Managing your projects just got easier! We've added a new item in the project-level sidebar that lets you perform common actions like renaming or deleting a project.
+## 🔧 New Project Settings 🔧
 
-  ## 🛠️ Enhanced Workspace Settings 🛠️
+Managing your projects just got easier! We've added a new item in the project-level sidebar that lets you perform common actions like renaming or deleting a project.
 
-  Your workspace is now even more flexible! We've refined the settings to allow you to rename your workspace and made the UI more consistent across the different sections for a smoother experience.
+## 🛠️ Enhanced Workspace Settings 🛠️
 
-  ## 📜 Redesigned Logs 📜
+Your workspace is now even more flexible! We've refined the settings to allow you to rename your workspace and made the UI more consistent across the different sections for a smoother experience.
 
-  We've completely redesigned our Logs for a cleaner, more user-friendly interface. Plus, Logs now also display the JSON representation of what's being sent from Langtail to end providers like OpenAI. We think you'll love this upgrade as much as we do!
-  
-  ![Redesigned Logs](/images/support/redesigned-logs.png)
+## 📜 Redesigned Logs 📜
 
-  ## 🔍 OpenAI Tools Support 🔍
+We've completely redesigned our Logs for a cleaner, more user-friendly interface. Plus, Logs now also display the JSON representation of what's being sent from Langtail to end providers like OpenAI. We think you'll love this upgrade as much as we do!
 
-  We're thrilled to announce that support for the new OpenAI Tools is here! Functions now visually resemble TypeScript functions and are even typesafe. The types are generated based on the JSON schema. We're confident you'll find them incredibly useful.
+![Redesigned Logs](/images/support/redesigned-logs.png)
 
-  ![OpenAI Tools Support ](/images/support/openai-tools-support.png)
+## 🔍 OpenAI Tools Support 🔍
+
+We're thrilled to announce that support for the new OpenAI Tools is here! Functions now visually resemble TypeScript functions and are even typesafe. The types are generated based on the JSON schema. We're confident you'll find them incredibly useful.
+
+![OpenAI Tools Support ](/images/support/openai-tools-support.png)
 
 </Update>
 
 <Update label="02/08/2024">
   # 🌟 GPT-4 Vision is Live, Plus New Workspace Settings and Refined UX 🔍
 
-  <iframe width="536" height="297" src="https://www.youtube.com/embed/LtGViWchOcI?si=7Rln83oDrXMFetPV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+{' '}
 
-  ## 🌟 GPT-4 Vision Now Live 🌟
+<iframe
+  width="536"
+  height="297"
+  src="https://www.youtube.com/embed/LtGViWchOcI?si=7Rln83oDrXMFetPV"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+/>
 
-  We're thrilled to announce that GPT-4 Vision is now live in production! You can now input images along with text, opening up a whole new realm of creative use cases. For instance, take a photo of an invoice and ask for the cost of each item – Vision has you covered.
+## 🌟 GPT-4 Vision Now Live 🌟
 
-  ## 🎨 Experimenting with Vision in Playground 🎨
+We're thrilled to announce that GPT-4 Vision is now live in production! You can now input images along with text, opening up a whole new realm of creative use cases. For instance, take a photo of an invoice and ask for the cost of each item – Vision has you covered.
 
-  Want to give Vision a spin? Head over to our Playground and upload an image or insert an image URL. Please note that Vision takes a few seconds to process, so a bit of patience is required.
+## 🎨 Experimenting with Vision in Playground 🎨
 
-  ## 🚀 Deploy Prompts with Vision 🚀
+Want to give Vision a spin? Head over to our Playground and upload an image or insert an image URL. Please note that Vision takes a few seconds to process, so a bit of patience is required.
 
-  Great news for developers – deploying prompts with Vision in Langtail is now supported!
+## 🚀 Deploy Prompts with Vision 🚀
 
-  ## 🛠️ Workspace Settings and UX Updates 🛠️
+Great news for developers – deploying prompts with Vision in Langtail is now supported!
 
-  We've also rolled out a couple of key updates for improved user experience:
+## 🛠️ Workspace Settings and UX Updates 🛠️
 
-  * New Workspace Settings: Now, you can manage your provider API keys and team members all in one place.
+We've also rolled out a couple of key updates for improved user experience:
 
-  * Refined UX for Per API Budget: Based on your feedback, we've refined the UX and terminology for the per API budget. You must now enable the budget before setting the total for your API key and specific user allowances.
+- New Workspace Settings: Now, you can manage your provider API keys and team members all in one place.
+
+- Refined UX for Per API Budget: Based on your feedback, we've refined the UX and terminology for the per API budget. You must now enable the budget before setting the total for your API key and specific user allowances.
+
 </Update>
-
