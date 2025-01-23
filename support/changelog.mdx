@@ -2,6 +2,44 @@
 title: 'Changelog'
 ---
 
+
+<Update label="01/23/2025">
+
+# 🔄 Anthropic Caching and Usage Metrics Improvements
+
+- 🔄 Added caching support for Anthropic models
+  - Enable via UI on template messages
+- 🐛 Improved token count and pricing calculations for Anthropic models and Gemini models
+- 💰 Implemented cached token price calculations for OpenAI and Anthropic providers
+
+</Update>
+
+<Update label="01/22/2025">
+
+# 🤖 Fixed bugs and added support for Deepseek-R1 model
+
+- 🤖 Added OpenRouter Deepseek-R1 model
+- 🔄 Fixed bug: OpenAI compatible providers (including OpenAI) didn't return a proper error response message - only "Whoops! We couldn't send your message. Let us know if this keeps happening."
+- 🔄 Fixed bug: Test inputs (rows) could not be deleted if some columns were hidden
+
+</Update>
+
+<Update label="01/20/2025">
+
+# 🧪 Test Duplication and UI Improvements
+
+- ✨ Added test duplication dialog to copy tests between prompts
+- 🗑️ Removed model column from test runs list for cleaner UI
+- 🖱️ Fixed scroll behavior on message removal in playground
+- 📊 Improved test column actions and styling
+- 🔧 Fixed various UI issues with prompt and test form lists
+- 🛠️ Fixed tool calls styling in tests - support when LLM responds with both text and tool call
+- 🐛 Fixed test runs failing with exceptions in rare cases
+- 🔒 Fixed 404 issue after logging out and in as a different user
+
+</Update>
+
+
 <Update label="12/28/2024">
 
 # 🤖 DeepSeek-V3 Support Added
