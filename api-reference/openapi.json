@@ -880,6 +880,18 @@
             "name": "after",
             "in": "query",
             "description": "A cursor for use in pagination. 'after' is a thread ID that defines your place in the list. For instance, if you make a list request and receive 100 threads, ending with thread 'xyz', your subsequent call can include after='xyz' in order to fetch the next page of the list. Pagination works the same as in the OpenAI API https://platform.openai.com/docs/api-reference/assistants/listAssistants."
+          },
+
+          {
+            "schema": {
+              "type": "string",
+              "nullable": true,
+              "default": "asc",
+              "enum": ["asc", "desc"]
+            },
+            "name": "order",
+            "in": "query",
+            "description": "The order of the messages. Default is 'asc' (oldest first). Use 'desc' for newest first."
           }
         ],
         "responses": {
