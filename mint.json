@@ -108,6 +108,10 @@
       ]
       },
     {
+        "group": "Self-host",
+        "pages": ["self-host/docker-compose","self-host/helm-chart"]
+    },
+    {
         "group": "Media & Presentations",
         "pages": ["media-presentations/web-expo","media-presentations/deepnote-case"]
     },

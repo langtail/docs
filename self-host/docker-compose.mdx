@@ -1,0 +1,177 @@
+---
+title: 'Local - Docker Compose'
+---
+
+This guide walks you through setting up Langtail for **local development** using Docker Compose. 
+
+> **Note:** This setup is for **local development** only. It is **not recommended for production** due to the use of default secrets and non-persistent database. For production, follow the [Kubernetes Helm Chart guide](/self-host/helm-chart). 
+
+## Prerequisites
+
+- Docker and Docker Compose installed.
+- Basic knowledge of Docker Compose commands.
+
+## Docker Compose Setup
+
+Below is the Docker Compose configuration for running Langtail locally:
+
+```yaml
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: langtail
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql # Persists data across container restarts
+
+  wait-for-db:
+    image: atkrad/wait4x
+    depends_on:
+      db:
+        condition: service_started
+    command: tcp db:3306 -t 30s -i 250ms
+
+  init-db:
+    platform: linux/amd64
+    image: langtail/langtail-db-migrations:latest
+    environment:
+      DATABASE_URL: "mysql://admin:admin@db:3306/langtail"
+    depends_on:
+      wait-for-db:
+        condition: service_completed_successfully
+
+  app:
+    platform: linux/amd64
+    image: langtail/langtail:latest
+    environment:
+      # Email login (remove if not needed)
+      SMTP_URL: "smtp://user:password@smtp.example.com:587"
+      EMAIL_FROM: "default@example.com"
+      EMAIL_VERIFICATION_SECRET: "default-email-verification-secret"
+      
+      # JWT keys (use default or generate your own)
+      JWT_PRIVATE: '{"key_ops":["sign"],"kty": "EC","d": "bSsPE9H0IiKvxxZA6zPxjUpSLqa0bIDlluPxnTNnt88","use": "sig","crv": "P-256","x": "IavsPecpkyukuGxL6qcS6a-TG_yE9Rv4O_MaM8moUI0","y": "S9NhGgdxLrZHYgvrcT1xEMW76rM_x2C64h_y2oUGnfo","alg": "ES256"}'
+      JWT_PUBLIC: '{"key_ops":["verify"],"kty": "EC","use": "sig","crv": "P-256","x": "IavsPecpkyukuGxL6qcS6a-TG_yE9Rv4O_MaM8moUI0","y": "S9NhGgdxLrZHYgvrcT1xEMW76rM_x2C64h_y2oUGnfo","alg": "ES256"}'
+      JWT_SIGNING_KEY: '{"kty": "oct","use": "sig","k": "vRCzGRHUGztzfvB-TSmNmcBHiC2ccz92M0RDJNkmwZjmFHsD_xlfHGD_3qewcO0p23s_BJIQkW92pRW4zNVPnO66jY3-ZZ7dIbt4x3ETh6-9TJ5X_B9Rb9e9ZNraH3TSKidW0Q6IvZq01qRSBiuhIddeC20HdFdUe-M-yGygie3EvsxXA3tL__o9pb25LHovsqZDwAi46TpovwHF5lS9K_a79-a9HLhPLvqbclSbhcC0mDwFiHaRGyB-xKiOpgpmdbdf2d1sdUnx8i8sA3sYS5Lo4gyhk2r_U2a8l9oU2s44erp-i3klGsVYuE82JNOeB9B7-hYuTwckvXLm75G0Ng"}'
+      
+      # Authentication settings
+      AUTH_SECRET: "7AdqG566X2lX2klWVbgjlLZVjgxLve2a/NVRHCs0PnI="  # Generate using guide below
+      AUTH_URL: "http://localhost:3000"
+      
+      # Database
+      DATABASE_URL: "mysql://admin:admin@db:3306/langtail"
+      PRISMA_FIELD_ENCRYPTION_KEY: "k1.aesgcm256.Yf2B9VlwQGmRSOzppSxEgnAgxCnk3ucvbwcqul17f_g="  # Generate using guide below
+      
+      # Misc configurations (adjust if needed)
+      SENTRY_ENABLED: "false"
+      IMAGES_AWS_SECRET_ACCESS_KEY: "default-aws-secret-access-key"  # Key to S3 compatible image storage
+
+      # Social login IDs (remove if you don't need them)
+      GITHUB_ID: "default-github-id"
+      GITHUB_SECRET: "default-github-secret"
+      GOOGLE_ID: "default-google-id"
+      GOOGLE_SECRET: "default-google-secret"
+    ports:
+      - 3000:3000
+    depends_on:
+      init-db:
+        condition: service_completed_successfully
+
+volumes:
+  mysql-data:
+```
+
+### Explanation of Services
+
+- **db**: Runs a MySQL 8.0 database with credentials for local use.
+- **wait-for-db**: Ensures the database is ready before starting other services.
+- **init-db**: Initializes the database by running migrations after the database is ready.
+- **app**: The main Langtail application, which depends on the database and migrations.
+
+## Generate Your Own Secrets (Optional)
+
+While the default secrets are fine for local development, it is recommended to generate your own if desired. Here are the steps:
+
+### Generate `AUTH_SECRET`
+
+Run the following command to generate a new `AUTH_SECRET`:
+
+```bash
+$ openssl rand -base64 32
+```
+
+### Generate `JWT_PUBLIC` and `JWT_PRIVATE`
+
+To generate new JWT keys:
+
+1. Go to [https://mkjwk.org/](https://mkjwk.org/).
+1. Select **EC** as the key type and **P-256** as the curve.
+1. Copy the public and private keys and replace them in your `docker-compose.yml` under `JWT_PRIVATE` and `JWT_PUBLIC`.
+
+### Generate `JWT_SIGNING_KEY`
+
+To generate a new signing key:
+
+1. Go to [https://mkjwk.org/](https://mkjwk.org/).
+1. Select **oct** as the key type and **Signature** as the key use.
+1. Copy the generated key and replace the `JWT_SIGNING_KEY` in your `docker-compose.yml`.
+
+## Sending Emails (Optional)
+
+If you want to test sending emails (e.g., for user sign-up verification), you will need to set up an SMTP server. For local development, you can use a free service like [Ethereal Email](https://ethereal.email/).
+
+### Setup SMTP using Ethereal Email
+
+1. Sign up for a free Ethereal Email account.
+1. Copy the SMTP credentials (host, port, username, password).
+1. Update the `SMTP_URL` in your `docker-compose.yml` with the following format:
+
+```bash
+SMTP_URL="smtp://username:password@smtp.ethereal.email:587"
+```
+
+## Configuring Social Login (Optional)
+
+Langtail supports social login via Google and GitHub. To enable this feature, you need to obtain OAuth credentials from Google and GitHub and set the corresponding environment variables.
+
+### Google Social Login
+
+1. Follow the instructions at [NextAuth.js - Google Provider](https://next-auth.js.org/providers/google) to create a Google OAuth application.
+2. Obtain your **Google Client ID** and **Google Client Secret**.
+3. Update your `docker-compose.yml`:
+
+```yaml
+environment:
+  GOOGLE_ID: "your-google-client-id"
+  GOOGLE_SECRET: "your-google-client-secret"
+```
+
+### GitHub Social Login
+
+1. Follow the instructions at [NextAuth.js - GitHub Provider](https://next-auth.js.org/providers/github) to create a GitHub OAuth application.
+2. Obtain your **GitHub Client ID** and **GitHub Client Secret**.
+3. Update your `docker-compose.yml`:
+
+```yaml
+environment:
+  GITHUB_ID: "your-github-client-id"
+  GITHUB_SECRET: "your-github-client-secret"
+```
+
+> **Note:** Ensure that your OAuth application's redirect URIs are set correctly to `http://localhost:3000/api/auth/callback/google` for Google and `http://localhost:3000/api/auth/callback/github` for GitHub.
+
+## Running the Application
+
+1. Save the `docker-compose.yml` file in your project root.
+1. Run the following command to start the services:
+
+```bash
+docker-compose up
+```
+
+1. Once all services are up, you can access the app at [http://localhost:3000](http://localhost:3000).
