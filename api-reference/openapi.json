@@ -2062,6 +2062,88 @@
             }
           }
         }
+      },
+      "delete": {
+        "description": "Deletes a message by its ID.",
+        "servers": [{ "url": "https://api.langtail.com" }],
+        "parameters": [
+          {
+            "schema": { "type": "string", "example": "<LANGTAIL_API_KEY>" },
+            "required": true,
+            "description": "Your Langtail API Key",
+            "name": "X-API-Key",
+            "in": "header"
+          },
+          {
+            "name": "threadId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the thread containing the message.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "messageId",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the message to retrieve.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The unique identifier of the deleted message."
+                    },
+                    "object": {
+                      "type": "string",
+                      "description": "The object type, which is always 'thread.message.deleted' for this response.",
+                      "example": "thread.message.deleted"
+                    },
+                    "deleted": {
+                      "type": "boolean",
+                      "description": "Indicates that the message was successfully deleted.",
+                      "example": true
+                    }
+                  },
+                  "required": ["id", "object", "deleted"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Message not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Message not found or does not belong to the proper thread/project"
+                        }
+                      }
+                    }
+                  },
+                  "required": ["error"]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/{workspace}/{project}/{prompt}/{environment}": {
